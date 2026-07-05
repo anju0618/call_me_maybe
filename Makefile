@@ -12,9 +12,10 @@ debug:
 		uv run python3 -m pdb -m $(SRC_DIR)
 
 clean:
-		find . -type -d -name "__pycache__" -exec rm -rf {} +
+		find . -type d -name "__pycache__" -exec rm -rf {} +
 		rm -rf .mypy_cache
 		rm -rf .ruff_cache
+		rm -rf src/__pycache__
 
 lint:
 		uv run flake8 $(SRC_DIR)
