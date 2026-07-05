@@ -1,0 +1,57 @@
+[
+    {
+        "prompt": "What is the sum of 2 and 3?",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "What is the sum of 265 and 345?",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "Greet shrek",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "Greet john",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "Reverse the string 'hello'",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "Reverse the string 'world'",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "What is the square root of 16?",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "Calculate the square root of 144",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "Replace all numbers in \"Hello 34 I'm 233 years old\" with NUMBERS",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "Replace all vowels in 'Programming is fun' with asterisks",
+        "name": "dummy_function",
+        "parameters": {}
+    },
+    {
+        "prompt": "Substitute the word 'cat' with 'dog' in 'The cat sat on the mat with another cat'",
+        "name": "dummy_function",
+        "parameters": {}
+    }
+]
