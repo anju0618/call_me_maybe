@@ -6,6 +6,7 @@ import sys
 from pathlib import Path
 from typing import Any, Dict, List
 from llm_sdk import Small_LLM_Model  # type: ignore[attr-defined]
+from src.json_generator import JsonGenerator
 
 
 def parse_arguments() -> argparse.Namespace:
@@ -59,41 +60,31 @@ def main() -> None:
             f"and {len(prompts)} prompts."
         )
 
-        # ---------------------------------------------------
-        # LLM SDK テスト
-        print("\n--- LLM SDK Test ---")
-        print("Loading LLM model (Qwen3-0.6B)...")
+        print("\nInitializing LLM Model and JsonGenerator...")
         model = Small_LLM_Model()
-
-        test_text = "What is the sum of 2 and 3?"
-        # encodeは2次元テンソルを返してくるので、
-        # 中身のトークンIDリストを抽出して表示します
-        input_tensor = model.encode(test_text)
-        input_ids = input_tensor[0].tolist()
-
-        print(f"Original Text: {test_text}")
-        print(f"Token IDs: {input_ids}")
-
         vocab_path = model.get_path_to_vocab_file()
-        print(f"Vocab file path: {vocab_path}")
-        print("---------------------\n")
-        # ---------------------------------------------------
+
+        generator = JsonGenerator(
+            model=model,
+            vocab_path=vocab_path,
+            functions=functions_def
+        )
 
         results: List[Dict[str, Any]] = []
-        for item in prompts:
+        print("\n--- Starting Constrained Decoding ---")
+
+        for i, item in enumerate(prompts):
             prompt_text = item.get("prompt", "")
-            dummy_result = {
-                "prompt": prompt_text,
-                "name": "dummy_function",
-                "parameters": {}
-            }
-            results.append(dummy_result)
+            print(f"[{i + 1}/{len(prompts)}] Processing: '{prompt_text}'")
+            json_str = generator.generate_function_call(prompt_text)
+            parsed_result = json.loads(json_str)
+            results.append(parsed_result)
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, 'w', encoding='utf-8') as f:
             json.dump(results, f, indent=4, ensure_ascii=False)
 
-        print(f"Successfully saved results to {output_path}")
+        print(f"\nSuccessfully saved results to {output_path}")
 
     except json.JSONDecodeError as e:
         print(f"JSON Parsing Error: {e}", file=sys.stderr)

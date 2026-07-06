@@ -33,15 +33,20 @@ make run
 
 ## **Resorce and AI Usage**
 
+### LLM関係
 [【検証】ローカルLLMでコーディングはどこまでできる？（Qwen 3.5/Gemma 4）](https://note.com/iritec/n/n4f30c8373a77)
-
-[Python プロジェクト管理したくて uv に触れてみたメモ](https://qiita.com/0xmks/items/f5a4fcac81714ac2f803)
 
 [[備忘録] Google Colabで30行！Qwen3-Embedding-0.6Bで日本語テキスト類似度計算](https://qiita.com/Tadataka_Takahashi/items/4ff6e114db134746c835)
 
 [LogitsProcessorZoo で LLM の出力をコントロールする](https://zenn.dev/prgckwb/articles/logits-processor-zoo-explain)
 
 [How Does an LLM Generate Text?](https://pub.towardsai.net/how-does-an-llm-generate-text-fd9c57781217)
+
+### UV関係
+[Python プロジェクト管理したくて uv に触れてみたメモ](https://qiita.com/0xmks/items/f5a4fcac81714ac2f803)
+
+### Pydanatic関係
+[pydanticによる型検証 [BaseModel]](https://qiita.com/uchksh/items/1cf6958dda52bb19c70b)
 
 ---
 ## **用語　/　メモ**
@@ -64,4 +69,19 @@ make run
   "3": 18
 }
 ```
+
+* **マスク処理**: AIにおける「マスク処理」とは、AIの視界に目隠し（マスク）をはめて、特定の言葉以外を物理的に見えなくする処理のこと.
+```py
+for token_id in range(len(logits)):
+    if token_id not in allowed_tokens:
+        logits[token_id] = float("-inf") # <-ここで、許可されていないトークンのロジットに-infを入れて、確率を０にしている
+```
+ボキャブラリデータそのものを消してるわけじゃないから、「マスク」
+
+* **class ~(Basemodel)**: pydenticの検証機能を備えたクラスになる
+```py
+model_config = ConfigDict(arbitrary_types_allowed=True)
+```
+配布されたSmall_LLM_Model は標準的な型（int や str）ではないため、それをと許可する設定
+
 ---
