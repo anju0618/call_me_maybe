@@ -5,13 +5,11 @@ import json
 import sys
 from pathlib import Path
 from typing import Any, Dict, List
-
-# 紐付けた llm_sdk からインポート
-from llm_sdk import Small_LLM_Model
+from llm_sdk import Small_LLM_Model  # type: ignore[attr-defined]
 
 
 def parse_arguments() -> argparse.Namespace:
-    """コマンドライン引数を解析します。"""
+    """コマンドライン引数処理"""
     parser = argparse.ArgumentParser(
         description="Function Calling CLI with LLM"
     )

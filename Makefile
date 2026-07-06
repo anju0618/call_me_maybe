@@ -1,6 +1,7 @@
-.PHONY: install run debug clean lint lint-strict
+.PHONY: install run debug clean fclean lint lint-strict
 
 SRC_DIR = src
+VENV = .venv
 
 install:
 		uv sync
@@ -16,6 +17,13 @@ clean:
 		rm -rf .mypy_cache
 		rm -rf .ruff_cache
 		rm -rf src/__pycache__
+		rm -rf .python-version
+		rm -rf llm_sdk/llm_sdk/__pycache__
+		rm -rf data/output
+
+fclean:	clean
+		rm -rf $(VENV)
+
 
 lint:
 		uv run flake8 $(SRC_DIR)
