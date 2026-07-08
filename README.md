@@ -48,6 +48,10 @@ make run
 ### Pydanatic関係
 [pydanticによる型検証 [BaseModel]](https://qiita.com/uchksh/items/1cf6958dda52bb19c70b)
 
+### JSON
+
+[【Python】json.dumps() でJSON形式に変換する方法](https://qiita.com/enumura1/items/b50746357569a83db2c3)
+
 ---
 ## **用語　/　メモ**
 * **query**: LLMにおける「query」とは、ユーザーがAIに対して送信するプロンプト、または情報検索システム（RAGなど）が外部データベースや検索エンジンから情報を引っ張ってくるために生成する検索語句のこと。

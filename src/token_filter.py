@@ -23,17 +23,23 @@ class TokenFilter(BaseModel):
         self.all_token_ids.update(self.id_to_token.keys())
 
     def filter_by_prefix(
-        self, current_prefix: str, target_string: str
+        self, current_text: str, full_target: str
     ) -> List[int]:
-        """ターゲットの文字列の、次に繋がり得るトークンのみ許可"""
-        remainder = target_string[len(current_prefix):]
+        """全体のターゲット文字列に対して、次に繋がり得るトークンのみ許可"""
+        if not full_target.startswith(current_text):
+            return []
+
+        remainder = full_target[len(current_text):]
         if not remainder:
             return []
 
         allowed_ids: List[int] = []
         for t_id, t_str in self.id_to_token.items():
             clean_str = t_str.replace("Ġ", " ").replace(" ", " ")
-            if clean_str and remainder.startswith(clean_str):
+            if not clean_str:
+                continue
+
+            if remainder.startswith(clean_str):
                 allowed_ids.append(t_id)
 
         return allowed_ids

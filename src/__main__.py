@@ -32,6 +32,11 @@ def parse_arguments() -> argparse.Namespace:
         default="data/output/function_calling_results.json",
         help="Path to the output results JSON file."
     )
+    parser.add_argument(
+        "--debug",
+        action="store_true",
+        help="Enable real-time state transition logging."
+    )
     return parser.parse_args()
 
 
@@ -67,7 +72,8 @@ def main() -> None:
         generator = JsonGenerator(
             model=model,
             vocab_path=vocab_path,
-            functions=functions_def
+            functions=functions_def,
+            debug=args.debug
         )
 
         results: List[Dict[str, Any]] = []
@@ -75,10 +81,19 @@ def main() -> None:
 
         for i, item in enumerate(prompts):
             prompt_text = item.get("prompt", "")
-            print(f"[{i + 1}/{len(prompts)}] Processing: '{prompt_text}'")
+            print(f"\n[{i + 1}/{len(prompts)}] Processing: '{prompt_text}'")
+
             json_str = generator.generate_function_call(prompt_text)
-            parsed_result = json.loads(json_str)
-            results.append(parsed_result)
+
+            try:
+                parsed_result = json.loads(json_str)
+                results.append(parsed_result)
+            except json.JSONDecodeError as je:
+                print("\n❌ [CRITICAL] JSON Parsing Failed!")
+                print("=== RAW LLM OUTPUT ===")
+                print(json_str)
+                print("=======================")
+                raise je
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, 'w', encoding='utf-8') as f:
@@ -87,7 +102,7 @@ def main() -> None:
         print(f"\nSuccessfully saved results to {output_path}")
 
     except json.JSONDecodeError as e:
-        print(f"JSON Parsing Error: {e}", file=sys.stderr)
+        print(f"\nJSON Parsing Error: {e}", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
         print(f"Error: {e}", file=sys.stderr)
