@@ -55,7 +55,6 @@ class JsonGenerator(BaseModel):
         param_base_text = ""
         value_start_text = ""
 
-        # 【核心の修正】プロンプト内の " などを安全にエスケープする
         prompt_json = json.dumps(prompt)
 
         for _ in range(500):
