@@ -34,3 +34,7 @@ lint:
 lint-strict:
 	$(FLAKE8) $(SRC_DIR)
 	$(MYPY) --explicit-package-bases --strict $(SRC_DIR)
+
+test:
+	@echo "Running test suite with pytest..."
+	uv run python -m pytest tests/ -v

@@ -8,6 +8,7 @@ dependencies = [
     "llm-sdk",
     "numpy>=2.5.1",
     "pydantic>=2.13.4",
+    "pytest>=9.1.1",
 ]
 
 [dependency-groups]
