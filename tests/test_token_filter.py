@@ -4,11 +4,12 @@ import json
 import os
 import tempfile
 import pytest
+from typing import Generator
 from src.token_filter import TokenFilter
 
 
 @pytest.fixture
-def dummy_vocab_path() -> str:
+def dummy_vocab_path() -> Generator[str, None, None]:
     """テスト用のダミーボキャブラリ（単語帳）を作成するフィクスチャ"""
     vocab_data = {
         "\"": 1,
@@ -43,13 +44,12 @@ def test_token_filter_initialization(dummy_vocab_path: str) -> None:
 
 
 def test_filter_by_prefix_strict_match(dummy_vocab_path: str) -> None:
-    """厳密前方一致（オーバーシュート禁止）が正しく機能するか"""
+    """厳密前方一致が正しく機能するか"""
     tf = TokenFilter(vocab_path=dummy_vocab_path)
-
     allowed = tf.filter_by_prefix('{"prompt": ', '{"prompt": "')
 
-    assert 1 in allowed
-    assert 2 not in allowed
+    assert 1 in allowed  # '"' (id: 1)
+    assert 2 not in allowed  # 'a' (id: 2)
 
 
 def test_filter_by_prefix_overshoot_prevention(dummy_vocab_path: str) -> None:
@@ -61,23 +61,23 @@ def test_filter_by_prefix_overshoot_prevention(dummy_vocab_path: str) -> None:
 
     allowed = tf.filter_by_prefix(current_text, target)
 
-    assert 12 in allowed
+    assert 12 in allowed  # '}' (id: 12)
+    # 合体トークン '}}Ċ' (id: 13) は飛び越え（オーバーシュート）になるためブロックされるべき
     assert 13 not in allowed
 
 
 def test_filter_numeric_tokens(dummy_vocab_path: str) -> None:
     """数値トークンのみを正確に抽出できるか"""
     tf = TokenFilter(vocab_path=dummy_vocab_path)
-
     allowed_start = tf.filter_numeric_tokens(is_start=True)
     assert 3 in allowed_start  # "1"
     assert 5 in allowed_start  # "."
     assert 7 in allowed_start  # " "
-    assert 2 not in allowed_start  # "a"
-    assert 11 not in allowed_start  # "Ċ"
+    assert 2 not in allowed_start  # "a" (文字は弾かれる)
+    assert 11 not in allowed_start  # "Ċ" (改行は弾かれる)
 
     # is_start=False の場合、空白(" ")は許可されない
     allowed_mid = tf.filter_numeric_tokens(is_start=False)
     assert 3 in allowed_mid  # "1"
     assert 5 in allowed_mid  # "."
-    assert 7 not in allowed_mid  # " "
+    assert 7 not in allowed_mid  # " " (途中の空白は弾かれる)

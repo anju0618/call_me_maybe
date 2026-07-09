@@ -1,6 +1,7 @@
 .PHONY: install run debug clean fclean lint lint-strict
 
 SRC_DIR = src
+TEST_DIR = tests/
 VENV = .venv
 PYTHON = $(VENV)/bin/python3
 FLAKE8 = $(VENV)/bin/flake8
@@ -28,12 +29,12 @@ fclean: clean
 	rm -rf $(VENV)
 
 lint:
-	$(FLAKE8) $(SRC_DIR)
-	$(MYPY) --explicit-package-bases --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs $(SRC_DIR)
+	$(FLAKE8) $(SRC_DIR) $(TEST_DIR)
+	$(MYPY) --explicit-package-bases --warn-return-any --warn-unused-ignores --ignore-missing-imports --disallow-untyped-defs --check-untyped-defs $(SRC_DIR) $(TEST_DIR)
 
 lint-strict:
-	$(FLAKE8) $(SRC_DIR)
-	$(MYPY) --explicit-package-bases --strict $(SRC_DIR)
+	$(FLAKE8) $(SRC_DIR) $(TEST_DIR)
+	$(MYPY) --explicit-package-bases --strict $(SRC_DIR) $(TEST_DIR)
 
 test:
 	@echo "Running test suite with pytest..."

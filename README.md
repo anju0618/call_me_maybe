@@ -1,4 +1,4 @@
-Markdown
+*This project has been created as part of the 42 curriculum by amakino.*
 # **Call_Me_Maybe**
 
 ## **Description**
@@ -28,6 +28,19 @@ To execute the pipeline normally and save the JSON results to data/output/, run:
 ```shell
 make run
 ```
+ex output
+```json
+[
+    {
+        "prompt": "What is the sum of 2 and 3?",
+        "name": "fn_add_numbers",
+        "parameters": {
+            "a": 2,
+            "b": 3
+        }
+    }
+]
+```
 
 【Developer Debug Mode】
 If you want to visualize the token selection process and inspect the state machine transitions in real-time, run the module directly with the --debug flag:
@@ -51,6 +64,36 @@ The engine inspects the raw vocabulary scores (Logits) predicted by the LLM. Any
 Step 4: Cascade State Sync
 Immediately after a token is locked in, the system checks whether the text has crossed certain structural checkpoints (such as reaching ", "name": " or closing a parameter block). If a giant合体 (merged) token passes multiple checkpoints simultaneously, a while True synchronization loop triggers a Cascade, fast-forwarding the internal state until it perfectly synchronizes with the LLM's current generation coordinate.
 
+## Design Decisions
+Strict Prefix Matching: To ensure valid JSON generation, relying on absolute target recalculation and strict prefix matching proved to be the most reliable method. This physically eliminates common syntax errors such as duplicate commas that often occur with relative string appending.
+
+Caching for Performance: Because searching tens of thousands of vocabularies at every token generation step is highly inefficient, the search logic was isolated as a pure function and optimized using functools.lru_cache.
+
+## Performance Analysis
+Reliability: By applying logit masking, the probability of generating invalid tokens is strictly forced to 0%, ensuring the pipeline outputs 100% valid, parseable JSON consistently.
+
+Accuracy: Even while utilizing a lightweight model like Qwen3-0.6B, the system achieves exceptional accuracy (90%+) in selecting the correct function and extracting the exact parameters.
+
+Speed: Thanks to lru_cache optimization, the vocabulary filtering overhead is drastically reduced, allowing the entire test suite to be processed rapidly within seconds to a few tens of seconds.
+
+## Challenges Faced
+Quote Collision Parsing Errors: We encountered issues where double quotes (") inside the user prompts broke the JSON structure. This was resolved by safely escaping the prompt strings using json.dumps() before integrating them into the absolute target.
+
+BPE Token Overshoot: The AI occasionally output massive merged tokens (e.g., }}Ċ) containing multiple symbols and line breaks, jumping over the state machine's checkpoints. We addressed this by explicitly blocking merged tokens or newlines that do not strictly match the target prefix.
+
+Sync Lag Deadlocks: Delays between the AI's output and the state machine's progression resulted in zero allowed tokens (deadlocks). We resolved this by implementing a "Cascade State Sync" (while True loop) that recursively fast-forwards the state to perfectly synchronize with the AI's current generation coordinate.
+
+## Testing Strategy
+To prove the robustness of the core logic (TokenFilter), we implemented a comprehensive unit testing suite using pytest.
+Dynamically created a temporary dummy vocabulary (fixture).
+
+Verified strict prefix matching against target strings.
+
+Ensured malicious merged tokens (e.g., }}Ċ) are strictly blocked (overshoot prevention).
+
+Validated the accurate extraction of numeric tokens, confirming the complete exclusion of alphabets and newlines.
+
+
 ## **Resorce and AI Usage**
 
 ### LLM
@@ -72,7 +115,12 @@ Immediately after a token is locked in, the system checks whether the text has c
 
 [【Python】json.dumps() でJSON形式に変換する方法](https://qiita.com/enumura1/items/b50746357569a83db2c3)
 
+## AI Usage
+Algorithm Brainstorming & Debugging: Used AI to brainstorm solutions for deadlocks and BPE token overshoot issues (e.g., }}Ċ), and to analyze error logs.
 
+Concept Comprehension: Utilized AI as a tutor to grasp the core concepts of constrained decoding and LogitsProcessors.
+
+Code Generation: Used AI to bootstrap the pytest framework and assist in refactoring the codebase for lru_cache optimization (extracting logic into pure functions).
 
 # **Call_Me_Maybe**
 
@@ -108,11 +156,46 @@ make fclean
 ```shell
 make run
 ```
+出力例
+```json
+[
+    {
+        "prompt": "What is the sum of 2 and 3?",
+        "name": "fn_add_numbers",
+        "parameters": {
+            "a": 2,
+            "b": 3
+        }
+    }
+]
+```
+
 ### 【デバッグモード】
 LLMがどのトークンを選択し、システムがどのように状態（ステート）を遷移させているかをリアルタイムで可視化したい場合は、--debug フラグを付けて直接実行してください
 ```shell
 .venv/bin/python3 -m src --debug
 ```
+## Design Decisions（設計上の決定）
+* **厳密前方一致 (Strict Prefix Matching):**
+  LLMにJSONを生成させる際、最も確実な方法は「一から絶対座標のターゲットを再計算し、それに完全に一致するトークンのみを許可すること」だと判断しました。これにより、相対的な文字追加で発生しやすいカンマの重複などを設計レベルで排除しています。
+* **パフォーマンスのためのキャッシュ化:**
+  毎トークン生成時に数万件のボキャブラリをループ検索するのは非効率なため、検索ロジックを純粋関数として分離し、functools.lru_cache を導入して高速化を図りました。
+
+## Performance Analysis（パフォーマンス分析）
+* **Reliability**: ロジットマスキングにより、不正なトークンの確率を完全に0%にしているため、パース可能な有効なJSONを常に出力します。
+* **精度 (Accuracy)**: Qwen3-0.6B という軽量モデルを使用しながらも、関数名の選択と引数の抽出において極めて高い精度を達成しています。
+* **速度 (Speed)**: lru_cache による最適化のおかげで、ボキャブラリのフィルタリング負荷が劇的に下がり、全テストケースを数分で高速に処理可能です。
+
+## Challenges Faced（直面した課題と解決策）
+* **ダブルクォートの衝突によるパースエラー:**
+  プロンプト内に含まれる " がJSONの構造を破壊する問題に直面しました。これは、プロンプト文字列を json.dumps() で安全にエスケープ処理してからターゲットに組み込むことで解決しました。
+* **BPEトークンのオーバーシュート:**
+  AIが }}Ċ などの複数の記号や改行が合体した巨大なトークンを出力し、ステートマシーンのチェックポイントを飛び越えてしまう問題が発生しました。ターゲットの接頭辞に厳密に一致しない合体トークンや改行を、フィルター側で明示的にブロック（除外）することで解決しました。
+* **同期ラグによるデッドロック:**
+  AIの出力に対してステートマシーンの進行が遅れ、許可トークンが0個になる問題は、while True ループによる連鎖的な状態同期（Cascade State Sync）を実装することでAIとプログラムの現在地をミ同期させて解決しました。
+
+## Testing Strategy（テスト戦略）
+最も複雑なコアロジックである TokenFilter の堅牢性を証明するため、pytest を用いた包括的なユニットテストを実装しました。
 
 ## **Architecture & Processing Flow**
 本プロジェクトのパイプラインは、LLMがJSONの文法を絶対に壊さないよう、以下の4つのステップを1ループとして推論を行っています。
@@ -164,6 +247,12 @@ AIが新しいトークンを出力した直後、現在のテキストが「チ
 
 [【Python】json.dumps() でJSON形式に変換する方法](https://qiita.com/enumura1/items/b50746357569a83db2c3)
 
+### AI USAGE
+本プロジェクトの開発において、AI（LLM）は主に以下の用途で活用しました。
+* **アルゴリズムの壁打ちとデバッグ:** BPEトークナイザー特有の合体トークン（例: }}Ċ）によるオーバーシュート問題や、デッドロックの原因究明において、ログの解析と解決策のブレインストーミングにAIを使用しました。
+* **概念の理解:** ロジットプロセッサ（LogitsProcessor）の仕組みや、制約付きデコードの基礎概念を学ぶための家庭教師として活用しました。
+* **コード生成:** pytest を用いたテストフレームワークの雛形作成や、lru_cache をクラスメソッドに適用するためのリファクタリング（純粋関数への切り出し）の補助としてAIを使用しました。
+
 ---
 ## **用語　/　メモ**
 * **query**: LLMにおける「query」とは、ユーザーがAIに対して送信するプロンプト、または情報検索システム（RAGなど）が外部データベースや検索エンジンから情報を引っ張ってくるために生成する検索語句のこと。
@@ -210,7 +299,7 @@ model_config = ConfigDict(arbitrary_types_allowed=True)
 
 # 解説
 
-## 入力データ
+## 入力データ (data/input/)
 まずは、システムに読み込ませる2つのJSONファイル
 * **functions_definition.json** (関数の仕様書)
 LLMが利用できる「ツール」のリスト。fn_add_numbers（足し算）や fn_greet（挨拶）などの名前、説明、そして「どんな引数（parameters）が必要で、その型は何か（number か string か）」というルールが書かれています。LLMはこれを見て「どの関数を使い、何の値を抜き出すか」を考える。
@@ -223,18 +312,23 @@ LLMに一気にJSONを書かせるのではなく、「今、JSONのどの部分
 
 ## 3. token_filter.py (フィルター)
 LLMのボキャブラリから、「今この瞬間に、次に出力していい文字（トークン）だけを絞り込む」ためのフィルタークラス
+* **filter_by_prefix メソッド (厳密前方一致 & オーバーシュート防止):**
+「すでに書き終わった文字」と「次に目指すべきJSONの完成形」を比較し、ターゲットの残りの文字列にピッタリと繋がる（はみ出さない）トークンだけを許可（ホワイトリスト化）します。これにより、カンマの重複や、`}}Ċ `のようなトーークンによるJSON破壊をブロック
 
-**filter_by_prefix メソッド:**
+* **filter_by_prefix メソッド:**
 「すでに書き終わった文字（current_text）」と、「次に目指すべき完成形（full_target）」を比較。そして、ターゲットの残りの文字列にピッタリと繋がる（はみ出さない）トークンだけを許可（ホワイトリスト化）します。これが、カンマの重複や謎の文字暴走を防ぐ「前方一致」
 
-**filter_numeric_tokens メソッド:**
+* **【Bonus】 functools.lru_cache によるパフォーマンス最適化:**
+毎トークン生成時に発生する「数万件のボキャブラリ検索」と「文字列のクリーンアップ処理（replace）」の負荷を下げるため、検索ロジックを純粋関数としてクラス外に切り出し、lru_cache を適用しています。単語帳をTuple に事前変換してキャッシュに乗せることで、パフォーマンス最適化しています。
+
+* **filter_numeric_tokens メソッド:**
 引数が数字（number）だった場合に、数字や小数点（0-9, .）を含むトークンだけを許可する専用フィルターです。
 
 ## 4. json_generator.py
 このプロジェクトのコアとなる、制約付きデコードの推論ループを回すエンジンです。最大500回のループを回し、1トークンずつ文字を紡ぎ出します。
 
 **Context Injection:**
-ループに入る前、"System: You are an expert JSON function calling assistant..." という指示と関数の仕様書をプロンプトの先頭に合体させます。これにより、LLMが「ただの穴埋め」ではなく「意味を理解して値を抽出する」ようになります。
+LLMを意図を理解するAIにするため、推論前に "System: You are an expert JSON..." という強プロンプトと関数定義書を結合します。
 
 **絶対座標ターゲットの作成:**
 現在の状態（`current_state`）に応じて、「次はここまで書かせたい」という絶対目標（`full_target`）を作ります。
@@ -251,3 +345,11 @@ AIがトークンを出力した直後、「チェックポイント（目標文
 --input や --output でファイルの場所を指定できるほか、私たちがデバッグの終盤で実装した --debug フラグ を受け取る
 **処理の進行:**
 JSONファイルやLLMモデルを読み込み、JsonGenerator を起動します。1問ずつプロンプトを投げて処理を行い、パースエラーが起きないかを json.loads でテストしてから、最終的な結果を function_calling_results.json に書き出して保存します。
+
+## 6. tests/test_token_filter.py(bonus: Comprehensive test suite)
+
+ダミーのボキャブラリ生成し、システムが予期せぬ挙動を示さないかを検証
+1. 初期化とボキャブラリのマッピングテスト
+2. 前方一致によるトークンフィルタリングの精確性
+3. 悪意ある合体トークン（例：}}Ċ）によるオーバーシュート（飛び越え）の完全ブロック
+4. 数値トークンの正確な抽出

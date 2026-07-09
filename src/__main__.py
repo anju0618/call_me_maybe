@@ -83,17 +83,26 @@ def main() -> None:
             prompt_text = item.get("prompt", "")
             print(f"\n[{i + 1}/{len(prompts)}] Processing: '{prompt_text}'")
 
-            json_str = generator.generate_function_call(prompt_text)
+            max_retries = 3
+            for attempt in range(max_retries):
+                json_str = generator.generate_function_call(prompt_text)
 
-            try:
-                parsed_result = json.loads(json_str)
-                results.append(parsed_result)
-            except json.JSONDecodeError as je:
-                print("\n❌ [CRITICAL] JSON Parsing Failed!")
-                print("=== RAW LLM OUTPUT ===")
-                print(json_str)
-                print("=======================")
-                raise je
+                try:
+                    parsed_result = json.loads(json_str)
+                    results.append(parsed_result)
+                    break
+                except json.JSONDecodeError as je:
+                    if attempt < max_retries - 1:
+                        print(
+                            f"  ⚠️ Retry {attempt + 1}/{max_retries}: "
+                            f"Invalid JSON detected. Retrying..."
+                        )
+                    else:
+                        print("\n❌ [CRITICAL] All retries failed!")
+                        print("=== RAW LLM OUTPUT ===")
+                        print(json_str)
+                        print("=======================")
+                        raise je
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, 'w', encoding='utf-8') as f:
