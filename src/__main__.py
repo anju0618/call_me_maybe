@@ -10,7 +10,7 @@ from src.json_generator import JsonGenerator
 
 
 def parse_arguments() -> argparse.Namespace:
-    """コマンドライン引数処理"""
+    # コマンドライン引数の設定
     parser = argparse.ArgumentParser(
         description="Function Calling CLI with LLM"
     )
@@ -83,11 +83,13 @@ def main() -> None:
             prompt_text = item.get("prompt", "")
             print(f"\n[{i + 1}/{len(prompts)}] Processing: '{prompt_text}'")
 
+            # エラーで落ちないようにリトライ処理を入れる
             max_retries = 3
             for attempt in range(max_retries):
                 json_str = generator.generate_function_call(prompt_text)
 
                 try:
+                    # ちゃんとパースできるかチェック
                     parsed_result = json.loads(json_str)
                     results.append(parsed_result)
                     break

@@ -9,8 +9,7 @@ from llm_sdk import Small_LLM_Model  # type: ignore[attr-defined]
 
 
 class JsonGenerator(BaseModel):
-    """ステートマシーンに基づき、正しいJSONのみをLLMに生成させるクラス。"""
-
+    # Pydantic用
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     model: Small_LLM_Model
@@ -22,24 +21,43 @@ class JsonGenerator(BaseModel):
     all_ids: Set[int] = Field(default_factory=set)
 
     def model_post_init(self, __context: Any) -> None:
-        """初期化直後にTokenFilterを組み立てる。"""
+        # フィルターの準備
         tf = TokenFilter(vocab_path=self.vocab_path)
         self.token_filter = tf
         self.all_ids.update(tf.all_token_ids)
 
     def generate_function_call(self, prompt: str) -> str:
-        """制約付きデコードを行ってJSON文字列を生成します。"""
         if self.token_filter is None:
             raise RuntimeError("TokenFilter is not initialized.")
 
-        funcs_str = json.dumps(self.functions, ensure_ascii=False)
+        # descriptionのコピペ対策。型だけ残す
+        clean_funcs = []
+        for func in self.functions:
+            c_func = {"name": func["name"], "parameters": {}}
+            for pk, p_info in func.get("parameters", {}).items():
+                c_func["parameters"][pk] = p_info.get("type", "string")
+            clean_funcs.append(c_func)
+
+        funcs_str = json.dumps(clean_funcs, ensure_ascii=False)
+
+        # Few-Shotを入れてハルシネーションを防ぐ
         context = (
-            "System: You are an expert JSON function calling assistant. "
-            "You must strictly extract the exact parameter values from the "
-            "User prompt. Do not use generic placeholders. "
-            "For example, if the prompt is 'Greet shrek', the name is "
-            "'shrek'. If the prompt is 'Reverse the string 'hello'', the "
-            "string is 'hello'. Output ONLY valid JSON.\n"
+            "System: You are an expert data extraction AI. "
+            "Extract the exact substrings directly from the User prompt. "
+            "Do NOT invent words. Do NOT use placeholders like "
+            "'description'.\n\n"
+            "Example 1:\n"
+            "User: Greet alice\n"
+            "JSON: {\"prompt\": \"Greet alice\", \"name\": \"fn_greet\", "
+            "\"parameters\": {\"name\": \"alice\"}}\n\n"
+            "Example 2:\n"
+            "User: Substitute the word 'apple' with 'orange' in "
+            "'I have an apple'\n"
+            "JSON: {\"prompt\": \"Substitute the word 'apple' with "
+            "'orange' in 'I have an apple'\", \"name\": "
+            "\"fn_substitute_string_with_regex\", \"parameters\": "
+            "{\"source_string\": \"I have an apple\", \"regex\": "
+            "\"/apple/g\", \"replacement\": \"orange\"}}\n\n"
             f"Functions: {funcs_str}\n"
             f"User: {prompt}\n"
             "JSON:"
@@ -55,11 +73,14 @@ class JsonGenerator(BaseModel):
         param_base_text = ""
         value_start_text = ""
 
+        # エスケープ対策
         prompt_json = json.dumps(prompt)
 
         for _ in range(500):
             full_prompt = context + current_text
             input_tensor = self.model.encode(full_prompt)
+
+            # tensorかlistか判定
             if hasattr(input_tensor, "tolist"):
                 input_ids = input_tensor[0].tolist()
             else:
@@ -78,7 +99,7 @@ class JsonGenerator(BaseModel):
 
             allowed_tokens: Set[int] = set()
 
-            # --- 1. 現状態における絶対ターゲットの作成と型紙の適用 ---
+            # --- 1. 状態ごとに絶対ターゲットを作る ---
             if current_state == JsonState.START:
                 full_target = '{"prompt": "'
                 allowed_tokens = set(
@@ -104,6 +125,7 @@ class JsonGenerator(BaseModel):
                 )
 
             elif current_state == JsonState.FUNCTION_NAME:
+                # 全関数のパターンを許容する
                 for func in self.functions:
                     full_target = (
                         '{"prompt": ' + prompt_json + ', "name": "'
@@ -135,6 +157,7 @@ class JsonGenerator(BaseModel):
                         )
                     )
                 else:
+                    # 全部終わったらカッコを閉じる
                     if len(param_keys) == 0:
                         full_target = param_base_text + "}}"
                     else:
@@ -169,6 +192,7 @@ class JsonGenerator(BaseModel):
                             break
                     clean_num = num_part[:c_len]
 
+                    # 次の引数があるかでの分岐
                     if current_param_index + 1 < len(param_keys):
                         n_key = param_keys[current_param_index + 1]
                         full_exit_target = (
@@ -189,18 +213,16 @@ class JsonGenerator(BaseModel):
                 elif p_type == "string":
                     s_part = current_text[len(value_start_text):]
                     if not s_part.startswith('"'):
-                        inv_chars_st = set("\n\rĊ{}")
+                        # 【究極の修正】最初の文字は必ず単独の `"` のみ許可
+                        # 合体トークンのハイジャックを物理的に防ぐ
                         for t_id, t_str in (
                             self.token_filter.id_to_token.items()
                         ):
                             cl_str = t_str.replace("Ġ", " ").replace(" ", " ")
-                            # 【核心の修正】" で始まる合体トークンに括弧などが混ざるのを禁止
-                            if cl_str.startswith('"'):
-                                if '"' not in cl_str[1:] and not any(
-                                    c in inv_chars_st for c in cl_str
-                                ):
-                                    allowed_tokens.add(t_id)
+                            if cl_str == '"':
+                                allowed_tokens.add(t_id)
 
+                        # 出口のターゲット
                         if current_param_index + 1 < len(param_keys):
                             n_key = param_keys[current_param_index + 1]
                             full_exit = '"' + f', "{n_key}": '
@@ -215,6 +237,7 @@ class JsonGenerator(BaseModel):
                     else:
                         quote_idx = s_part.find('"', 1)
                         if quote_idx == -1:
+                            # 文字列の中身を生成
                             inv_chars = set("\"\n\rĊ{}")
                             for t_id, t_str in (
                                 self.token_filter.id_to_token.items()
@@ -239,6 +262,7 @@ class JsonGenerator(BaseModel):
                                 )
                             )
                         else:
+                            # 閉じた後の処理
                             cl_str_val = s_part[1:quote_idx]
                             if current_param_index + 1 < len(param_keys):
                                 n_key = param_keys[current_param_index + 1]
@@ -257,17 +281,19 @@ class JsonGenerator(BaseModel):
                                 )
                             )
 
-            # --- 2. ロジット・マスキングとトークン確定 ---
+            # --- 2. ロジット・マスキング ---
             if not allowed_tokens and self.debug:
                 print(
                     f"⚠️ [WARNING] No tokens allowed at: "
                     f"{current_state.name}!"
                 )
 
+            # 許可外のトークンを-infにしてマスクする
             for token_id in range(len(logits)):
                 if token_id not in allowed_tokens:
                     logits[token_id] = float("-inf")
 
+            # 最大スコアのトークンを選ぶ
             next_token_id = int(logits.index(max(logits)))
             next_token_str = self.token_filter.id_to_token[
                 next_token_id
@@ -284,7 +310,8 @@ class JsonGenerator(BaseModel):
                     f"Current: {repr(current_text)}"
                 )
 
-            # --- 3. 出力確定直後の完全ピッタリ同期処理 (Cascade) ---
+            # --- 3. 状態の同期(Cascade) ---
+            # 合体トークンで一気に進んだ時用に追いつくまで回す
             while True:
                 old_state = current_state
 

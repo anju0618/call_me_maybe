@@ -1,4 +1,5 @@
 *This project has been created as part of the 42 curriculum by amakino.*
+
 # **Call_Me_Maybe**
 
 ## **Description**
@@ -46,6 +47,19 @@ ex output
 If you want to visualize the token selection process and inspect the state machine transitions in real-time, run the module directly with the --debug flag:
 ```shell
 .venv/bin/python3 -m src --debug
+```
+### **Command Line Arguments (Optional)**
+The pipeline can be customized at runtime using the following command-line arguments. This allows you to process different test files or change output destinations without modifying the source code.
+
+* `--input <path>`: Specify a custom path to the input JSON file containing user prompts. *(Default: `data/input/function_calling_tests.json`)*
+* `--output <path>`: Specify a custom path where the generated JSON results will be saved. *(Default: `data/output/function_calling_results.json`)*
+* `--functions_definition <path>`: Specify a custom path to the JSON file containing the available tool/function schemas. *(Default: `data/input/functions_definition.json`)*
+* `--debug`: Enable real-time logging to visualize the token selection process and state machine transitions.
+
+**Advanced Usage Example:**
+To run the pipeline with a custom test file, save the output to a specific location, and enable debug logging simultaneously, run:
+```shell
+uv run python -m src --input custom_tests.json --output data/output/custom_results.json --debug
 ```
 
 ## Architecture & Processing Flow
