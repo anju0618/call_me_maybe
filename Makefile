@@ -24,6 +24,7 @@ clean:
 	rm -rf .python-version
 	rm -rf llm_sdk/llm_sdk/__pycache__
 	rm -rf data/output
+	rm -rf .pytest_cache
 
 fclean: clean
 	rm -rf $(VENV)

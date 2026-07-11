@@ -1,0 +1,1302 @@
+smakkass will correct gomar's group scheduled on July 11, 2026 13:45
+%
+maboulai will correct gomar's group scheduled on July 11, 2026 09:00
+%
+xwenger corrected rvaginet's group scheduled on July 11, 2026 08:15ok
+100 %
+Your Project is ok, just a small doubts about the time of execution that look lil bit long , should still be less than 5min, since you passed the whole 11 moulinette test . You were able to explain your way to do, we also check together way to improve it inside the generation loop. However everything is mastered .Goodluck for next correction!
+mubersan corrected rvaginet's group scheduled on July 11, 2026 07:45ok
+100 %
+Je n'ai pas encore fait de Python, donc je ne peux pas vraiment juger la qualité du code. En revanche, tout ce que j'ai pu tester semble fonctionner correctement et le projet a l'air de répondre aux consignes
+dcid-san corrected ncaravac's group scheduled on July 11, 2026 07:15ok
+115 %
+Muy buen proyecto, ha sabido defenderme ls siguientes bonus implementados: Encode/decode público compatible con el vocab del SDK, Suite de tests exhaustiva y la demostración de cómo encode/decode se integran con constrained decoding. Mucha suerte!!
+wkrati corrected momousta's group scheduled on July 11, 2026 07:00outstanding_project
+125 %
+Great work and great explanation and handling of the project good luck in the rest of your common core!
+5 / 5
+Very friendly we had so much talks about the project and code, wish you the best!
+amagno-r corrected igomes-d's group scheduled on July 11, 2026 04:30outstanding_project
+125 %
+Italo displayed deep knowledge and research on this project. I wasn't even remotely aware of how interesting I'd find it through his explanations. He was able to show me his implementations and was able to support all his answers. Really an outstanding project. Congratulations!!
+5 / 5
+The evaluation with Afonso went extremely well. He was very attentive to all the details of the project and showed great curiosity about the code, asking relevant and in-depth questions. It was clear that he was very pleased with the final result and the approach used. It was an excellent exchange of knowledge!
+aatki will correct yessadik's group scheduled on July 11, 2026 04:15
+%
+imiqor will correct yessadik's group scheduled on July 11, 2026 04:15
+%
+otazelma corrected ilbeltra's group-1 scheduled on July 11, 2026 04:00outstanding_project
+125 %
+this was a well implemented project he answerd all of my questions and we discussed all of the things about it, clean code and logic as well good luck in the rest of the CC and GG :c !!!
+mafonso will correct igomes-d's group scheduled on July 11, 2026 03:45
+%
+tkunugi corrected ekotova's group scheduled on July 11, 2026 01:45ok
+0 %
+I really amazed your narrative story about your code and saw the achievement for moulinette. Great approach with Regex and prompting inside of the codes. I was confused how to evaluate with the evaluation sheet what should be the result for those edge cases. Thank you so much letting me to do this evaluation and walk through your code!
+5 / 5
+Thank you so much for checking everything and for going through the table and some of the questions with me. It really took quite a bit of time, but I’m very grateful because we checked everything thoroughly, and now I’ll be better prepared! Good luck!
+dosorio- corrected jcrespo-'s group scheduled on July 11, 2026 01:15ok
+100 %
+Great work, he explained very well his code, and help-me in my project: )
+5 / 5
+Asked questions, went into detail and we discussed the differences of our codes and how I find the needed tokens to find either the parameters and the names.
+aybouatr corrected yboussif's group scheduled on July 11, 2026 00:45ok
+100 %
+great work good luck next project
+5 / 5
+Friendly Man, really appreciate you listening to my defense. I appreciate your time. Good luck in your next step, Allah ysser lik
+watoumi corrected yboussif's group scheduled on July 11, 2026 00:45ok
+105 %
+good work, good understanding, good luck in next project
+5 / 5
+Friendly Man, really appreciate you listening to my defense. I appreciate your time. Good luck in your next step, Allah ysser lik
+llopez2 corrected repichan's group scheduled on July 11, 2026 00:30ok
+115 %
+Great work! Your program works really fast and your explanations were clear. Thank you for the explanation on the table attribute of the StringValueState class, I understand that this method is what helps with the speed of the program. Good luck with your next projects!
+5 / 5
+Loved talking with you about my code implementation and all these others things. Thank you !
+vskopova corrected dporhomo's group scheduled on July 10, 2026 23:45ok
+115 %
+Great job on the project. I have not started this project but dporhomo could explain everything and defended his project well. We tested all possible test cases and they were all handled well. He also did some bonuses and they were all done correctly. Great job for completing this project and goodluck!(:
+5 / 5
+Thank you for you evaluation.
+vborysov corrected dporhomo's group scheduled on July 10, 2026 23:45outstanding_project
+115 %
+After evaluation i can say thats the best call_me_maybe project ive ever evaluated (besides that fact that is only call_me_maybe eval). Code is described in very precise and detailed way. Also about performance, this way with using precomputed masks really enhances the performance of all program. All error cases are handled, program doesnt crash. Good luck!
+5 / 5
+Thank you for your thorough testing of the json parser, json structure, flags and output performance.
+hde-andr corrected igomes-d's group scheduled on July 10, 2026 23:30outstanding_project
+125 %
+He did an outstanding. He knows the concepts very well and he is very knowledgeable. Great job; )
+5 / 5
+Henrique is a great evaluator, always attentive and explaining everything, testing and verifying everything.
+deferrei corrected jcrespo-'s group scheduled on July 10, 2026 23:15ok
+100 %
+The student showed a very knowledge about the project, he was able to explain every part off him code and good lock for the next evaluations!!!
+5 / 5
+Was a very curious evaluator, asked question and we talked about the code in detail. Tested everything correctly.
+dplazas- corrected aitorres's group scheduled on July 10, 2026 23:00ok
+0 %
+Proyecto muy traabjado, una pena que debido a las limitaciones técnicas no se han podido comprobar todos los requisitos correctamente, como por ejemplo el tiempo de ejecuciónn. A lo largo de la evaluación me ha explciado detalladamente el funcionamiento del programa, ha respondido a las dudas y me ha guiado acerca de los requisitos y el subject. Es cierto también que hay discrepancias entre el subject de la correción (version 1.5 ) y el utilizado (version 1.0), pero cumple los requisitos del 1.0.
+5 / 5
+Super majo, ha comprendido el fallo entre el subject y la version desactualizada al realizar el proyecto. Muchas gracias, y mucha suerte en 42. Nos vemos.
+aouchmam corrected hel-hamo's group-2 scheduled on July 10, 2026 23:00outstanding_project
+105 %
+the student explain everything about llm very well and i tested a lot i think everything works just fine , also the code is very clean and structured very well implimentation of pure oop , good luck in ur cc
+5 / 5
+thanks for correction it was a good session!!
+cdomet-d corrected repichan's group scheduled on July 10, 2026 22:30ok
+110 %
+C´était une evaluation divertissante ! J´ai pu mieux comprendre certains points qui demeuraient moins clairs, donc c´est super. Je reste un peu sceptique vis a vis de certains choix (une trop grande limitation qui penalise certains cas de figures sur des cas un peu tordus de regex.) Dans l´ensemble ca reste tres fonctionnel et compris, donc bravo quand meme. Les choix ont ete bien defendus. La structure du code est dans l´ensemble bien faite ; ne pas hesiter a decouper davantage les fonctions quand elles deviennent trop longues.
+5 / 5
+Merci coralie pour cette excellente correction. Tes conseils et questions sont bien pertinents. Bon courage pour la suite !
+dachin corrected dijonker's group scheduled on July 10, 2026 22:00ok
+0 %
+Divan explained his code to me with patience, as I am not familiar with Python. One error regarding FileNotFoundError was fixed on the spot (nice!). Unfortunately there was a moulinette error due to escape sequence (\), so had to fail this eval. Good luck for next!
+5 / 5
+Thank you for your patience and the evaluation. Good luck with Cubed3D. A bummer that escape sequences appearing, but was nice to chat.
+cdomet-d corrected matgiber's group scheduled on July 10, 2026 21:45ok
+115 %
+J'ai trouve cet echange avec Mateo tres agreable. Ca se voit qu'il y a eu de l'implication dans les recherches et le developpement - le readme est bien fourni en documentation, et on sent que Mateo est fier de ce qu'il a fait. D'un point de vue technique, tout me semble bien implemente. Les retours d'erreurs sont clairs, je n'ai pas rencontre de crash, tout a l'air propre et l'accuracy du modele est bonne! Les fonctions gagnerais a etre un peu plus courtes, mais dans l'ensemble j'ai constate des bonnes pratiques. Les explications etaient claires, mais n'hesite pas a bien prendre ton temps, comme on en a discute ! Quelques tests qui failent a la moulinette mais dans des details, je me conforme donc a l'avis des precedents correcteurs. Bravo dans l'ensemble !
+5 / 5
+Merci pour ta correction complète, autant par nos échanges que par tes retours. J'ai vraiment trouvé l'exercice intéressant : essayer d'expliquer l'intérêt d'un projet que tu n'avais pas vu n'était pas évident. J'espère avoir réussi à t'éclairer et à te faire comprendre le sujet ainsi que mon implémentation. Merci également d'avoir pris le temps de m'écouter. L'échange était vraiment très agréable et j'ai beaucoup apprécié le temps que tu m'as accordé, malgré mon stress et mes bafouillements. Bon courage pour la suite de tes projets post tronc commun.
+
+
+amanukho corrected dporhomo's group scheduled on July 10, 2026 21:30outstanding_project
+115 %
+Amazing! We went trough the whole project, tested different models and tried different prompts. The idea to use numpy worked impressively well since the LLM works 7 times faster (less then 1 min vs approx 7 min) and moulinette test showed us 9/11. The very detailed README.md helps to understand the structure and has clear instructions how to work with this project.
+5 / 5
+Thank you for your detailed and knowledgable eval. I look forward to see your project tensor sharp!
+abdesala corrected hel-hamo's group-2 scheduled on July 10, 2026 21:00incomplete_work
+0 %
+very good understanding, just an issue, good luck next time
+5 / 5
+thanks for your time
+repichan corrected matgiber's group scheduled on July 10, 2026 20:30ok
+115 %
+Excellent travail, un code intéressant car certaines de tes idées sont à mon goût assez futées pour clarifier le code. Je les reprendrai pour sûr. Bon travail sur la gestion des erreurs. Bon courage pour la suite
+5 / 5
+Merci pour ta correction concise et efficace. Je suis content que tu aies pu t'intéresser à la manière dont je travaille et peux te montrer des solutions de lisibilités du code pour certains cas. Bon courage pour la suite de tes corrections et ton cursus.
+ariyad will correct iatikedd's group scheduled on July 10, 2026 20:15
+%
+agarcia2 corrected lfleitas's group scheduled on July 10, 2026 20:00outstanding_project
+105 %
+Muy buen proyecto. Se nota que dominas la IA. Para futuros proyectos, te recomendaría usar `try`/`except` en los imports para evitar que aparezca el *traceback*, ya que puede dar la impresión de que la aplicación ha crasheado o generar confusión.
+5 / 5
+Muchas gracias por la evaluacion!
+lumercha corrected lfleitas's group scheduled on July 10, 2026 20:00outstanding_project
+105 %
+Pese a no haber hecho el proyecto, me ha sabido guiar por su codigo. Hemos aprendido sobre alucinacions, funcionamiento de LLMs, posibles mejoras del programa. Se ha portado bien, pero no me cae bien jejejeje Hay que madurar victorianos
+5 / 5
+Ha estado observando fijamente desde detras, pero sabe lo que dice, ya tu sabe :)
+vmateos- corrected pmelo-cl's group-1 scheduled on July 10, 2026 20:00ok
+0 %
+Se nota que ha dedicado tiempo al proyecto. Una lástima que haya tenido problemas a al hora de manejar errores. Mucho ánimo en las próximas evaluaciones!! :,)
+5 / 5
+Muy maja, pot desgracia ha habido problemas con la ejeccucion del codigo
+aamrani corrected iatikedd's group scheduled on July 10, 2026 19:00incomplete_work
+0 %
+good work, code seems clean, didcnt push with data dir, good luck next time
+5 / 5
+The evaluator was friendly and helpful.
+zqian corrected matgiber's group scheduled on July 10, 2026 18:30outstanding_project
+115 %
+Tres bon projet Call me maybe. Nous avons bien discute sur les codes, les fonctions sont bien optimisees pour un projet de telle ampleur, moins de 600 lignes de codes. J'ai egalement adore la presentation en couleur des resultats, c'est simple a faire, mais le fait d'y avoir pense, c est user freindlly pour du pro. Bon courage, merci et bonne continuation.
+5 / 5
+Merci pour le temps passé pour ma correction, tu poses les bonnes questions et t'intéresses aux choses vraiment utiles, tu as testé comme il fallait dans les règles de l'art. Merci également pour cet échange constructif (je veux plus de correction comme celle-là) . Bon courage pour RAG et la suite de ton cursus.
+dde-brit corrected lide-oli's group scheduled on July 10, 2026 11:00ok
+110 %
+Lincoln foi um excelente avalidado, conversamos muito sobre a crescente da IA, como usamos nos nossos trabalhos, os riscos que isso traz, como ela pode ser uma vilã nos estudos, dentre outras coisas. Seu projeto está muito completo, passando com tranquilidade em todos os testes obrigatórios, demonstrou profundo conhecimento sobre tokenização, o conceito de function calling em LLM. Nota 10!
+5 / 5
+A avaliação foi ótima, Daniel sempre se interessa pelos códigos e entender a estrutura e a complexidade do que foi feito. A estrutura do código é relativamente simples, mas a execução por trás gera muitas dúvidas quanto o funcionamento de uma LLM.
+daniviei corrected lide-oli's group scheduled on July 10, 2026 10:30ok
+110 %
+Achei o projeto bem complexo, mas o lincon soube explicar muito bem, nao conseguiu fazer todos os bonus mas pelo projeto, oq ele fez ja ficou muito bom
+5 / 5
+Daniel é um excelente avaliador, falamos da dinâmica do funcionamento do algoritmo e dos pontos do bônus que não foram atentidos completamente, iniciei a resolução mas começou a ficar muito complexo para finalizar e preferi não seguir com o desenvolvimento completo.
+mabarret corrected lide-oli's group scheduled on July 10, 2026 09:30ok
+125 %
+Lincoln entendeu muito bem o conceito da matéria com um código mt organizado
+5 / 5
+Maria e eu já havíamos discuto no início deste projeto as abordagens possíveis para resolução do subject, foi uma troca interessante poder ser avaliado por ela e vermos as abordagens possíveis pra resolver o problema e a inclusão do boolean em cenários específicos.
+aymel-ha corrected hel-hamo's group-2 scheduled on July 10, 2026 04:30incomplete_work
+0 %
+the student showed deep understanding of the project and all of it's main concepts, he also did a great implementation and can ensure his code is Original, sadly his program didn't pass 90%, good luck next time.
+5 / 5
+thanks for time and correction, I really appreciate it that was helpful
+bramalho corrected igomes-d's group scheduled on July 10, 2026 03:00outstanding_project
+125 %
+Italo was able to explain the project completly , he was explaining as i was doing all the tests required , i didnt even need to do specific questions , cause he was able to completly explain even before i had any doubts , great project and very knowledgable person
+5 / 5
+Excellent evaluator, always attentive and always asking what is important.
+shafid corrected momousta's group scheduled on July 10, 2026 02:45ok
+125 %
+Good work, everything is well done. Good explanations. Good luck on your next projects.
+5 / 5
+Thanks for your time
+mobullad corrected vallangl's group scheduled on July 10, 2026 00:15ok
+0 %
+Malheuresement le fichier output n'a pas ete push car quand push c'est un dossier vide
+5 / 5
+top
+nahecre corrected cehenrot's group scheduled on July 09, 2026 23:45ok
+105 %
+un bon travail dans l ensemble, toutes les fonctionnalites sont implementees, la moulinette passe avec plus de 50 % de reussite, seul default trouve a ete la condition d arret avec des repetitions de paternes par l IA, mais cele n as pas ete trop derangeant, bon courage pour codexion
+5 / 5
+Correction qui a commencé de façon un peu réservée, mais l'ambiance s'est vite détendue et on a pu discuter du code avec plaisir. Très bon échange dans l'ensemble, et un correcteur qui a un vrai sens du détail. Merci encore et bon courage pour la suite
+yahel-kh corrected zahrabar's group scheduled on July 09, 2026 23:30ok
+125 %
+good work keep going
+5 / 5
+Thank you ⚡
+moboulan will correct iatikedd's group scheduled on July 09, 2026 23:00
+%
+maroui corrected amelhach's group scheduled on July 09, 2026 22:15ok
+115 %
+the students explains everything perfectly, good implementations, and clean code
+5 / 5
+Excellent evaluator, knowledgeable and helpful. Thank you for your constructive feedback and guidance. Wishing you success in your project!
+ilhakam corrected amelhach's group scheduled on July 09, 2026 22:15ok
+115 %
+great job , the learner has a mental understanding in all concepts of llms, logits, encoding, decoding, constrained decoding ...etc, keeps going my friend and i wish to you all the best in next challenges :)
+5 / 5
+Great evaluator, very professional. Thank you for your valuable feedback. Good luck with your project!
+qhumblot corrected yguardio's group scheduled on July 09, 2026 21:45ok
+110 %
+super le code est bien fait et bien compris
+5 / 5
+Très bon correcteur très sympa 👍
+zqian corrected cehenrot's group scheduled on July 09, 2026 21:45ok
+105 %
+Cedric a bien travaille sur son projet call me maybe. Nous avons pris le temps de discuter sur les points phares du projet tel que le constrainte decoding et le encoding/decoding. Merci pour cet echange bon courage et bonne continuation.
+5 / 5
+merci pour ta correction, j'ai beaucoup apprécier nos échanges et ta pédagogie. bon courage pour la suite
+oelhasso will correct zahrabar's group scheduled on July 09, 2026 21:30
+%
+ngusev corrected lfleitas's group scheduled on July 09, 2026 21:30ok
+100 %
+the project is well explained and understood; checks by the evalsheet also passed. good luck!
+5 / 5
+Thanks for the evaluation, we review the code and pass the moulinette
+
+yikoubaz corrected amelhach's group scheduled on July 09, 2026 21:30outstanding_project
+120 %
+The student demonstrated a deep and thorough understanding of how LLMs work under the hood. We walked through all the key concepts, from tokenization, embeddings, and positional encoding to the complete inference process. The student explained each topic exceptionally well, using clear, smooth, and advanced examples. We explored the process step by step, even at the character level, until reaching the final output generated by the model. We also discussed why constrained decoding is often a better approach than relying solely on prompting, as well as more advanced topics such as function calling, how it influences modern LLMs, and how it can improve reliability while saving development time. Overall, it was an excellent session. Great job, and thank you for your time and effort in explaining these fascinating concepts so clearly. print("Morocoo is gonna win the World cup, MA vs FA 2-1 Moroocoo win.")
+5 / 5
+Great evaluator, very professional. Thank you for your valuable feedback. Good luck with your projects!
+maboulah will correct iatikedd's group scheduled on July 09, 2026 21:00
+%
+yel-alja corrected iboujdad's group-1 scheduled on July 09, 2026 21:00ok
+0 %
+there is an input handling issue , good luck next time
+5 / 5
+Thank you for your time
+ilobov corrected dbobrov's group scheduled on July 09, 2026 21:00crash
+0 %
+Unfortunately cannot run the project. I`m so sorry!
+5 / 5
+Thanks for evaluaton
+fakadjal corrected zahrabar's group scheduled on July 09, 2026 20:15ok
+125 %
+well done ! good luck
+5 / 5
+Thank you
+ael-majd corrected zahrabar's group scheduled on July 09, 2026 20:15ok
+125 %
+work fine. he explained very well good luck
+5 / 5
+Thank you
+aymel-ha will correct iatikedd's group scheduled on July 09, 2026 18:30
+%
+tmizuno corrected rtsubuku's group scheduled on July 09, 2026 15:00ok
+0 %
+長時間のレビューお疲れ様でした。自分がちょうど取り組もうとしている中で、どのような課題かを知ることができてとても良かったです。MOULINETTEを使ったテストにおいて予期せぬエラーが出てしまいましたが、それ以外は完璧だったと思います。たくさん質問しましたが、その全てに丁寧に答えていただき、本当にありがとうございました。
+5 / 5
+ありがとうございました！ Moulinetteで落ちてしまった原因は、パラメーターとして入力定義では fn_is_even の引数 n が integer なのに、デコーダ側が対応している型が string / number / boolean だけだったからでした。 しかし、要件にはstring, number, boolean以外のパラメータ名は特に指定されていなかったので、おそらくそこを即座に見抜けるかどうかが見られていたんだと思います。 長時間のレビューお疲れ様でした！！
+yrafih corrected momousta's group scheduled on July 09, 2026 10:15outstanding_project
+125 %
+Amazing work , creating a custom solution handcrafted solution to a problem is never an easy endeavour. best of luck in ur cc journey
+5 / 5
+Very polite, asking well placed questions about the project!
+enchueco corrected masanna's group scheduled on July 09, 2026 09:00outstanding_project
+125 %
+👍💙 un poce bleu sous la video a 3h du mat 👍💙 superbe projet bien fait super make file et tres logique dans ca conception mais un probleme de taille situer entre 2 et 3Go re coder les model pour la prochaine fois
+5 / 5
+Ceci est un feedback, poce bleu pour Alex, et poce poce pour bleu
+nopons corrected masanna's group scheduled on July 09, 2026 08:00ok
+125 %
+Super projet, merci pour les explications et tres style les bonus qui sont TRES lourds!
+5 / 5
+Merci pour l'evaluation et bon chance à toi pour la suite~~~
+alvila corrected masanna's group scheduled on July 09, 2026 06:15outstanding_project
+125 %
+Super travail, bonne comprehension
+5 / 5
+Merci à toi pour la correction 🙇
+azennani corrected yel-mura's group scheduled on July 09, 2026 06:15ok
+125 %
+good job.
+5 / 5
+Much appreciated, thank you!
+fbertozz corrected riccvern's group scheduled on July 09, 2026 06:15ok
+80 %
+Add numbers a=1, b= 2
+5 / 5
+🐠​
+alcapobi corrected riccvern's group scheduled on July 09, 2026 06:15ok
+80 %
+mi dispiace brodi pero si rifa daje si spinge : )
+5 / 5
+🐠​
+mdell-os corrected riccvern's group scheduled on July 09, 2026 06:15ok
+80 %
+Dai Ricky che basta un nonnulla per l'outstanding!
+5 / 5
+🐠​
+moel-idr corrected yel-mura's group scheduled on July 09, 2026 05:45ok
+125 %
+vey well done! good luck in what comes next!
+5 / 5
+Thanks for the questions and the feedback!
+oamazgha corrected yel-mura's group scheduled on July 09, 2026 05:45ok
+125 %
+good work, you passed.
+5 / 5
+Thank you for the questions and your time!
+lprieri corrected swester's group scheduled on July 09, 2026 05:00outstanding_project
+125 %
+Sam, thank you for walking me through this eval. I've gained some understanding of constrained decoding in LLMs and this looks very interesting. You explained every part of code I asked you about, and you showed me all the tests which passed with 100% accuracy. Congratulations!
+5 / 5
+very friendly dude, opened up a slot for me late in the evening, thanks so much Lisandro! :) Since he is in the cpp branche of codam, we would've both loved to have more time to explain all of the code and the inner workings of my constrained_decoder.py but doing all the tests and explaining all the code while Python is completely new and Constrained_Decoding is completely new, and testing everything, downloading the models, going through all the evaluations checklist made sure we did not really have time to discuss the code on a zoomed-in level, I still hope I could convey what my program was doing and how it works! Thanks again for opening the slot and good luck with your own projects! :)
+ekramer corrected swester's group scheduled on July 09, 2026 04:30outstanding_project
+125 %
+This was a super Call Me Maybe to see, Sam! It was fast and 100% accurate even. We talked a bit earlier about methods to improve the performance. You implemented some of my strategies and improved upon them a lot! That was very cool to see. You explained everything correctly and concisely. We didn't look too much in the code, but the extra features were impressive. Making your own Moulinette... This was not just a Call Me Maybe, rather a Call Me "Definitely"
+5 / 5
+Elias has the best call_me_maybe that I've seen so far, he and his autocomplete system idea that I got inspired by really helped give my project a speedboost and helped me understand much of it, he also had some very good questions about the inner workings of some of my heuristics and systems to extract data from the prompts. Thanks again and cya next time! :)
+hhulic corrected swester's group scheduled on July 09, 2026 04:30outstanding_project
+125 %
+Great project Sam! Pattern recognition on point
+5 / 5
+Hana is always very friendly and interested, she hasn't touched this project yet so there were a lot of genuine questions that I hope I have answered in a way that could help in her future endeavor in Carly Rae Jepsen's favorite project! :)
+jdel-cer corrected masenjo's group scheduled on July 09, 2026 02:30outstanding_project
+125 %
+Esto proyecto es espectacular, tiene mucho mérito y gran dificulat que ha sabido controlar a la perfección. Incluso yo he conseguido entender cómo funciona y de las distintas frases que trata. Chapó.
+5 / 5
+++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>++++.>---.+++++++++++++++++++++.-------------.----.+++++++++++++.<<++.>.>-----------------.+++++++++++++++++++++.-------------.----.+++++++++++++.<<.>.>-----------------.+++++++++++++++++++++.-------------.----.+++++++++++++.<<++++++++++++.------------.>>---------------.++++++++++++.--.++.<<.>>++++.----------.----.++++++++.+++.++.-------------.<<++++++++++++.------------.>>++++++++++++++++.-------.<<.>>-----------.++++++++++++.+++..-------------.--.+++++++++++++++++.-----.+++.<<.>>---------------.++++++++++++.-.<<.>>------.-------.++++++++++++.-----------.++++++++++++++++.-------------.<<.>>-.+.<<.>>--.++++++++++++.-.+.------------.++++++.++++.----.----.+++++++++.++++++.-----.<<++++++++++++.------------.>>++++.++.----------------.+++++++++++++.++.---------------.<<.>>++++++++++++++++++++.<<.>>------------------.+++++++++++.-----------------.++.++++++.--------.++++++++++++++++++.<<+.
+danfranc corrected masenjo's group scheduled on July 09, 2026 01:45outstanding_project
+125 %
+Increible trabajo mario!! Me ha explicado todo con profundidad, me parece un proyecto super interesante la verdad. Suerte con el resto jeje!!
+5 / 5
+++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>+.>++++++++++++++.-----------------.++.++++++.--------.++++++++++++++++++.<<++.>---.>------------------.+++++++++++++.-----.<<++++++++++++.------------.>>-----.+.<<.>>+++++++++++++++++.-----------------.+++++++++++++.-----------------.++++++++++++++++++.<<++++++++++++.------------.>>-----------.-------.<<.>>++++++++++++++++++.----------.-----.+++++++++++.<<.>>++++++.-------.-------------.<<.>>++++++.+++++++++++.-----------------.+++++++++++++.<<.>>-----------.++++++++++++.+++..-------------.--..++++++.++++++.-.<<++++++++++++.------------.>>---------.++++++++++++++.---.-----------.+++++++++++++.---.<<.>>++.++++.----------------.<<.>>+++.-------.++++++++++++++++++++++++.------------------------.<<.>>++++++++++++++++.++++.----------------.-.---.+++.+++++++++++.<<.>>+++++.-----.-----------.+++++++++++.<<.>>------------.+++++++++.-----------.+++++++++++++++++.---.<<+.
+jose-car corrected masenjo's group scheduled on July 09, 2026 01:30outstanding_project
+125 %
+Probamos toda la ejecución y funciona perfecto. la moulinette paso sin problema, aunque de primera esta tiene nombres y rutas erroneas que hay que corregir. Sabe explicar todo el código y entiende el flujo completo. Gracias por toda la explicación. Suerte crack!! :)
+0 / 5
+++++++++++[>+>+++>+++++++>++++++++++<<<<-]>>>+++++++++++.>+++++++++++++++++.----------------.<<++.>>++++++++.--------.+++++.+++++.+++.<<.>>--.++.---------.++++.--------.+++++++++++++.<++++++++++++++++.<.>++.>---.+++..<++.--..++++++.>---.-.<<.>>+++.++++.<----.<.>-.+.<.>----.>---------.-----.++++++++++++++.<++++++++.----.>-------.<<.>>+++.++++.<.<.>>++++.<----.<.>+++++++++++.+++.<.>-------.-------.+.+++++++.--------.<.>++.>----------.+++..<++.++.++.-----.>---.<<++++++++++++.------------.>+++.>+++.<------.++.++++++.--------.>+.<<.>-----------------------.>----.++++.--------------.<<+.
+wakhazza corrected yghergho's group scheduled on July 09, 2026 01:00ok
+115 %
+Super projet, ton Call Me Maybe est vraiment complet et optimise, tu as su bien tout m'expliquer, malgre nos differentes facon de realiser le projet ! Tu as bien repondu aux questions que je t'ai poses et ton code est tres clair, quelques astuces pourront m'aider a terminer le mien et le valider a mon tour ! Bon courage pour le dernier projet de cette milestone !
+5 / 5
+evaluateur serieux et qui pose des questions sur ma maniere de faire afin d'optimiser son code a son tour. Merci a toi pour ton temps et courage pour tes evaluations cmm
+
+sasheri corrected bmoura-s's group scheduled on July 09, 2026 00:45outstanding_project
+120 %
+Bruno has done an amazing project... He explained clearly and we tested his code... His code was understandable and clear... Thanks
+amajid corrected nel-mout's group-3 scheduled on July 09, 2026 00:15outstanding_project
+120 %
+explained the project very well, llm pipeline function calling, and constrained decoding, good luck a sat
+5 / 5
+Thank you for your time
+lblankae corrected mcarrara's group-2 scheduled on July 08, 2026 23:15ok
+100 %
+everything was clear he knows the code and explain me very well. the test pasts everything so its ok for me good job and good luck
+5 / 5
+Excellent evaluation. Punctual and polite. We followed all the instructions on the evaluation sheet and checked the code. Thank you for listening to my explanations. All the best to you.
+mabar corrected aayat's group scheduled on July 08, 2026 23:00ok
+125 %
+Good project and explanation good luck
+5 / 5
+thank you bro and wish you the best
+ainrakot corrected yvoandri's group-2 scheduled on July 08, 2026 22:30outstanding_project
+115 %
+Excellent work; he explained the entire code in detail. It is evident that he was truly committed to the task.
+5 / 5
+Thanks for the evaluation! He has really pertinent questions!Really good
+lmatthes corrected amostash's group scheduled on July 08, 2026 22:30ok
+105 %
+we went through the evaluation sheet step by step and tested everything as outlined. the project ran cleanly, handled invalid and missing inputs gracefully, and the moulinette run passed with a solid score. function selection and constrained decoding worked reliably, with output consistently valid json (some of the more complex parameter cases were a bit less consistent than the simpler ones). i also enjoyed the walkthrough, you explained the pipeline from prompt to token to json clearly and could point straight to the exact functions in your code. the bonus terminal visualization was a nice touch. we also compared our two projects, which was genuinely helpful, you pointed out several things worth reviewing in my own project ahead of my defense. overall a strong project that passes all requirements. well done! :D
+5 / 5
+The evaluation went pretty good. At first Laura read my README file and checked the whole structure of my code and then ran the project. She tested it with different cases mentioned on the evaluation sheet. Since she is also working on this project, she was curious about the algorithm and the structure that I used. We had a nice conversation about different possible implementations and compared it to the one she is doing at the moment. We also checked the grade with the provided Moulinette. And after that we were talking about the improvements that I can add to it to make it get a full grade in Moulinette. It was a nice evaluation and good luck with your call_me_maybe!
+ysaikhuj corrected mtaheri's group-1 scheduled on July 08, 2026 22:15ok
+125 %
+Muhammed'in Call Me Maybe projesini kontrol ettim. Gereken modeli ve dependency'leri indirilmesi biraz uzun sürdü. O süre zarfında dosya yapısını, hangi module neyi yaptığını ve projenin bizden nasıl bir input ve output istediğini açıkladı. Evo pageteki gereken kontrollerin tamamını yapılan proje sağladığını emin olduktan sonra teker teker kod nasıl çalıştığı hakkında bilgiler açıklamalar aldım. devamında LLm nasıl çalıştığını anlattı muhhammet ve bunu çıktı olarak tek tek gösterdi. Bonusta istenilenler başarılı yapılmıştı. Eline sağlık. Başarılar dilerim
+5 / 5
+Değerlendirmemiz akıcı geçti.. yakın zamanda bu projeye başlayacağı için extra detaylı ilerledik.. onun için bir ön fragman olduğunu söyledi.. kodu anlattım ardından da denedik.. herhangi bir problemle karşılaşmadık. Başarılar.
+ngvo corrected vokotera's group scheduled on July 08, 2026 22:00ok
+0 %
+the longest evaluation i've ever done, please never call me again, no maybes, the prompting took forever, so i flagged it appropriately, error handling was also probably not done properly but i have no reference as this is my first ever call me maybe evaluation, btw never call me back, holy moly, good luck with the next eval lmao
+5 / 5
+thanks for patient with me. We did all tests
+besoares corrected dasantos's group-3 scheduled on July 08, 2026 22:00outstanding_project
+100 %
+Great job! The project passes all tests with 100% accuracy, and the code is well structured and readable.
+5 / 5
+tested everything, asked questions
+kael-mal corrected ayfadli's group scheduled on July 08, 2026 21:45ok
+125 %
+clean project, good readable code, fast execution, and able to explain everything i asked. gj !
+5 / 5
+He asked me good questions and gave me enough time to evaluate my project, thank you Kamil.
+nmabille corrected mcarrara's group-2 scheduled on July 08, 2026 21:30ok
+100 %
+Very interesting project. The explanations were amazing, you really took your time to dive into the deep parts and explain everything thoroughly. Thank you for your time and patience! The program runs very smoothly and works perfectly. The moulinette evaluation is correct as well (dont forget to change the input and rerun the program ;))
+5 / 5
+Great review. Punctual and very kind—thank you for taking the extra time needed to verify that the program was working properly and for listening to the necessary explanations. All the best to you
+jsanyas corrected yguardio's group scheduled on July 08, 2026 21:15ok
+105 %
+Some troubles with file paths, everything else runs smoothly, well done.
+5 / 5
+nickel tres rigoureux merci
+sehallil corrected obahya's group-3 scheduled on July 08, 2026 21:15outstanding_project
+120 %
+very well implementation and explanation for both concept and code base, the evaluation was about explaining the logic behind constrained decoding and function calling, the student showed a great understanding for both sides, and all the tests passed as expected, good luck.
+5 / 5
+thank you for your time, really good evaluator !! good luck :) !
+sinawara corrected mcarrara's group-2 scheduled on July 08, 2026 20:15ok
+100 %
+Great project, code works great, and all explanations are clear. There is an issue with the Moulinette program, since the subject changed recently, the moulinette is not up to date with what is expected, and marks the output as wrong, even though it is correct. Good job, and good luck with the next evaluations!
+5 / 5
+Great review. Very kind and professional, thank you for listening to my explanations and for checking my code. All the best to you!
+joapedro corrected razevedo's group scheduled on July 08, 2026 20:00ok
+0 %
+Overall Renata did a good job with this project. She explained very well and in a clear way the porpose of the project and its code (I come from C/C++ so everything was new to me). Unfortunately when deleting both input and output dirs the program printed a traceback along with the error message.
+5 / 5
+Excellent evaluation, Joao checked ALL my code, heard me patiently and with interest while i explained how everything works, thank you!
+toanomen corrected yvoandri's group-2 scheduled on July 08, 2026 19:45outstanding_project
+115 %
+Great work! The explanations were clear and the code is well-structured!
+5 / 5
+Thanks for the evaluation! Really good guy!And hope that explanation help you in your next project.
+berrabia corrected ayfadli's group scheduled on July 08, 2026 19:30ok
+125 %
+Qwen3-0.6B :)
+5 / 5
+Polite evaluator, thank you.
+auzundag corrected mtaheri's group-1 scheduled on July 08, 2026 19:30ok
+125 %
+Qwen modeli kullanılarak AI parse projesi yapılmış. Gerekli çıktıları (moulinette) dahil kontrol ettik. Projede evo page'de sürpriz moulinette var. Zaten bir öncekinden kaldığı için kaldığı kalan kısımları düzeltmiş. AI'ın adım adım tokenizer'a girmesi transformer yapması ve çeşitli aşamalardan geçtiği akış iyi ele alınmış. Eline sağlık.
+5 / 5
+Değerlendirme ilk evodan kazanılan öz güvenle biraz daha akılcı ilerledi. `uv sync` yapıp kütüphanelerin inmesini bekledikten sonra lint kontrolüyle değerlendirmeye başladık. Evaluation page ile ilerledik ve bazı yerlerde konuyu anlatmak için subjecte baktık. Merak ettiğim soruları sordu ve ardından moulinette çalıştırdık..11/11 100% raporladı. Kendi prompt'larımızlada denedik ve 0.6B lik modelin el verdiği kadarıyla okey çıktılar aldık. Evaluation için teşekkürler.
+oatiya corrected obahya's group-3 scheduled on July 08, 2026 19:00outstanding_project
+120 %
+oussama explain concepts very well, clean code, good understanding of Function Calling, Unicode chars and how llms work with them overall very good understanding and implementation of project
+5 / 5
+thank you for your time good luck !!
+aferryat corrected obahya's group-3 scheduled on July 08, 2026 19:00ok
+120 %
+good work and understanding, clean code and good implemerntaation
+5 / 5
+good luck in your cc !!
+moouhida corrected ayfadli's group scheduled on July 08, 2026 18:30outstanding_project
+125 %
+well great explain ,and powerful understanding of the project ,keep it up
+5 / 5
+Thank you for your time and effort.
+yghergho corrected repichan's group scheduled on July 08, 2026 17:45outstanding_project
+110 %
+Tres beau projet, bien realiser et efficace, 10 test reussit sur 11 bravo a toi
+5 / 5
+Merci pour ton écoute et ton sérieux :)
+yikoubaz corrected mryahi-e's group scheduled on July 08, 2026 17:45outstanding_project
+105 %
+The student demonstrates an exceptionally deep understanding of how large language models (LLMs) work under the hood, from tokenization and embedding representations to the mechanisms of attention, inference, and text generation. He clearly understand the complete pipeline, including how input is processed into tokens, how the model computes predictions, and how outputs are generated. Their explanations are technically accurate, well-structured, and reflect a level of understanding that goes well beyond surface-level knowledge. ma3ndi manziid tbark allah , and callmeBaybee is a very intersting project... write(1, "1337 peer learning is Magic free knowledge..", sizeof(buffer));
+5 / 5
+Ah, what can I say about this guy? He truly deserves the title of an AI enthusiast. He asked deep and insightful questions about AI, covering topics such as tokenization, positional encoding, backpropagation, MLPs (Multi-Layer Perceptrons), and many other concepts. It was a long and engaging session, and I really enjoyed discussing these topics with him. Thank you so much for your time, Yassine!
+mamonzer corrected amostash's group scheduled on July 08, 2026 17:30ok
+105 %
+During the evaluation, Arian demonstrated a solid understanding of his project, walking me through his code and explaining the reasoning behind his design choices clearly and confidently. I liked his approach to handling the JSON file's output. He was also able to explain more technical concepts, such as how logits work and the role of tokenizers, showing that he understood not just the implementation but the underlying theory behind his work. However, when we ran the moulinette, the score came out to 4 because the regex output wasn't properly handled, which caused issues with the output. Also, docstrings were missing, and it was a project requirement, but there is no strict rule in the eval sheet. Overall, I'd say his grasp of the concepts was strong. Good luck with your next project:))))
+5 / 5
+It was a great evaluation. At first we had to find a computer that had enough space for this project on goinfre, but after that things went smoothly. Manar did run the project and also checked my README to make sure about my implemented algorithm. He also tested it with different cases mentioned on the eval sheet and checked the grade with the provided Moulinette. He was also curious about the way I implemented the states, since his way was different from the one that I had. Thank you for your time.
+atahiri- corrected mryahi-e's group scheduled on July 08, 2026 17:00outstanding_project
+105 %
+The student's code was clean and well organized with different files split logically between parsing llm interaction and constrained decoding There are no major issues and the result was satisfactory. The student could try and make more bonuses
+5 / 5
+It was a great session. We discussed LLM concepts in depth, and he was an excellent listener who asked thoughtful and insightful questions throughout the discussion. He also did a great job testing the project and providing valuable feedback. Thank you so much for your time, Amine!
+
+shshinod corrected khara's group scheduled on July 08, 2026 16:30ok
+100 %
+評価項目について一通り確認し、問題ないと評価できました。お疲れ様です。
+5 / 5
+ありがとうございました
+houhamou corrected mryahi-e's group scheduled on July 08, 2026 16:30outstanding_project
+105 %
+Great understanding of the project concepts, we have deep dive into llm's how they works and NLP. for me all looks good keep going
+5 / 5
+Hassan was a great listener. We discussed the project's fundamentals, and the conversation was productive and engaging. Thank you so much for your time, Hassan!
+wleroy corrected almandal's group scheduled on July 08, 2026 16:00ok
+105 %
+tout est bon bien jouer juste grosse galere a installer
+5 / 5
+Gud !
+takawaka corrected khara's group scheduled on July 08, 2026 15:00ok
+100 %
+nicejob!!
+5 / 5
+ありがとうございました！！！！
+kmitsuki will correct khara's group scheduled on July 08, 2026 14:30
+%
+irraheri corrected yvoandri's group-2 scheduled on July 08, 2026 14:15ok
+115 %
+C'est un tres bon travail! Je trouve que l'argument callable pour le constrained decoding est une excellente idée. Toutes les erreurs sont bien gérées et l'explication de l'algo demontre le travail effectué. Bonne continuation pour la suite :)
+5 / 5
+Thanks, a rigourus and strict evaluator! Thanks with the discuss! I appreciate it so, my friend!
+kmaruyam corrected khara's group scheduled on July 08, 2026 14:00ok
+100 %
+長時間に渡り疑問点等を質問しました。 全体を通して回答いただいたので問題はなかったと思います。 また、不明点についても解説していただきありがとうございました！
+5 / 5
+ありがとうございました
+rvaginet corrected xwenger's group scheduled on July 08, 2026 09:15ok
+115 %
+Bon cmm, tout est clean, le test de la moulinette donne 9/11 donc c'est en accord avec ce qui est demande dans la correction, bon courage pour la suite du cercle !!
+5 / 5
+Super complete evaluation, we took the time to discuss about the state machine implementation and some preprompt advices, you knew where to check up and what to ask since you also finish the project, goodluck for your own
+mubersan corrected xwenger's group scheduled on July 08, 2026 08:45ok
+115 %
+Bon travail dans l'ensemble. Les explications du code sont claires et semblent bien maîtrisées.
+5 / 5
+Thanks for this evaluations you showed interest even if you didnt know this project, hope everything, made sure everything were clear during explanation
+ogusimse corrected xwenger's group scheduled on July 08, 2026 08:15ok
+115 %
+bon projet tout correspond au suje les explications etait clair jai pu tout comprendre alors que je suis pas encore sur le projet bon courage pour la suite !
+5 / 5
+Thank you for your involvement i could explain my whole pipeline and methods, I wish you goodluck for your project
+ilelmahi corrected yrafih's group scheduled on July 08, 2026 06:45ok
+125 %
+good understanding of the project requirement, good luck in your next :)
+5 / 5
+Thank you for ur time, amazing evaluator. best of luck in your career
+aherrami corrected nel-mout's group-3 scheduled on July 08, 2026 05:00outstanding_project
+120 %
+good work, the student explained the concepts of the project, the code is working fine, everything looks good, good luck in your next projects !
+5 / 5
+Thank you for your time
+nikhtib corrected hbouzian's group scheduled on July 08, 2026 04:15outstanding_project
+125 %
+Great work, keep up and good luck
+5 / 5
+thank you so much for your time
+jaicastr corrected igramos-'s group scheduled on July 08, 2026 04:15norme
+0 %
+Fallaba una linea de la norma, pero tenia buena pinta, muccha suerte!!!!
+5 / 5
+Una evaluación muy amena!!!
+aferryat corrected nel-mout's group-3 scheduled on July 08, 2026 03:30outstanding_project
+120 %
+student explained LLM well, and code is clean and everything looks good
+5 / 5
+Thank you for your time
+rmouafik corrected hbouzian's group scheduled on July 08, 2026 03:30outstanding_project
+125 %
+great work, good explain, good luck in next projects
+5 / 5
+thank you so much for your time
+mboujama corrected hbouzian's group scheduled on July 08, 2026 03:30outstanding_project
+125 %
+Very good job, every concept explained , good luck in the next projects
+5 / 5
+thank you so much for your time
+yourahma corrected sehallil's group scheduled on July 08, 2026 03:00outstanding_project
+100 %
+this evaluation was very helpful i understand a lot of things from LMLALI HAHA, thanks a lot for the explanation, everything is working as expected, good luck with the next projects :)
+5 / 5
+The evaluator paid close attention to the project, asking thoughtful questions that enriched the discussion. Thank you for your valuable feedback, and best wishes.
+mkirate corrected abajjouk's group-1 scheduled on July 08, 2026 01:30outstanding_project
+100 %
+good job and good explanation of the project he explained very well how the LLMs and transformers works, good luck.
+5 / 5
+great peer with great mindset, asks very good and specific questions about the concepts of the day, thank you for your time!
+idahhan corrected aamrani's group scheduled on July 08, 2026 01:15outstanding_project
+125 %
+Great discussion, great understanding of all concept of this project such LLM, Neural network, Constrained decoding, function calling, logits..., he helped me test everything and everything work well. good luck
+5 / 5
+wonderful evaluator, showed interest in the project and asked about everything, had a great discussion about LLM related topics, thank you for your time and attention (is all you need)
+sehallil corrected abajjouk's group-1 scheduled on July 08, 2026 01:00outstanding_project
+100 %
+Good work, the student shows a great understanding of the core concept, we discussed function calling and constrained decoding and where it was applied in his code, everything is working as expected . good luck with the next, lah yesser
+5 / 5
+great peer with great mindset, asks very good and specific questions about the concepts of the day, thank you for your time!
+lelouren corrected ekramer's group scheduled on July 08, 2026 00:45outstanding_project
+120 %
+Awesome project! Everything works, tests are easily between 90% - 100% accurate and you had some nice bonus sections. You clearly put a lot of time and effort into you your project so you understand it clearly. i am really impressed with all the extra tests and learning features you put into the project. Keep up the awesome work and good luck with your next project ^.^
+5 / 5
+Leandra is such a kind and curious evaluator. She listens well and asks good questions. It's also fun making some jokes and chatting a little bit during the evaluation. Thank you Leandra!
+ariyad corrected aamrani's group scheduled on July 08, 2026 00:45outstanding_project
+125 %
+the student understands the concepts of this project well. code is clear and well structured. good luck in your next one
+5 / 5
+good eval, tested good everything, thank you for your time and attention (is all you need)
+mooumouh corrected aamrani's group scheduled on July 08, 2026 00:45outstanding_project
+125 %
+understanding of constrained decoding, llms, function calling... good luck
+5 / 5
+good eval, friendly evaluator who asked about project concepts and read the code carefully, thank you for your time and attention (is all you need)
+mgerard corrected alsereme's group-1 scheduled on July 08, 2026 00:00ok
+125 %
+Tres bon projet. Tous les tests passent sans aucun problemes. Les explications des differentes notions sont assez claires et precises. Merci pour ta bonne humeur et toutes tes explications ca m aidera surement pour le future!
+5 / 5
+merci beaucoup pour la correction, tres sympathique on a bien ri de certains trucs, hesite pas si t'as des questions par rapport au projet plus tard!
+
+ksmailov corrected amostash's group scheduled on July 07, 2026 23:45ok
+105 %
+Great implementation by Arian. We went through eval sheet and tested constrained decoder with different prompts. He could clearly explain his implementation and design decision. Also he was able to answer all questions with referencing to proper functions in code. I like the JSONStateMachine implementation but there is still room for improvement. Function selection could be more accurate if the scoring would be soft-maxed and set the limit for selecting one. It keeps selecting highest score function in most incorrect but near to other existing prompts. Also the parameter generation was not really handled well and was left to totally llm randomly generated values without post or pre-editing which actually failed all functions with regex and more complex parameters except numbers and text strings. The code is well structured, concise and readable but also have one big missing part "the docstrings" the subjects mandates it but there is no strict requirement in evaluation sheet. Overall the project is well implemented and passes minimum requirements. Good luck with next evaluations and next projects.
+5 / 5
+The evaluation went pretty well. Kaisar checked each and every part of the code and tested it with many different cases. It was a very challenging and interesting evaluation. We had some nice discussion about improving the code such as applying score limits and Softmax to the code and he also told me to edit my regex output to avoid any excessive data. In general I'm happy to have this evaluation with him. Thanks
+tsignori corrected yguardio's group scheduled on July 07, 2026 23:45ok
+105 %
+Bonne compréhension du projet, à su expliquer ses choix technique et comment fonctionne son projet. Gl Hf pour la suite !
+5 / 5
+super sympa, rigoureux, m'a donne des conseils, super correcteur, merci beaucoup
+amsaq will correct abajjouk's group-1 scheduled on July 07, 2026 23:00
+%
+ramaroud corrected cehenrot's group scheduled on July 07, 2026 23:00ok
+105 %
+Un projet super sympa, c'est la premiere fois que je le corrige et c'est assez complexe, merci a toi de m'avoir expliquer ce projets malgré que le sujet de correc soit unpeu mal structurer, bon courage a toi pour le reste du cercle.
+5 / 5
+merci pour ta correction
+oafidi will correct abajjouk's group-1 scheduled on July 07, 2026 22:45
+%
+zmajdoub corrected abajjouk's group-1 scheduled on July 07, 2026 22:45outstanding_project
+100 %
+All good , the student explain every thing , good code structure , good luck in the next.
+5 / 5
+great peer and great evaluator, asks very good questions about the subject concepts and the pipelines on how to mode works, thank you for your time!
+mflorens corrected alsereme's group-1 scheduled on July 07, 2026 22:30ok
+125 %
+Very nice project, everything works perfectly and the student's explanation were very clear. The project respects the time constraints and the bonus are also correctly implemented. Good luck for the rest :D
+5 / 5
+thank you very much for the correction, we had some lows because of the llm having trouble getting downloadeed from huggingface but gone through ! everything worked
+abait-sa corrected tannane's group scheduled on July 07, 2026 22:30ok
+110 %
+great work and good explanation , the best of luck to you in upcoming ilaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+5 / 5
+thanks for your time and evaluation. gook luck you too. ilaaaaaaaaaaaaaaaaaaaaaa
+ysumeral corrected mtaheri's group-1 scheduled on July 07, 2026 21:30outstanding_project
+125 %
+README, mypy, flake9 ve projedeki ilgili moulinette ile kontrolleri sağladım herhangi bir sorun çıkmadı. Değerlendirme sayfasında belirtilen testler, bonus bölümündeki testler ve kendi testlerimiz ile visualize ederek test ettim "100% parseable output" ve "Check that the solution achieves >90% accuracy on provided tests" ifadelerini karşılıyor. Kodu detaylıca satır satır açıkladı ve bonus bölümdeki "Demonstration of how encoding and decoding integrate with constrained decoding" ifadesini işlem işlem anlatabildi. Bu sebeple outstanding verdim. Ancak Mask'teki "return [logits[i] if i in valid else -math.inf for i in range(len(logits))]" ifadesinden sonra mantıksal operatörlerin kullanımına izin verilmemesi gerektiğini düşünmeye başladım. -,- Başarılar dilerim.
+5 / 5
+Kampüste olan etkinliklerde görevli olduğum için tam değerlendirme saatinde başlayamadık. Uzun ve detaylı bir değerlendirme oldu. Yunus hocamla ilk projenin genel mantığı hakkında tartışıp ardından da subjecti kontrol ettik. Kütüphanelerin inmesini beklerken evaluation sheette yazan şeyleri kontrol ettik ve herhangi bir problem yoktu. Kodu anlatırken fazla detaya indim beni sabırla ve ilgiyle dinleyip güzel sorular sordu. Bu kaliteli değerlendirme için ona teşekkür ediyorum. Inception projesi kolay gelsin 🐍🐍
+amaghafr corrected nbouygui's group scheduled on July 07, 2026 21:30ok
+110 %
+Everything is working fine and well implemented. The student explained the concept of the project and shows a strong understanding. Wish u the best in ur next project...
+5 / 5
+Thanks :)
+abdnahal corrected tannane's group scheduled on July 07, 2026 21:00outstanding_project
+110 %
+Great understanding and implementation, good luck mate :)
+5 / 5
+good evaluator , thanks for your time.
+skabny corrected tannane's group scheduled on July 07, 2026 20:30ok
+110 %
+good work , well understanding of constrained decoding, and good implementation.
+5 / 5
+good evaluator, thanks for ur time.
+ikryvenk corrected alsereme's group-1 scheduled on July 07, 2026 20:15ok
+125 %
+Very good project. You understand very well all the details of the project. I can defently seee that you read and searched a lot of additional information. Your code seems very good. You now every line. After corection i have impression that I know how to do this project, whitoout any problem! Good luck for the next project!
+5 / 5
+thank you very much for your correction! you seemed interested in the project and we tested some cases i hadnt thought about
+razevedo corrected dasantos's group-3 scheduled on July 07, 2026 19:30ok
+100 %
+Daniel clearly understood his code, he explained his choices and Moulinette tests ran with 100% accuracy. Constrained decoding was used as well as the given model, so everything looks fine. Keep up the good work!
+5 / 5
+very nice and polite, test everything and asked questions about the code.
+abajjouk corrected sehallil's group scheduled on July 07, 2026 19:15outstanding_project
+100 %
+excellent explanation, the student understands the concepts of the project clearly even we deep dived into the concepts of llm, transformers and a bit of neural network, he provided a clear vision of the generation pipeline and his code, good luck in your CC!
+5 / 5
+The evaluator showed genuine interest in the project, asking insightful and relevant questions that made the evaluation engaging and constructive. Thank you for your professionalism, and best of luck with the project.
+eel-garo corrected nbouygui's group scheduled on July 07, 2026 19:15ok
+110 %
+good work, he explained to me how to build and use function-calling to convert a prompt from a dom LLM like Qwen3.0 to a smart an correct JASON form ready for output build, everything was complete a correct code and struct, good luck on the next.
+5 / 5
+Thanks :)
+aymel-ha will correct nbouygui's group scheduled on July 07, 2026 19:00
+%
+oafidi corrected nbouygui's group scheduled on July 07, 2026 19:00outstanding_project
+110 %
+nice understanding of constarained decoding concepts , good luck in your next projects
+5 / 5
+Thanks :)
+sabadri corrected sehallil's group scheduled on July 07, 2026 18:45outstanding_project
+100 %
+really good implimentation coupled with a really good explanation , the code structure is good , and all tests passed , good luck in the next
+5 / 5
+The evaluator showed interest in the project's overall concept and asked relevant questions that led to a constructive and engaging discussion. Thank you, and best of luck with the project.
+aymel-ha will correct sehallil's group scheduled on July 07, 2026 18:00
+%
+iezzam will correct sehallil's group scheduled on July 07, 2026 06:45
+%
+yabyaa corrected aryahi's group scheduled on July 07, 2026 04:30ok
+0 %
+very smart person , i really enjoyed reading his code, i learned some cool tricks, good luck in your next push.
+5 / 5
+Thank You
+melkhatr will correct aryahi's group scheduled on July 07, 2026 03:45
+%
+hchiar corrected mabar's group scheduled on July 07, 2026 03:30ok
+125 %
+great work and good explanation everything work fine good luck in your next projects
+5 / 5
+Thanks for ur time and information
+arvella corrected jerecaba's group-1 scheduled on July 07, 2026 02:30ok
+115 %
+All good, gg Jeremy! Good continuation
+5 / 5
+Perfect correction, all cases have been carefully tested, thank you :)blidriss corrected aryahi's group scheduled on July 07, 2026 02:15outstanding_project
+0 %
+good job and nice work all work as expected, good luck in ur cc :)
+5 / 5
+Thank You Mate!!
+tsignori corrected jerecaba's group-1 scheduled on July 07, 2026 01:30ok
+115 %
+Très bon projet, à su très bien expliquer son projet et comment il fonctionne ! Continue comme ça, gl pour la suite !
+5 / 5
+Perfect correction, all cases have been carefully tested, thank you :)
+frasomal corrected jerecaba's group-1 scheduled on July 07, 2026 00:30ok
+115 %
+Very good code!! Good luck for the next evaluations!!
+5 / 5
+Perfect correction, all cases have been carefully tested, thank you :)
+asmounci corrected mabar's group scheduled on July 07, 2026 00:15ok
+125 %
+good understating good luck for next project
+5 / 5
+Thanks a lot for ur time
+ilbeltra corrected mabar's group scheduled on July 06, 2026 23:15ok
+125 %
+Good implementation good luck
+5 / 5
+Thanks for ur time
+brimarti corrected pmelo-cl's group scheduled on July 06, 2026 21:45ok
+0 %
+Me ha explicado muy bien, tiene muy claro todo y muy organizado el proyecto. El problema fue en la gestion de errores del input y las pruebas de la moulinette. Para los casos estandars si funcionaba perfectamente. Mucha suerte en las proximas correcciones!
+5 / 5
+muy majo y ha encontrado errores en el codigo, muchas gracias!!
+mleschev corrected fchaput's group-2 scheduled on July 06, 2026 21:30ok
+90 %
+Le projet est dans l'ensemble tres boien fait, tout es trespecter et surtout place avec inteligences, toute les questions on ete repondu de la meilleurs des facons, petit couac malheureusement sur le --output qui ne semble pas marcher autrement tout a l'air en ordre et compris, Bine jouer a toi et grosse force la suite !
+iborge-g corrected jpedra-v's group-1 scheduled on July 06, 2026 20:45ok
+100 %
+Todo correcto, buen trabajo con las LLM milagrosamente el ordenador no ha muerto en el proceso Para el logro Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam nunc metus, efficitur ut elementum at, malesuada et lorem. Sed nec metus a ligula euismod porta in quis enim. Sed blandit, ligula tincidunt pellentesque semper, libero tellus sodales ante, non ultrices magna erat a sem. Sed sed diam pretium, maximus enim sit amet, egestas diam. Etiam sit amet risus vulputate, placerat orci sed, dictum lorem. Cras elementum vestibulum magna, eget interdum ex egestas vitae. Integer gravida ligula ut iaculis aliquet. Duis consequat dolor vel metus elementum elementum. Maecenas vitae risus sed nisi ultrices malesuada vitae id metus. Sed in rhoncus turpis, vel tincidunt lorem. Etiam nisl diam, fermentum nec tincidunt id, condimentum eu odio. Morbi porttitor pharetra est, dapibus cursus justo. Vestibulum tortor lorem, euismod sed sollicitudin nec, porttitor mollis augue. Fusce dictum dapibus mattis. Pellentesque aliquet vel leo sit amet euismod. Donec lacinia odio at urna semper pellentesque. Aliquam erat volutpat. Sed hendrerit eu mauris eget iaculis. Mauris non velit non velit accumsan congue sit amet quis nisl. Nam non turpis vel ipsum tincidunt faucibus. Vivamus eget dolor dapibus augue tempor pretium. Maecenas convallis rhoncus lacus, quis suscipit eros efficitur ac. Ut luctus gravida diam, quis laoreet augue congue ut.
+5 / 5
+Muchas graciaas por la evaluacion!!
+mosafa corrected miissa's group scheduled on July 06, 2026 20:15ok
+100 %
+Great job Milad, he explained his project very well and answered all my questions. he showed understanding to the concepts of project. I tested cases and all was right. the output passed by the moulinette. Good luck.
+5 / 5
+great evaluation, thank you
+vebastos corrected dasantos's group-3 scheduled on July 06, 2026 20:00ok
+100 %
+Clean project, all working good, moulinette passed without problems and all explanation was good!
+5 / 5
+test everything and asked questions about the code
+anlamber corrected fchaput's group-2 scheduled on July 06, 2026 19:45ok
+100 %
+gg wp, ca marche bien, on apprends des trucs meme juste a ouvrir des dossiers pasque la correction est approximative dans ses explications.
+5 / 5
+Merci bcp !
+hamhamda corrected miissa's group scheduled on July 06, 2026 19:00ok
+100 %
+Great work Miled! Understands everything and answered all my questions. Good luck !
+5 / 5
+great evaluation. Hamza tried many edge cases to verify that i handled errors correctly, and all of them passed. thank you for your time
+qhumblot corrected almandal's group scheduled on July 06, 2026 18:00ok
+105 %
+Super project est bien fait. tout est compris
+5 / 5
+Merci pour ton attention !
+jhanna corrected miissa's group scheduled on July 06, 2026 17:15ok
+100 %
+Great work! Everything is working as expected and Miled was able to explain how his code and LLM works.
+5 / 5
+Joe was interested in my project during the evaluation. he tested many edge cases before moulinette to make sure my code handled errors correctly. thank you for your time
+vebastos corrected danicort's group-1 scheduled on July 06, 2026 17:00ok
+100 %
+All implemented with perfection, no bugs, no memory leaks. The moulinette passed without problem! Good Job
+5 / 5
+Thank you for your assessment!
+kyfontan corrected almandal's group scheduled on July 06, 2026 16:00ok
+100 %
+GG pour ton call me maybe! Tout passe et c'est tres optimisé. Bonne chance pour la suite !
+5 / 5
+Parfait, merci pour cette correction efficace !
+ancheab corrected oissfoul's group scheduled on July 06, 2026 08:00ok
+115 %
+good explanation and implementation of constrained decoding. LLM(tokens, logits)
+5 / 5
+thank you bro
+pde-petr corrected niverdie's group-2 scheduled on July 06, 2026 05:30ok
+120 %
+très bien compris de la part de nicodemedeme, il a su m'expliquer de façon simple et efficace ce projet qui a l'air assez intéressant, merci pour cette correction et bon courage pour la suite
+5 / 5
+Merci pour ta super eval, tu as eu l'air de bien avoir compris le projet et tu as tous teste comme indique sur le sujet. Evaluateur toujours avec la banane !! A tres vite
+lasoubai corrected oissfoul's group scheduled on July 06, 2026 04:00ok
+115 %
+He explain constrained decoding ,llms in details , great job !!
+5 / 5
+Thank you, sister.
+ale-guel corrected niverdie's group-2 scheduled on July 06, 2026 03:45ok
+110 %
+Impec, tu as tres bien explique le concept, le format de sortie est bien un JSON. La moulinette fonctionne pour la majoriter des test. Bonne chance pour ta derniere eval.
+5 / 5
+Merci pour ta curiosite par rapport au projet, on a eu une belle discussion autour du fonctionnement de l'ia ! A plus !
+sechlahb corrected yabyaa's group-1 scheduled on July 06, 2026 02:15outstanding_project
+125 %
+he explain all the concepts , he deserve an outstanding project , good luck
+5 / 5
+good luck brother
+nel-yaak corrected badiyaf's group scheduled on July 06, 2026 02:15ok
+125 %
+Great work, very good explanation keep up brother and good luck in your common core.
+5 / 5
+Thank you for the evaluation. You asked great questions, and I appreciate your feedback.
+vquetier corrected niverdie's group-2 scheduled on July 06, 2026 02:15ok
+120 %
+Tres bon projet ! Utilisation de tries pour les functions, top ! Superbe la visualization egalement et bonne recovery sur les erreurs (trop de tokens generes / ctrl-c catch). Bravo et bonne chance pour la suite !
+5 / 5
+Merci pour ta correction rigoureuse et ta bonne humeur, on a bien discute du projet et de ses limites. Courage pour avancer sur Rag qui a pas l'air super fun, a tres vite
+ewaltz corrected yghergho's group scheduled on July 06, 2026 01:00outstanding_project
+120 %
+tres bon projet dans l'ensemble. tu a reussi a m'expliquer clairement ton code et les choix que tu a fais. GG pour les bonus et ta jolie visualisation. Bravo et bonne chance pour ta derniere eval. :)
+5 / 5
+merci a emilien pour son temps et sa gentillesse, l'evaluuation etait appliquee et il aprit le temps d'en discuter avec moi. Courage pour la suite
+mel-wahm corrected falamlih's group scheduled on July 06, 2026 00:00ok
+125 %
+Good work and great explaining. Good Luck with the next project.
+5 / 5
+thanksmtarza corrected smoustaj's group scheduled on July 05, 2026 23:45ok
+115 %
+all is clear ; also explained good, good luck
+5 / 5
+115 by mistake :,), but thanks for your time.
+abismail corrected yabyaa's group-1 scheduled on July 05, 2026 23:45ok
+125 %
+good understanding ! good luck for your next projects .
+5 / 5
+very kind person
+mel-houa corrected falamlih's group scheduled on July 05, 2026 23:15outstanding_project
+125 %
+Great work keep going :)
+5 / 5
+thanks for your time
+jatanaso corrected sfurst's group-1 scheduled on July 05, 2026 23:00ok
+110 %
+We went over the evaluation sheet and Veya was able to explain everything with ease and has very good understanding of the topic. Thank you for walk me over your code and good luck
+5 / 5
+thx for the eval
+mtarza corrected yabyaa's group-1 scheduled on July 05, 2026 23:00outstanding_project
+125 %
+Demonstrates a great understanding of all Project and is a very kind Debug methode is " unknown unknown unknown" Keep up the excellent work!
+5 / 5
+very kind person
+vavegee corrected yghergho's group scheduled on July 05, 2026 22:45ok
+110 %
+super projet les explication sont top qu'elle que petit probleme rencontrer mes rien a propros du code est du projet franchement top bons courage pour la suit est mercie
+5 / 5
+evaluation simple et efficace, evaluateur interesse, n'hhesite pas a revenir me poser des questions une fois que tu seras sur le projet et courage
+ihasbi corrected hel-hamo's group-1 scheduled on July 05, 2026 22:45incomplete_work
+0 %
+Great job , he understand all concept well,just smal error ,good luck
+5 / 5
+The TESTER!!!!! hhhhhhhhhhhhhhhhhh thanks for ur time !!
+hdyani corrected hel-hamo's group-1 scheduled on July 05, 2026 22:30incomplete_work
+0 %
+A great understanding of the project, and great presentation, only a hang in generating numbers.
+5 / 5
+thanks brother for correction i Love sessions with students like u, good session :)
+mtarza corrected falamlih's group scheduled on July 05, 2026 22:15outstanding_project
+125 %
+good luck
+5 / 5
+thanks for your time
+khnoman corrected abait-sa's group scheduled on July 05, 2026 22:00ok
+110 %
+good explanation (llm and constrained decoding)and clean code , good luck in your projects :)
+5 / 5
+thank you brotheer
+khnoman corrected aayat's group scheduled on July 05, 2026 21:15ok
+125 %
+clean code and good explanation (LLM), good luck in your next project :)
+5 / 5
+thank you and good luck for your projects :)
+aessabri corrected abait-sa's group scheduled on July 05, 2026 21:00outstanding_project
+110 %
+great understanding, clean code. good luck bro.ilaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+5 / 5
+thank you brother, the best of luck to you too ilaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+yel-alja will correct oissfoul's group scheduled on July 05, 2026 20:15
+%
+lsebar corrected abait-sa's group scheduled on July 05, 2026 19:15ok
+110 %
+Good work, keep it up..!
+5 / 5
+good evaluator, thank you for your time and good luck ilaaaaaaaaaaaaaaaaaaaaaaaa
+aessabri corrected aayat's group scheduled on July 05, 2026 18:45ok
+125 %
+clean code, good luck in your next projects.
+5 / 5
+thank you buddy :)
+eride-ol corrected bgomes-b's group scheduled on July 05, 2026 14:30ok
+125 %
+Brendon foi bastante tranquilo e participativo durante a avaliação, verificamos a regua de avaliação em cada uma das etapas do projeto e ele conseguiu explicar com clareza como funcionava o processo de function calling, a escolha das funções pelo modelo e a estrutura do JSON gerado. Também conversamos sobre a validação da saída e o uso do "constrained decoding", demonstrando um bom entendimento da lógica implementada. Foi uma ótima avaliação proveitosa, que me esclareceu algumas das duvidas que tinha sobre o projeto.
+5 / 5
+Muito obrigado pela avaliação do Erick
+almontei corrected bgomes-b's group scheduled on July 05, 2026 14:15outstanding_project
+125 %
+Brendon fez um projeto muito bem estruturado e documentado. A avaliação foi rápida e tranquila de fazer, ele me explicou tudo sobre o trabalho para me ajudar a fazer o meu projeto também.
+5 / 5
+Obrigado pela disponibilidade do Ferro
+rferro-d corrected bgomes-b's group scheduled on July 05, 2026 13:45ok
+125 %
+Foi uma ótima troca, soube explicar muito bem, é todos os testes foram feitos
+5 / 5
+Agradeço pela disponibilidade do Rafa
+wabbad corrected smakkass's group scheduled on July 05, 2026 06:00outstanding_project
+115 %
+Very well structured and made project, was able to explain pretty much everything well and answered all of my questions, good luck !!
+5 / 5
+thanks my friend.
+iberegsz corrected sfurst's group-1 scheduled on July 05, 2026 04:45ok
+110 %
+This is a nice project introducing the first step of using an LLM to prepare the data for further processing. It literally creates a JSON file containing the names of the functions and their parameters from a prompt string. The implementation involves preprocessing the input with a regular expression and then processing the input with the LLM afterwards. Besides performance optimization, the implementation of a test suite makes development more convenient. The make lint command is a bit complicated, but it's better than just using flake8 and mypy. Good luck with your next Python project to speed up your current pace! :)
+5 / 5
+thanks for the eval
+fsitter corrected sfurst's group-1 scheduled on July 05, 2026 03:15ok
+120 %
+🍞
+5 / 5
+very nice eval thx
+ybajdou corrected oissfoul's group scheduled on July 05, 2026 03:00ok
+115 %
+Very good explanation and implementation of constrained decoding. The code passed the Moulinette test (public: 11 / 11 and private: 6 / 11). I wish you good luck in your next project.
+5 / 5
+thank you bro
+mel-houa will correct smoustaj's group scheduled on July 05, 2026 00:45
+%
+aababach corrected watoumi's group scheduled on July 05, 2026 00:15ok
+105 %
+Great explanation, took lot of time to showcase the work, thank you!
+5 / 5
+thanks for your time
+aelidrys corrected watoumi's group scheduled on July 04, 2026 23:30ok
+105 %
+great job and good understanding of concepts, good luck in the next.
+5 / 5
+thanks for the correction and informations
+
+tbolsako corrected jmanani's group scheduled on July 04, 2026 23:15ok
+105 %
+He has perfect understanding of how LLMs actually work and it wasn't any problem for him to explain his code and the project itself. We went through eval sheet and checked all of the cases thorughly. Good job!
+5 / 5
+Tatjana was very patient and even waited a few minutes for me to finish another evaluation before we started. We went through the entire evaluation sheet together, discussing the project's goals, LLM behavior, common edge cases, and what should or should not be considered a failure in LLM generation. She asked thoughtful questions throughout, making the evaluation both thorough and constructive.
+bgebreeg corrected jmanani's group scheduled on July 04, 2026 23:00ok
+105 %
+Good work overall. You explained the constrained generation approach and the LLm-related design decisions clearly, and demonstrated a solid understanding of the implementation, although i did not have this topic knowledge, you try to make me understand this. The project was well prepared, and the evaluation went smoothly. Keep it up, and good luck with your projects and next evaluations.
+5 / 5
+Bethelhem was very engaged throughout the evaluation despite having no prior background in LLMs. She showed strong curiosity, asked meaningful questions, and tried to understand the core concepts step by step. Her interest made the discussion smooth and productive, and she picked up the project ideas quickly.
+kdvarako corrected jmanani's group scheduled on July 04, 2026 22:45ok
+100 %
+Jayesh did a great work. He demonstrated a flawless, deep understanding of the project and the inner mechanics of LLMs. Instead of just showing working code, he clearly and confidently explained complex concepts like logic manipulation, tokenization, and constrained decoding in simple terms. The code implementation was clean and well-structured, he handled all edge-cases, all tests worked as expected. Good luck with your next evaluations!
+5 / 5
+She was very engaged throughout the evaluation and asked thoughtful questions about the implementation. Her curiosity led to good technical discussions, and she carefully checked each part instead of rushing. Overall, it was a constructive and enjoyable evaluation.
+aababach corrected yrafih's group scheduled on July 04, 2026 22:45outstanding_project
+125 %
+great work took time to explain well, best of luck!!
+5 / 5
+Very Good Evaluator , thank you for ur time and advices
+khhihi corrected yrafih's group scheduled on July 04, 2026 22:45ok
+125 %
+GOOD LUCK.
+5 / 5
+Very friendly and very thorough. ty for ur time
+maneddam will correct yrafih's group scheduled on July 04, 2026 22:45
+%
+miaandri corrected yvoandri's group-1 scheduled on July 04, 2026 21:30ok
+115 %
+Tout marche perfectement bien Les explications sont hyper-claires et toutes les testes sont conforme et sans crash Merci pour cette eval c'etait trEs riche:)
+5 / 5
+Thanks for the evaluation! She ask anything and I reply with confidence.Thanks
+ohouafi corrected yoel-hao's group scheduled on July 04, 2026 21:15outstanding_project
+125 %
+good understanding of the subject requirements, he explained clearly all the question related to the project, good luck in ur next projects
+5 / 5
+thanks for your time
+mait-tal corrected yoel-hao's group scheduled on July 04, 2026 21:00ok
+125 %
+good job and well understanding of the project requirements, he explained the constrained decoding concept and the encoding/decoding implementation well. good luck.
+5 / 5
+thanks for your time
+iatikedd corrected yoel-hao's group scheduled on July 04, 2026 20:30ok
+125 %
+The student understands constraint decoding and function calling weel, clean project. Good luck
+5 / 5
+thanks for your time
+zdaouari corrected abajjouk's group scheduled on July 04, 2026 20:30ok
+0 %
+great job, unfortunately the programe crashed during testing, good luck in the next try
+5 / 5
+thank you for your time
+ohouafi corrected abajjouk's group scheduled on July 04, 2026 20:30crash
+0 %
+good luck next time
+5 / 5
+thank you for your time!
+mait-tal corrected abajjouk's group scheduled on July 04, 2026 20:15crash
+0 %
+unfortunately the program crashed when given valid but empty json object. good luck next time.
+5 / 5
+great peer, thank you for your time!
+aishitsu corrected hwakatsu's group scheduled on July 04, 2026 19:00ok
+125 %
+すべてのボーナスに取り組まれていて、素晴らしいと思います！ 説明や動作等にも問題なかったです。お疲れ様でした！
+5 / 5
+お疲れ様です。しっかりとレビューしてくれました。BlackHoleまで残り少ないですけど頑張ってください。。
+satifi corrected hdyani's group-1 scheduled on July 04, 2026 18:45ok
+100 %
+great work and good explanation of the project good luck
+5 / 5
+Good evaluation, thanks for the evaluation.
+omaezzem corrected hdyani's group-1 scheduled on July 04, 2026 18:45outstanding_project
+100 %
+good understanding of concept , good luck in the next
+5 / 5
+Great evaluation process
+asoufian corrected iboujdad's group scheduled on July 04, 2026 18:45ok
+0 %
+Unfortunately the program hangs on a moulinette test otherwise everything works as expected. good luck on the next try.
+5 / 5
+Thank you for your time
+aessaadi corrected hdyani's group-1 scheduled on July 04, 2026 18:45outstanding_project
+100 %
+great work and effort, all tests passed well, great understanding, good luck in what's coming next.
+5 / 5
+Paid great attention to the project, and was very interested in the transformer pipeline
+trakotoz corrected yvoandri's group-1 scheduled on July 04, 2026 18:30ok
+105 %
+He understand the LLM and the Function Calling very well Great explanation and great defense. Good continuation and Wish you the best :)
+5 / 5
+Thanks you.really love the discuss.
+takawaka corrected hwakatsu's group scheduled on July 04, 2026 18:15outstanding_project
+125 %
+挙動がとても早くて素晴らしかったです。
+5 / 5
+お疲れ様です。しっかり実装とテストを確認してくれました。ボーナスやってください！
+msasaki corrected hwakatsu's group scheduled on July 04, 2026 16:45ok
+125 %
+とてもよくできていたと思います。勉強になりました。ありがとうございます！お疲れ様です！
+4 / 5
+お疲れ様です。しっかり、確認とテストをしてくれました。よく寝てください。。
+torakoto corrected yvoandri's group-1 scheduled on July 04, 2026 15:45ok
+115 %
+Took time to evaluate but learned a lot
+5 / 5
+A curious guy! We discuss in the LLM topic and I explained my code.And I hope that the discussion increase the envy to learn and to explore the LLM and AI. Thanks you.
+jureix-c corrected nmontard's group-2 scheduled on July 04, 2026 09:30ok
+105 %
+Good project in overall, with detailed explanations and easily readable codebase. Error handling is well managed, accuracy are great for all given cases except regex and performance is very good. Well done! :)
+gde-stae corrected alsereme's group scheduled on July 04, 2026 04:30incomplete_work
+0 %
+good luck for the project, thks for your explications
+5 / 5
+merci pour la correction phoenix
+ayamhija corrected badiyaf's group scheduled on July 04, 2026 04:00ok
+125 %
+Good understanding of subject concepts.. good peer-to-peer process .. Best of luuck!
+5 / 5
+Thank you for the great peer-to-peer evaluation it was a wonderful conversation, your questions were thoughtful, and I really enjoyed learning from our discussion.
+
+maissam corrected badiyaf's group scheduled on July 04, 2026 03:30ok
+125 %
+good explanation and implementation of the project, good luck.
+5 / 5
+Thank you for your time and the great questions—it was a great evaluation, and I truly enjoyed learning from each other.
+dszafran corrected fsowinsk's group-1 scheduled on July 04, 2026 02:15ok
+85 %
+good job, impressive scope of project with dynamic visualization of LLM output and rediredction of llm sdk logs. showed deep understanding of llm concepts, was eager to wirte additional code to test the program further. I wasn't sure about the moulinette part as the eval sheet specifies both total score > 0 and successful pass while final moulinette output was 6/11 due to number formatting in JSON (expected decimal format), paths and template formatting (with "Format template:" included in template param) :c
+5 / 5
+Thank you! I'm so sorry it took so long...
+wesobiec corrected fsowinsk's group-1 scheduled on July 04, 2026 01:45ok
+100 %
+Great deep dive in to the project Filip explain every line of his code. Thanks to him i have better undestanding of LLM and how prompts works. Very long exaluation but so much information and explaination was involded that was worth every minute. Great job!
+5 / 5
+Very thorough evaluation. Thank you!
+mben-mer corrected mghitta's group scheduled on July 04, 2026 01:45ok
+100 %
+On a pue arriver au bout de la correction malgrer la lenteur des pc. Le projet sors constamment une structure JSON valid. Les valeurs de sortie sont correct. Bien jouer. Bonne chance pour le Cercle 4!
+5 / 5
+Corrections dans les details, j'ai pu voir comment j'aurai pu realiser ce projet plus en profondeur, merci !
+morajap corrected smusayel's group scheduled on July 04, 2026 01:00ok
+100 %
+fun project, just be careful with your function names and definitions! thanks for explaining :)
+5 / 5
+Thanks a lot.
+spostica corrected onoras's group scheduled on July 04, 2026 00:30ok
+105 %
+The project is well structured, easy to follow, and works as expected. Oliver did a great job implementing the required functionality and was able to clearly explain the architecture, design decisions, and overall workflow of the project during the evaluation. We tested the application with several prompts, including invalid inputs, and the program handled these cases well by providing clear and informative error messages. We also ran the Moulinette tests, and the project successfully passed more prompts than the minimum required, demonstrating that the implementation is robust and handles a wide variety of cases correctly. One area for improvement is the handling of unsupported or unknown user requests. In some cases, instead of reporting that no suitable function exists, the LLM attempts to match the prompt to a different available function, which can produce incorrect results. For example, when asked, "What is the sum of 265 and 345?", the model selected an unrelated function instead of indicating that the requested functionality was unavailable. Adding explicit handling for unknown or unsupported functions would make the application even more reliable. Overall, this is a well-implemented project with clean organization, clear explanations, and functionality that meets the project requirements. Oliver demonstrated a strong understanding of the implementation, and the project performed well throughout the evaluation.
+5 / 5
+Thank you for your thorough evaluation. It was an very informative Evaluation and i learned a lot from her. Together it went really well and we could test the project well. For moulinette the readme should be extended to make it more clear how to test it properly. Thank you very much Svetlana
+njunaidi corrected mghitta's group scheduled on July 04, 2026 00:30ok
+100 %
+Great understanding and veru detailled explanations. Good luck for the rest
+5 / 5
+Merci pour l'evaluation et merci pour la patience vu le temps de generation des outputs!
+onoras corrected spostica's group scheduled on July 04, 2026 00:00ok
+110 %
+Impressive work. The code is clean and works well. It handles most prompt and edge cases. It's very good at error managing. i tested it also with chars like @#$% and vague prompts. In the moulinette it reached an impressive 81% The only downside is that it is a bit slow. She showed a good understanding of the project and how to handle the llm and pydantic handling for JSON. Great Job!
+5 / 5
+Oliver was professional, approachable, and made the evaluation process comfortable from the beginning. He carefully reviewed the implementation of my Call Me Maybe project and took the time to understand the overall design and functionality. During the evaluation, he tested the project with different prompts, including edge cases (big numbers, negative numbers, special characters), to verify that the application behaved correctly. We also checked the Moulinette tests together, and he confirmed that the project successfully passed more prompts than the minimum required. He asked thoughtful questions about the code and encouraged me to explain the implementation, demonstrating genuine interest in the project. It also happened that I evaluated his project, so we had the opportunity to compare our solutions and discuss the similarities and differences in our implementations. This led to an interesting technical discussion about different design choices and approaches to solving the same problem.
+iiunusov corrected spostica's group scheduled on July 03, 2026 23:45ok
+110 %
+Svetlana did a great job and showed a solid progress with the LLM topic, while doing this project. I tested all the edge cases (empty files, strings and values, ambiguous prompts, etc.), no crash occurred. Function calling accuracy as well as argument extraction accuracy is 100%! The code is well-organized and readable. Only one recommendation I could give here is to have all the validation logic in a separate class, thereby not overloading the main file. Apart from that, excellent work, keep it up!
+5 / 5
+Irek was friendly, professional, and conducted the evaluation thoroughly. He carefully reviewed my Call Me Maybe project and tested its functionality using a variety of prompts to ensure it behaved according to the requirements. He also examined the code structure and asked relevant questions about the implementation, giving me the opportunity to explain the design decisions and the LLM function-calling workflow. He provided constructive feedback on areas that could be improved We also ran the Moulinette tests together, and he confirmed that the project passed the required tests while discussing the overall performance of the implementation. Thank you!
+alusnia corrected fsowinsk's group-1 scheduled on July 03, 2026 23:45ok
+110 %
+He know his code very well, he explained how LLMs work and each detail of his project. Code is well written and documented. There was some minor issues with error messages but he corrected it during evaluation. In general project is very impressive, well done and good luck :D
+5 / 5
+Thank you for being so patient with this 1hour of a 15min evaluation. You had good questions and found an issue with an error message that I sadly just copy-pasted and forgot to change.
+bcalin corrected scharbon's group-1 scheduled on July 03, 2026 23:15ok
+100 %
+great work and thank you for taking the time to explain your project to me
+5 / 5
+Great evaluation, thank you for your questions and good luck coding this project !
+antbonin corrected nmontard's group-2 scheduled on July 03, 2026 23:15ok
+110 %
+excuse moi pour le retard ! La classe llmHandler est un peu consequente mais tres lisible , le projet est tres clair et bien expliquer je n'ai pas eu de soucis a te suivre dans les explications , tout semble bien marcher de la validation des json a la generation de l'output , rien a redire bon courage pour la suite en esperant n'avoir rien oublier !!!
+4 / 5
+Tu t'es vraiment intéressé au projet et as cherché à le comprendre, ça a été un plaisir de pouvoir te le montrer. Tu as également été très consciencieux et as vérifié que tous les critères étaient respectés. Merci pour la correction.
+jmanani corrected onoras's group scheduled on July 03, 2026 23:00ok
+100 %
+Oliver's project was well organized, and he explained the implementation and design choices clearly throughout the evaluation. We verified the solution with the moulinette, and it completed successfully. The code was clean, readable, and handled the required functionality as expected. Overall, it was a smooth evaluation with the mandatory requirements implemented correctly. Nice work, and good luck with your upcoming projects and evaluations!
+5 / 5
+Jay was polite and friendly as always. He went through the evaluation competently and we had a nice chat about the project because he is also currently working on it. Wish you good luck with your CallmeMaybe hopefully it will be better optimized than mine.
+beraydin corrected scharbon's group-1 scheduled on July 03, 2026 22:45outstanding_project
+100 %
+Amazing, someone that actually coded his whole project himself. Congratulations, it is really great !! Code is complete. Work is complete, tests were thorough, and he could help me understand this project. Remember me when you'll be done with common core !
+5 / 5
+Thanks for this quick and rigorous evaluation, you're lucky, you got the star walking back to 42 :)
+thours corrected mghitta's group scheduled on July 03, 2026 22:30ok
+100 %
+Ce sujet et l'utilisation de LLM est un decouverte pour moi, je te remercie pour ta patience et toutes les explications tres claires, merci beauoup
+5 / 5
+Merci pour l'evaluation, et bravo d'avoir suivi les explications !!
+yguardio corrected macanova's group scheduled on July 03, 2026 22:15ok
+100 %
+tres bien mais seulement 8/11, dommage
+4 / 5
+Ok merci
+treig corrected macanova's group scheduled on July 03, 2026 21:45ok
+95 %
+Dommage pour la fake data, mais tu réussis 8 prompts sur 11 donc on va voir si ça passe. Désolé pour la correction longue
+5 / 5
+Ok
+jmanani corrected spostica's group scheduled on July 03, 2026 21:30ok
+110 %
+Svetlana had a solid implementation overall and was able to explain the approach and design decisions clearly during the evaluation. We verified the project with the moulinette, and it passed successfully. The code was well organized, and it was nice to see a few bonus features implemented as well, which earned additional bonus points. There are still some areas that could be extended to cover more bonus requirements, but the mandatory part was handled well. Keep up the good work, and good luck with the upcoming projects and evaluations!
+5 / 5
+Jayesh was friendly, professional, and conducted the evaluation in a positive atmosphere. He carefully reviewed my code and took the time to understand the overall architecture and implementation of the Call Me Maybe project. He ran several tests, including both valid and invalid prompts, to verify that the project behaved as expected. Throughout the evaluation, he asked relevant questions, listened to my explanations, and provided constructive feedback. Overall, the evaluation was thorough and engaging.
+viramos- corrected danicort's group-1 scheduled on July 03, 2026 21:15ok
+100 %
+Well Done, Well-structured project, all steps by evaluation guide was checked. all code works fine and it was well explained.
+5 / 5
+Thank you for your feedback!
+mpeskov corrected jpedra-v's group-1 scheduled on July 03, 2026 21:15ok
+110 %
+Till this moment it's the best cmm implementation I've seen. Clean and self-explanatory code, thanks for that. Also, you really understand what is happening during the Constrained Decoding. Congrats on that and good luck with the next one :)
+5 / 5
+Thank u very much for the evaluation i really appreciate it!! I hope u have a really nice day :D
+mlagutin corrected onoras's group scheduled on July 03, 2026 21:15ok
+100 %
+Oliver, thank you for your time! We checked your project carefully together. In the first minutes, we had some questions about the environment setup, especially how to make everything work correctly with the goinfre folder because of disk space issues. We also had some problems with the first moulinette checks, but after checking the setup and running everything again, the project worked correctly. Your program follows the expected project structure and produces valid JSON output. You were able to explain the main ideas of the project, including the basics of how the LLM is used, what function calling means, and why constrained decoding helps make the output reliable. Overall, it was a good project. After the initial setup issues, everything worked well, and you showed a clear understanding of the core concepts. Good luck with your next projects!
+5 / 5
+Very friendly person, we had trouble to get the moulinette to run but she figured it out. The Readme for the moulinette is missing. It was interesting to discuss the project with her. Thank you for your patience and figuring out how the moulinette works.
+mdalle corrected macanova's group scheduled on July 03, 2026 21:00ok
+105 %
+Le code est bon et fonctionne parfaitement. Bonnes explications. Bravo
+5 / 5
+merci pour cette correction
+loalexan corrected scharbon's group-1 scheduled on July 03, 2026 20:45ok
+100 %
+The project work as intended and he explained it well!
+5 / 5
+Thanks for your interest and time !
+asnaji will correct obahya's group-2 scheduled on July 03, 2026 20:15
+%
+ihasbi will correct obahya's group-2 scheduled on July 03, 2026 20:15
+%
+
+ameskine corrected smoustaj's group scheduled on July 03, 2026 20:00ok
+125 %
+good work and good understanding !
+5 / 5
+thanks for your time :)
+hassamoh corrected jpedra-v's group-1 scheduled on July 03, 2026 19:45ok
+100 %
+bien hecho y gracias tus explicaciones
+5 / 5
+Muchas gracias por la evaluacion!!
+aymel-ha corrected obahya's group-2 scheduled on July 03, 2026 19:30incomplete_work
+0 %
+the student shows some good understanding about the project, sadly he forgot to include valid doc strings, good luck next time
+5 / 5
+Thank you for your time!
+edagdagu corrected smoustaj's group scheduled on July 03, 2026 19:15outstanding_project
+125 %
+it was a great work, we had a wonderful evaluation he was kindly and pretty smart, did explain everything. good luck with journey :)
+5 / 5
+thanks for ur time :)))
+epesnel corrected lpepin-l's group scheduled on July 03, 2026 18:15ok
+110 %
+Bon call me maybe, tres bonne performance sur le processing time des prompts ! (moins de 3 minutes). les cas d' erreur sont geres. quasi tout est bon dans les outputs. bien explique et compris. bien joue et bon courage pour la suite du cursus
+5 / 5
+A tout test, bonnes questions et interet dans mon projet. Minutieux, merci Eliott !
+febraga- corrected vebastos's group scheduled on July 03, 2026 16:00ok
+100 %
+The explanation was excellent; all standards are met, and all tests passed. Good job.
+5 / 5
+He was a mentor, give me a different view on how to approach the project! Follow the subject and test everything.
+takawaka corrected joseo's group-1 scheduled on July 03, 2026 16:00ok
+0 %
+nicejob!!
+5 / 5
+Thanks for looking at my code. Sorry it was not exactly like the example so it was difficult. Thank you~
+lomoyne- corrected jemoya's group scheduled on July 03, 2026 10:15ok
+100 %
+Super travail
+5 / 5
+Merci pour la correction
+lucada-s corrected jemoya's group scheduled on July 03, 2026 08:45ok
+100 %
+Bon projet, sait bien expliquer son code. Bravo!
+5 / 5
+Merci pour la correction et pour t'être intéressé a mon projet de prêt
+jcamuzet corrected ldescomb's group scheduled on July 03, 2026 08:15outstanding_project
+125 %
+Excellent projet, tu as poussé loin ta maîtrise du sujet :)
+5 / 5
+Maybe one of the nicest evaluator around, while still being very serious about testing, checking implementation, structures, and concept understanding. We exchanged some tips, design choices, and took the evaluation as an opportunity to talk about the impact of AI in science learning. That's the kind of brains I like to meet, making peer-reviewing so worth it. See you around !
+jcamuzet corrected jemoya's group scheduled on July 03, 2026 07:30ok
+100 %
+Bon projet =) courage pour la suite
+5 / 5
+Merci pour la correction et les précisions sur comment mon code aurait pu être mieux !
+acharrat corrected mben-mer's group-3 scheduled on July 03, 2026 04:45ok
+100 %
+Well done Marwan! Norms correct. Knows how to work with the model. Can explain his code and answer my questions. Testing with moulinette resulted ith a 10/11. GL for next projects.
+5 / 5
+Abou bakr est arriver a l'heure. Il a suivis la feuille de correction et ma poser des questions sur le projet. Merci
+achahbou corrected mben-mer's group-3 scheduled on July 03, 2026 03:30ok
+100 %
+Excellent boulot ! Bonne execution du code, le code a ete compris et l'evalue est en mesure de repondre a toute mes questions. Le test norminette a donne un score de 10/11 ce aui est excellent Bone continuation !
+5 / 5
+Abdelaziz est arriver a l'heure. Il a suivis la feuille de correction et ma poser des questions sur le projet. Merci
+achahbou corrected speterse's group scheduled on July 03, 2026 02:30ok
+125 %
+Great project and good explanation ! The project is well coded the evaluated can explain everything and the bonuses are well executed Great Job and Good luck for the rest !
+5 / 5
+Asked a lot of good questions, Thank you for your time
+swester corrected ekramer's group scheduled on July 03, 2026 02:15outstanding_project
+125 %
+Truly amazing project, it is ridiculously fast, the autocomplete is a great addition to constrained decoding making it finish the whole 11 prompts in 1 minute. Nicely visualized, I am definitely stealing some of this, you should've never shown me ;)
+5 / 5
+Thank you so much swester for the sick eval, the atmosphere's always great when you're around. We love making jokes but also go deep into the project. You focus on the important stuff, use the time effectively and made a fun and educational conversation.
+lblankae corrected mben-mer's group-3 scheduled on July 03, 2026 01:45ok
+100 %
+good job good comprhension of the code gave me good advices and I see that he very liked the project good luck !!
+5 / 5
+Louis est arriver a l'heure. Il a fait la correction dans les regles de l'art .
+rucosta corrected anfreita's group-1 scheduled on July 03, 2026 01:30ok
+100 %
+nice work everything worked as intended and he passes on the moulinette
+5 / 5
+Good evaluator! We made a lot of tests! Very friendly
+lblankae corrected speterse's group scheduled on July 03, 2026 00:45ok
+125 %
+amazing work ! understanding of the project give me a lot of explanations of the code and good advices. thank you for you time and good luck!
+5 / 5
+He showed a lot of interest and was very friendly. Thank you
+ebelle corrected bmaassen's group-1 scheduled on July 03, 2026 00:15outstanding_project
+120 %
+your project looks really good, you clearly have a deep understanding of the topic and were able to explain so much more than I expected.
+5 / 5
+Thanks you so much for your interest in my work and your flexibility!
+jcrespo- corrected anfreita's group-1 scheduled on July 03, 2026 00:15ok
+100 %
+Explained the code very well, knew what to do and how he would go about it. The logic is great and the results show, we tested with errors (json format, file name, no prompt, big numbers) and it was all good. Time to run program was great (lower than 5m with all 11 prompts) but shame that instantiate every time but no problem! Moulinette passed with 90%, one error in string prompts but very specific.Great job, you have done well and keep going!
+5 / 5
+Good evaluator! Very friendly, we tested everything!
+dijonker corrected bmaassen's group-1 scheduled on July 02, 2026 23:00outstanding_project
+120 %
+The code is really well written and clean. You have reliable output with the only issue being that moulinette doesn't like single quotes. Good luck with your next project!
+5 / 5
+Thank you so much for your time and interest in my work. Much appreciated!
+mben-mer corrected speterse's group scheduled on July 02, 2026 23:00ok
+125 %
+Tout les test ont ete fait j'ai essayer de trouver une erreur aucune de trouver. Les Structure sont 100 % Valid mais les choix du model laisse a desirer. Bien jouer
+4 / 5
+Slightly unfriendly. He did check my code though
+ohaponiu corrected anfreita's group-1 scheduled on July 02, 2026 22:45ok
+100 %
+Andre was a bit worried initially but he had nothing to worry about because he knows the project and the concepts really well! We went over the code, verified that all classes use pydantic. I tried to break it with various prompts of mine - empty strings, huge numbers etc. It was taking too long on a number with 60 digits, but it worked fine on a 33 digit number and worked correctly. Moulinette data worked fine besides 1 prompt with a small mistake (no slash in the path), but that's above 90% of correctness still. ----- Some points to improve: 1. Reuses .toml of llm_sdk instead of keeping it as a separate module and creating your own .toml. 2. Weights are loaded in memory for each prompt, instead of just once and then reusing it. 3. When prompt asks for incorrect function, it picks a random one - which is probably fine, subject doesn't specify. ---- That's it, everything else is great. Good job mate!
+5 / 5
+Good evaluator! Very friendly, we reviewed everything
+gvan-box corrected bmaassen's group-1 scheduled on July 02, 2026 22:30outstanding_project
+120 %
+Bart did an excellent job at explaining his code. It's well-organized and he can clearly explain the concepts. Overall a good job, a true example of a great Codam student that people can look up to!
+5 / 5
+Thank you very much for your time. I always like the way you test the limits of my code and knowledge. Makes me feel I didn't code this for nothing!
+erico-ke corrected ybel-maa's group scheduled on July 02, 2026 22:00ok
+120 %
+muy buen proyecto y muy interesante. Esta todo perfecto y no presenta errores. Sigue asi!!
+5 / 5
+Corrección excelente y muy detallada. Revisó minuciosamente cada apartado, aportando además un feedback muy valioso. Muchas gracias por el tiempo.

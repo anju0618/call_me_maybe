@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field
 class TokenFilter(BaseModel):
     # vocab.jsonのパス
     vocab_path: str
-    # idからトークンわかる辞書。例: {1: '"', 2: 'a'}
+    # idからトークンわかる辞書.例: {1: '"', 2: 'a'}
     id_to_token: Dict[int, str] = Field(default_factory=dict)
     # 全トークンIDのセット
     all_token_ids: Set[int] = Field(default_factory=set)
