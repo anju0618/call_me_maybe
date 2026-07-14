@@ -27,7 +27,6 @@ class TokenFilter(BaseModel):
         self, current_text: str, full_target: str
     ) -> List[int]:
         # ターゲットの続きになるトークンIDだけ返す
-        # すでにターゲットから外れてたら空を返す
         if not full_target.startswith(current_text):
             return []
 
@@ -39,25 +38,32 @@ class TokenFilter(BaseModel):
 
         # 全てのボキャブラリをチェック
         for t_id, t_str in self.id_to_token.items():
-            # AI特有の空白を人間に直す
             clean_str = t_str.replace("Ġ", " ").replace(" ", " ")
             if not clean_str:
                 continue
 
-            # remainderに一致するなら追加
             if remainder.startswith(clean_str):
                 allowed_ids.append(t_id)
 
         return allowed_ids
 
-    def filter_numeric_tokens(self, is_start: bool = False) -> List[int]:
-        # 数値トークンだけを許可する用
+    def filter_numeric_tokens(
+        self, is_start: bool = False, is_integer: bool = False
+    ) -> List[int]:
+        # 数値トークンだけを許可する用（integer対応版）
         allowed_ids: List[int] = []
 
-        if is_start:
-            valid_chars = set("0123456789.- ")
+        if is_integer:
+            # integerの場合は小数点(.)を許容しない
+            if is_start:
+                valid_chars = set("0123456789- ")
+            else:
+                valid_chars = set("0123456789-")
         else:
-            valid_chars = set("0123456789.")
+            if is_start:
+                valid_chars = set("0123456789.- ")
+            else:
+                valid_chars = set("0123456789.-")
 
         for t_id, t_str in self.id_to_token.items():
             clean_str = t_str.replace("Ġ", " ").replace(" ", " ")

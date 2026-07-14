@@ -38,6 +38,12 @@ class JsonGenerator(BaseModel):
                 c_func["parameters"][pk] = p_info.get("type", "string")
             clean_funcs.append(c_func)
 
+        # 該当しないプロンプトを処理するための「unknown」関数
+        clean_funcs.append({
+            "name": "unknown",
+            "parameters": {}
+        })
+
         funcs_str = json.dumps(clean_funcs, ensure_ascii=False)
 
         # 具体例でハルシネーションを防止
@@ -64,6 +70,10 @@ class JsonGenerator(BaseModel):
             "with 'X'\", \"name\": \"fn_substitute_string_with_regex\", "
             "\"parameters\": {\"source_string\": \"Room 123\", \"regex\": "
             "\"/[0-9]+/g\", \"replacement\": \"X\"}}\n\n"
+            "Example 4:\n"
+            "User: What is the capital of Tokyo?\n"
+            "JSON: {\"prompt\": \"What is the capital of Tokyo?\", \"name\": "
+            "\"unknown\", \"parameters\": {}}\n\n"
             f"Functions: {funcs_str}\n"
             f"User: {prompt}\n"
             "JSON:"
@@ -131,11 +141,14 @@ class JsonGenerator(BaseModel):
                 )
 
             elif current_state == JsonState.FUNCTION_NAME:
-                # 全関数のパターンを許容する
-                for func in self.functions:
+                # 全関数のパターン + unknown を許容する
+                allowed_names = (
+                    [f["name"] for f in self.functions] + ["unknown"]
+                )
+                for f_name in allowed_names:
                     full_target = (
                         '{"prompt": ' + prompt_json + ', "name": "'
-                        + func["name"] + '"'
+                        + f_name + '"'
                     )
                     tokens = self.token_filter.filter_by_prefix(
                         current_text, full_target
@@ -178,12 +191,13 @@ class JsonGenerator(BaseModel):
             elif current_state == JsonState.PARAM_VALUE:
                 p_key = param_keys[current_param_index]
                 p_info = selected_function["parameters"][p_key]
-                p_type = p_info.get("type")
+                p_type = p_info.get("type", "string")
 
-                if p_type == "number":
+                if p_type in ["number", "integer"]:
                     tokens_list = (
                         self.token_filter.filter_numeric_tokens(
-                            is_start=is_numeric_start
+                            is_start=is_numeric_start,
+                            is_integer=(p_type == "integer")
                         )
                     )
                     allowed_tokens = set(tokens_list)
@@ -198,7 +212,6 @@ class JsonGenerator(BaseModel):
                             break
                     clean_num = num_part[:c_len]
 
-                    # 次の引数があるかでの分岐
                     if current_param_index + 1 < len(param_keys):
                         n_key = param_keys[current_param_index + 1]
                         full_exit_target = (
@@ -216,10 +229,31 @@ class JsonGenerator(BaseModel):
                         )
                     )
 
-                elif p_type == "string":
+                elif p_type == "boolean":
+                    targets = []
+                    if current_param_index + 1 < len(param_keys):
+                        n_key = param_keys[current_param_index + 1]
+                        targets.append(
+                            value_start_text + "true" + f', "{n_key}": '
+                        )
+                        targets.append(
+                            value_start_text + "false" + f', "{n_key}": '
+                        )
+                    else:
+                        targets.append(value_start_text + "true}")
+                        targets.append(value_start_text + "false}")
+
+                    for t in targets:
+                        allowed_tokens.update(
+                            self.token_filter.filter_by_prefix(
+                                current_text, t
+                            )
+                        )
+
+                else:
+                    # string またはその他のフォールバック
                     s_part = current_text[len(value_start_text):]
                     if not s_part.startswith('"'):
-                        # 最初の文字は絶対に単独の '"' のみ
                         for t_id, t_str in (
                             self.token_filter.id_to_token.items()
                         ):
@@ -229,7 +263,6 @@ class JsonGenerator(BaseModel):
                     else:
                         quote_idx = s_part.find('"', 1)
                         if quote_idx == -1:
-                            # 文字列の中身を生成。バックスラッシュ(\)も物理的に禁止
                             inv_chars = set("\"\\\n\rĊ{}")
                             for t_id, t_str in (
                                 self.token_filter.id_to_token.items()
@@ -240,7 +273,6 @@ class JsonGenerator(BaseModel):
                                 if not any(c in inv_chars for c in cl_str):
                                     allowed_tokens.add(t_id)
 
-                            # 出口（閉じるカッコ等）のターゲットを追加する
                             if current_param_index + 1 < len(param_keys):
                                 n_key = param_keys[current_param_index + 1]
                                 full_exit = (
@@ -255,7 +287,6 @@ class JsonGenerator(BaseModel):
                                 )
                             )
                         else:
-                            # 閉じた後の処理
                             cl_str_val = s_part[1:quote_idx]
                             if current_param_index + 1 < len(param_keys):
                                 n_key = param_keys[current_param_index + 1]
@@ -281,12 +312,10 @@ class JsonGenerator(BaseModel):
                     f"{current_state.name}!"
                 )
 
-            # 許可外のトークンを-infにしてマスクする
             for token_id in range(len(logits)):
                 if token_id not in allowed_tokens:
                     logits[token_id] = float("-inf")
 
-            # 最大スコアのトークンを選ぶ
             next_token_id = int(logits.index(max(logits)))
             next_token_str = self.token_filter.id_to_token[
                 next_token_id
@@ -304,7 +333,6 @@ class JsonGenerator(BaseModel):
                 )
 
             # --- 3. 状態の同期(Cascade) ---
-            # 合体トークンで飛び越えた場合、現在地に追いつくまで状態を進める
             while True:
                 old_state = current_state
 
@@ -325,15 +353,27 @@ class JsonGenerator(BaseModel):
                         current_state = JsonState.FUNCTION_NAME
 
                 elif current_state == JsonState.FUNCTION_NAME:
-                    for func in self.functions:
+                    allowed_names = (
+                        [f["name"] for f in self.functions] + ["unknown"]
+                    )
+                    for f_name in allowed_names:
                         full_match = (
                             '{"prompt": ' + prompt_json + ', "name": "'
-                            + func["name"] + '"'
+                            + f_name + '"'
                         )
                         if current_text == full_match:
-                            selected_function = func
+                            if f_name == "unknown":
+                                selected_function = {
+                                    "name": "unknown", "parameters": {}
+                                }
+                            else:
+                                selected_function = next(
+                                    f for f in self.functions 
+                                    if f["name"] == f_name
+                                )
+                                
                             param_keys = list(
-                                func.get("parameters", {}).keys()
+                                selected_function.get("parameters", {}).keys()
                             )
                             current_param_index = 0
                             current_state = JsonState.PARAMS_START
@@ -368,13 +408,17 @@ class JsonGenerator(BaseModel):
                 elif current_state == JsonState.PARAM_VALUE:
                     p_key = param_keys[current_param_index]
                     p_info = selected_function["parameters"][p_key]
-                    p_type = p_info.get("type")
+                    p_type = p_info.get("type", "string")
 
-                    if p_type == "number":
+                    if p_type in ["number", "integer"]:
                         num_part = current_text[len(value_start_text):]
                         c_len = 0
+                        v_chars = (
+                            "0123456789.-" if p_type == "number"
+                            else "0123456789-"
+                        )
                         for char in num_part:
-                            if char in "0123456789.-":
+                            if char in v_chars:
                                 c_len += 1
                             else:
                                 break
@@ -399,7 +443,30 @@ class JsonGenerator(BaseModel):
                                     )
                                     current_state = JsonState.PARAM_KEY
 
-                    elif p_type == "string":
+                    elif p_type == "boolean":
+                        if current_param_index + 1 < len(param_keys):
+                            n_key = param_keys[current_param_index + 1]
+                            t_true = (
+                                value_start_text + "true" + f', "{n_key}": '
+                            )
+                            t_false = (
+                                value_start_text + "false" + f', "{n_key}": '
+                            )
+                            if (current_text == t_true or
+                                    current_text == t_false):
+                                current_param_index += 1
+                                param_base_text = current_text
+                                current_state = JsonState.PARAM_KEY
+                        else:
+                            t_true = value_start_text + "true}"
+                            t_false = value_start_text + "false}"
+                            if (current_text == t_true or
+                                    current_text == t_false):
+                                current_param_index += 1
+                                param_base_text = current_text
+                                current_state = JsonState.PARAM_KEY
+
+                    else:
                         s_part = current_text[len(value_start_text):]
                         if s_part.startswith('"') and len(s_part) > 1:
                             quote_idx = s_part.find('"', 1)

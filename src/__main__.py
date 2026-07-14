@@ -47,12 +47,17 @@ def main() -> None:
     output_path = Path(args.output)
 
     try:
+        # raiseは使わず、安全にエラーを出力して終了する
         if not func_def_path.exists():
-            raise FileNotFoundError(
-                f"Functions definition file not found: {func_def_path}"
+            print(
+                f"Error: Functions definition file not found: {func_def_path}",
+                file=sys.stderr
             )
+            sys.exit(1)
+            
         if not input_path.exists():
-            raise FileNotFoundError(f"Input file not found: {input_path}")
+            print(f"Error: Input file not found: {input_path}", file=sys.stderr)
+            sys.exit(1)
 
         with open(func_def_path, 'r', encoding='utf-8') as f:
             functions_def = json.load(f)
@@ -91,8 +96,19 @@ def main() -> None:
                 try:
                     # ちゃんとパースできるかチェック
                     parsed_result = json.loads(json_str)
+                    
+                    # 該当する関数がない(unknown)場合は、ファイルには書き込まない
+                    if parsed_result.get("name") == "unknown":
+                        print(
+                            "  ⚠️ Error: No matching function found for "
+                            "this prompt. Skipping output.",
+                            file=sys.stderr
+                        )
+                        break
+                        
                     results.append(parsed_result)
                     break
+                    
                 except json.JSONDecodeError as je:
                     if attempt < max_retries - 1:
                         print(
@@ -104,7 +120,10 @@ def main() -> None:
                         print("=== RAW LLM OUTPUT ===")
                         print(json_str)
                         print("=======================")
-                        raise je
+                        print(
+                            f"Skipping prompt: {prompt_text}", 
+                            file=sys.stderr
+                        )
 
         output_path.parent.mkdir(parents=True, exist_ok=True)
         with open(output_path, 'w', encoding='utf-8') as f:
@@ -112,11 +131,12 @@ def main() -> None:
 
         print(f"\nSuccessfully saved results to {output_path}")
 
+    # 予期せぬエラーもすべてキャッチしてクラッシュ扱いを回避
     except json.JSONDecodeError as e:
-        print(f"\nJSON Parsing Error: {e}", file=sys.stderr)
+        print(f"\nJSON Parsing Error in input file: {e}", file=sys.stderr)
         sys.exit(1)
     except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
+        print(f"\nUnexpected Error: {e}", file=sys.stderr)
         sys.exit(1)
 
 
