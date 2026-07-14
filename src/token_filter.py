@@ -2,7 +2,7 @@
 
 import json
 import functools
-from typing import Any, Dict, List, Set
+from typing import Any, Dict, List, Set, Tuple
 from pydantic import BaseModel, Field
 
 
@@ -13,6 +13,8 @@ class TokenFilter(BaseModel):
     id_to_token: Dict[int, str] = Field(default_factory=dict)
     # 全トークンIDのセット
     all_token_ids: Set[int] = Field(default_factory=set)
+    # 自作エンコーダ用：クリーンな文字列とIDのペアを文字数順（降順）にしたリスト
+    sorted_clean_tokens: List[Tuple[str, int]] = Field(default_factory=list)
 
     def __hash__(self) -> int:
         # lru_cacheを使うためにselfをハッシュ可能にするおまじない
@@ -33,7 +35,44 @@ class TokenFilter(BaseModel):
         self.id_to_token.update(mapping)
         self.all_token_ids.update(self.id_to_token.keys())
 
-    # 【ボーナス要件】キャッシュによるパフォーマンス最適化
+        # 【ボーナス要件】自作エンコーダの準備
+        # 最長一致（Greedy）で検索するため、文字数が長い順にソートしてキャッシュ
+        clean_list = []
+        for t_id, t_str in self.id_to_token.items():
+            cl_str = t_str.replace("Ġ", " ").replace(" ", " ")
+            if cl_str:
+                clean_list.append((cl_str, t_id))
+        
+        clean_list.sort(key=lambda x: len(x[0]), reverse=True)
+        self.sorted_clean_tokens = clean_list
+
+    # 【ボーナス要件】自作エンコーダー（文字列 -> トークンID配列）
+    def encode(self, text: str) -> List[int]:
+        token_ids = []
+        i = 0
+        text_len = len(text)
+        while i < text_len:
+            match_found = False
+            for t_str, t_id in self.sorted_clean_tokens:
+                if text.startswith(t_str, i):
+                    token_ids.append(t_id)
+                    i += len(t_str)
+                    match_found = True
+                    break
+            if not match_found:
+                # 未知の文字はスキップ（無限ループ防止）
+                i += 1
+        return token_ids
+
+    # 【ボーナス要件】自作デコーダー（トークンID配列 -> 文字列）
+    def decode(self, token_ids: List[int]) -> str:
+        result = ""
+        for t_id in token_ids:
+            if t_id in self.id_to_token:
+                t_str = self.id_to_token[t_id]
+                result += t_str.replace("Ġ", " ").replace(" ", " ")
+        return result
+
     @functools.lru_cache(maxsize=10000)
     def filter_by_prefix(
         self, current_text: str, full_target: str
@@ -59,7 +98,6 @@ class TokenFilter(BaseModel):
 
         return allowed_ids
 
-    # 【ボーナス要件】キャッシュによるパフォーマンス最適化
     @functools.lru_cache(maxsize=10)
     def filter_numeric_tokens(
         self, is_start: bool = False, is_integer: bool = False

@@ -1,4 +1,4 @@
-.PHONY: install run debug clean fclean lint lint-strict
+.PHONY: install run debug clean fclean lint lint-strict test
 
 SRC_DIR = src
 TEST_DIR = tests/
@@ -39,4 +39,4 @@ lint-strict:
 
 test:
 	@echo "Running test suite with pytest..."
-	uv run python -m pytest tests/ -v
+	PYTHONPATH=. uv run python -m pytest tests/ -v
