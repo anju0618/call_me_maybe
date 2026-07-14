@@ -1,4 +1,4 @@
-.PHONY: install run debug clean fclean lint lint-strict test
+.PHONY: install run debug clean fclean lint lint-strict test vision
 
 SRC_DIR = src
 TEST_DIR = tests/
@@ -40,3 +40,6 @@ lint-strict:
 test:
 	@echo "Running test suite with pytest..."
 	PYTHONPATH=. uv run python -m pytest tests/ -v
+
+vision:
+	$(PYTHON) -m $(SRC_DIR) --debug
