@@ -1,6 +1,7 @@
 # src/token_filter.py
 
 import json
+import functools
 from typing import Any, Dict, List, Set
 from pydantic import BaseModel, Field
 
@@ -13,6 +14,15 @@ class TokenFilter(BaseModel):
     # 全トークンIDのセット
     all_token_ids: Set[int] = Field(default_factory=set)
 
+    def __hash__(self) -> int:
+        # lru_cacheを使うためにselfをハッシュ可能にするおまじない
+        return hash(self.vocab_path)
+
+    def __eq__(self, other: Any) -> bool:
+        if not isinstance(other, TokenFilter):
+            return False
+        return self.vocab_path == other.vocab_path
+
     def model_post_init(self, __context: Any) -> None:
         # Pydantic初期化時に実行
         with open(self.vocab_path, "r", encoding="utf-8") as f:
@@ -23,6 +33,8 @@ class TokenFilter(BaseModel):
         self.id_to_token.update(mapping)
         self.all_token_ids.update(self.id_to_token.keys())
 
+    # 【ボーナス要件】キャッシュによるパフォーマンス最適化
+    @functools.lru_cache(maxsize=10000)
     def filter_by_prefix(
         self, current_text: str, full_target: str
     ) -> List[int]:
@@ -47,6 +59,8 @@ class TokenFilter(BaseModel):
 
         return allowed_ids
 
+    # 【ボーナス要件】キャッシュによるパフォーマンス最適化
+    @functools.lru_cache(maxsize=10)
     def filter_numeric_tokens(
         self, is_start: bool = False, is_integer: bool = False
     ) -> List[int]:

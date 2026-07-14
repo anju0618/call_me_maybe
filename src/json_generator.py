@@ -92,16 +92,13 @@ class JsonGenerator(BaseModel):
         # プロンプト内の記号をエスケープ
         prompt_json = json.dumps(prompt)
 
+        # ========================================================
+        # 【爆速化 ＋ トークナイザー自作ボーナス】
+        # LLM SDKのencodeを使わず、自作のencodeを使用する
+        # ========================================================
+        input_ids = self.token_filter.encode(context)
+
         for _ in range(500):
-            full_prompt = context + current_text
-            input_tensor = self.model.encode(full_prompt)
-
-            # tensorかlistか判定
-            if hasattr(input_tensor, "tolist"):
-                input_ids = input_tensor[0].tolist()
-            else:
-                input_ids = input_tensor
-
             if not input_ids:
                 logits = [0.0] * len(self.token_filter.id_to_token)
             else:
@@ -141,7 +138,6 @@ class JsonGenerator(BaseModel):
                 )
 
             elif current_state == JsonState.FUNCTION_NAME:
-                # 全関数のパターン + unknown を許容する
                 allowed_names = (
                     [f["name"] for f in self.functions] + ["unknown"]
                 )
@@ -176,7 +172,6 @@ class JsonGenerator(BaseModel):
                         )
                     )
                 else:
-                    # 全部終わったらカッコを閉じる
                     if len(param_keys) == 0:
                         full_target = param_base_text + "}}"
                     else:
@@ -205,12 +200,35 @@ class JsonGenerator(BaseModel):
 
                     num_part = current_text[len(value_start_text):]
                     c_len = 0
+                    v_chars = (
+                        "0123456789.-" if p_type == "number"
+                        else "0123456789-"
+                    )
                     for char in num_part:
-                        if char in "0123456789.-":
+                        if char in v_chars:
                             c_len += 1
                         else:
                             break
                     clean_num = num_part[:c_len]
+                    suffix = num_part[c_len:]
+
+                    if suffix:
+                        if current_param_index + 1 < len(param_keys):
+                            if suffix.startswith(", "):
+                                current_param_index += 1
+                                param_base_text = (
+                                    value_start_text + clean_num
+                                    + ", "
+                                )
+                                current_state = JsonState.PARAM_KEY
+                        else:
+                            if suffix.startswith("}"):
+                                current_param_index += 1
+                                param_base_text = (
+                                    value_start_text + clean_num
+                                    + "}"
+                                )
+                                current_state = JsonState.PARAM_KEY
 
                     if current_param_index + 1 < len(param_keys):
                         n_key = param_keys[current_param_index + 1]
@@ -230,18 +248,39 @@ class JsonGenerator(BaseModel):
                     )
 
                 elif p_type == "boolean":
-                    targets = []
                     if current_param_index + 1 < len(param_keys):
                         n_key = param_keys[current_param_index + 1]
-                        targets.append(
+                        t_true = (
                             value_start_text + "true" + f', "{n_key}": '
                         )
-                        targets.append(
+                        t_false = (
                             value_start_text + "false" + f', "{n_key}": '
                         )
+                        if (current_text == t_true or
+                                current_text == t_false):
+                            current_param_index += 1
+                            param_base_text = current_text
+                            current_state = JsonState.PARAM_KEY
                     else:
-                        targets.append(value_start_text + "true}")
-                        targets.append(value_start_text + "false}")
+                        t_true = value_start_text + "true}"
+                        t_false = value_start_text + "false}"
+                        if (current_text == t_true or
+                                current_text == t_false):
+                            current_param_index += 1
+                            param_base_text = current_text
+                            current_state = JsonState.PARAM_KEY
+
+                    if current_param_index + 1 < len(param_keys):
+                        n_key = param_keys[current_param_index + 1]
+                        targets = [
+                            value_start_text + "true" + f', "{n_key}": ',
+                            value_start_text + "false" + f', "{n_key}": '
+                        ]
+                    else:
+                        targets = [
+                            value_start_text + "true}",
+                            value_start_text + "false}"
+                        ]
 
                     for t in targets:
                         allowed_tokens.update(
@@ -251,7 +290,6 @@ class JsonGenerator(BaseModel):
                         )
 
                 else:
-                    # string またはその他のフォールバック
                     s_part = current_text[len(value_start_text):]
                     if not s_part.startswith('"'):
                         for t_id, t_str in (
@@ -324,6 +362,9 @@ class JsonGenerator(BaseModel):
                 "Ġ", " "
             ).replace(" ", " ")
             current_text += clean_next_str
+
+            # 【爆速化】選ばれたトークンIDを配列の末尾に足すだけ！
+            input_ids.append(next_token_id)
 
             if self.debug:
                 print(
