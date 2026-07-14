@@ -42,7 +42,7 @@ class TokenFilter(BaseModel):
             cl_str = t_str.replace("Ġ", " ").replace(" ", " ")
             if cl_str:
                 clean_list.append((cl_str, t_id))
-        
+
         clean_list.sort(key=lambda x: len(x[0]), reverse=True)
         self.sorted_clean_tokens = clean_list
 
