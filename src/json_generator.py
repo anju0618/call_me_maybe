@@ -46,95 +46,34 @@ class JsonGenerator(BaseModel):
 
         f_str = json.dumps(clean_funcs, ensure_ascii=False)
 
-        # 【究極版】全問題パターンの類似例を網羅したSystemプロンプト
+        # 【超爆速化・デッドロック防止】空白を排除し、LLMにコンパクトなJSONを学習させる
         context = (
             "System: You are an expert data extraction AI.\n"
             "- Extract paths EXACTLY, including the leading '/'.\n"
-            "- Use JS style regex (e.g., /pattern/g) and double-escape "
-            "backslashes (e.g., \\\\d+).\n"
-            "- If the prompt does NOT match any provided function, you MUST "
-            "select the 'unknown' function with empty parameters.\n\n"
-            "Example 1:\n"
-            "User: What is the sum of 10 and 20?\n"
-            "JSON: {\"prompt\": \"What is the sum of 10 and 20?\", "
-            "\"name\": \"fn_add_numbers\", \"parameters\": "
-            "{\"a\": 10, \"b\": 20}}\n\n"
-            "Example 2:\n"
-            "User: What is the product of 3 and 5?\n"
-            "JSON: {\"prompt\": \"What is the product of 3 and 5?\", "
-            "\"name\": \"fn_multiply_numbers\", \"parameters\": "
-            "{\"a\": 3.0, \"b\": 5.0}}\n\n"
-            "Example 3:\n"
-            "User: Calculate the square root of 81\n"
-            "JSON: {\"prompt\": \"Calculate the square root of 81\", "
-            "\"name\": \"fn_get_square_root\", \"parameters\": "
-            "{\"a\": 81.0}}\n\n"
-            "Example 4:\n"
-            "User: Is 15 an even number?\n"
-            "JSON: {\"prompt\": \"Is 15 an even number?\", "
-            "\"name\": \"fn_is_even\", \"parameters\": {\"n\": 15}}\n\n"
-            "Example 5:\n"
-            "User: Calculate compound interest on 5000 at 0.05 rate "
-            "for 10 years\n"
-            "JSON: {\"prompt\": \"Calculate compound interest on 5000 at "
-            "0.05 rate for 10 years\", "
-            "\"name\": \"fn_calculate_compound_interest\", "
-            "\"parameters\": {\"principal\": 5000.0, \"rate\": 0.05, "
-            "\"years\": 10}}\n\n"
-            "Example 6:\n"
-            "User: Greet shrek\n"
-            "JSON: {\"prompt\": \"Greet shrek\", \"name\": \"fn_greet\", "
-            "\"parameters\": {\"name\": \"shrek\"}}\n\n"
-            "Example 7:\n"
-            "User: Reverse the string 'testing'\n"
-            "JSON: {\"prompt\": \"Reverse the string 'testing'\", "
-            "\"name\": \"fn_reverse_string\", \"parameters\": "
-            "{\"s\": \"testing\"}}\n\n"
-            "Example 8:\n"
-            "User: Replace all numbers in 'abc 12' with X\n"
-            "JSON: {\"prompt\": \"Replace all numbers in 'abc 12' with X\", "
-            "\"name\": \"fn_substitute_string_with_regex\", "
-            "\"parameters\": {\"source_string\": \"abc 12\", "
-            "\"regex\": \"/\\\\d+/g\", \"replacement\": \"X\"}}\n\n"
-            "Example 9:\n"
-            "User: Execute SQL query 'SELECT id FROM users' on db\n"
-            "JSON: {\"prompt\": \"Execute SQL query 'SELECT id FROM "
-            "users' on db\", \"name\": \"fn_execute_sql_query\", "
-            "\"parameters\": {\"query\": \"SELECT id FROM users\", "
-            "\"database\": \"db\"}}\n\n"
-            "Example 10:\n"
-            "User: Read the file at /var/log/syslog with ascii encoding\n"
-            "JSON: {\"prompt\": \"Read the file at /var/log/syslog "
-            "with ascii encoding\", \"name\": \"fn_read_file\", "
-            "\"parameters\": {\"path\": \"/var/log/syslog\", "
-            "\"encoding\": \"ascii\"}}\n\n"
-            "Example 11:\n"
-            "User: Read C:\\\\docs\\\\info.txt with utf-8 encoding\n"
-            "JSON: {\"prompt\": \"Read C:\\\\\\\\docs\\\\\\\\info.txt with "
-            "utf-8 encoding\", \"name\": \"fn_read_file\", \"parameters\": "
-            "{\"path\": \"C:\\\\\\\\docs\\\\\\\\info.txt\", "
-            "\"encoding\": \"utf-8\"}}\n\n"
-            "Example 12:\n"
-            "User: Format template: Say \"hi\" to {user}\n"
-            "JSON: {\"prompt\": \"Format template: Say \\\"hi\\\" to "
-            "{user}\", \"name\": \"fn_format_template\", "
-            "\"parameters\": {\"template\": \"Say \\\"hi\\\" to {user}\"}}\n\n"
-            "Example 13:\n"
-            "User: Turn on the kitchen light\n"
-            "JSON: {\"prompt\": \"Turn on the kitchen light\", "
-            "\"name\": \"fn_set_light_status\", \"parameters\": "
-            "{\"is_on\": true}}\n\n"
-            "Example 14:\n"
-            "User: What is the capital of Tokyo?\n"
-            "JSON: {\"prompt\": \"What is the capital of Tokyo?\", "
-            "\"name\": \"unknown\", \"parameters\": {}}\n\n"
-            "Example 15:\n"
-            "User: Who is the president of France?\n"
-            "JSON: {\"prompt\": \"Who is the president of France?\", "
-            "\"name\": \"unknown\", \"parameters\": {}}\n\n"
-            f"Functions: {f_str}\n"
-            f"User: {prompt}\n"
-            "JSON:"
+            "- Use JS regex (e.g., /pattern/g), escape backslashes (\\\\d+).\n"
+            "- Select 'unknown' function for irrelevant prompts.\n\n"
+            "Ex1:\nUser: Find sum of 265 and 345\n"
+            "JSON: {\"prompt\":\"Find sum of 265 and 345\",\"name\":"
+            "\"fn_add_numbers\",\"parameters\":{\"a\":265,\"b\":345}}\n\n"
+            "Ex2:\nUser: Compute product of 3 and 5\n"
+            "JSON: {\"prompt\":\"Compute product of 3 and 5\",\"name\":"
+            "\"fn_multiply_numbers\",\"parameters\":{\"a\":3.0,\"b\":5.0}}\n\n"
+            "Ex3:\nUser: Say hello to shrek\n"
+            "JSON: {\"prompt\":\"Say hello to shrek\",\"name\":\"fn_greet\","
+            "\"parameters\":{\"name\":\"shrek\"}}\n\n"
+            "Ex4:\nUser: Replace numbers in 'abc 12' with X\n"
+            "JSON: {\"prompt\":\"Replace numbers in 'abc 12' with X\","
+            "\"name\":\"fn_substitute_string_with_regex\",\"parameters\":"
+            "{\"source_string\":\"abc 12\",\"regex\":\"/\\\\d+/g\","
+            "\"replacement\":\"X\"}}\n\n"
+            "Ex5:\nUser: Read file at /var/log.txt with ascii\n"
+            "JSON: {\"prompt\":\"Read file at /var/log.txt with ascii\","
+            "\"name\":\"fn_read_file\",\"parameters\":{\"path\":"
+            "\"/var/log.txt\",\"encoding\":\"ascii\"}}\n\n"
+            "Ex6:\nUser: what is the capital of Paris?\n"
+            "JSON: {\"prompt\":\"what is the capital of Paris?\",\"name\":\"unknown\","
+            "\"parameters\":{}}\n\n"
+            f"Functions:{f_str}\nUser:{prompt}\nJSON:"
         )
 
         current_text = ""
@@ -165,7 +104,8 @@ class JsonGenerator(BaseModel):
             allowed_tokens: Set[int] = set()
 
             if current_state == JsonState.START:
-                full_target = '{"prompt": "'
+                # 【修正】空白を完全排除
+                full_target = '{"prompt":"'
                 allowed_tokens = set(
                     self.token_filter.filter_by_prefix(
                         current_text, full_target
@@ -173,7 +113,7 @@ class JsonGenerator(BaseModel):
                 )
 
             elif current_state == JsonState.PROMPT_VALUE:
-                full_target = '{"prompt": ' + p_json
+                full_target = '{"prompt":' + p_json
                 allowed_tokens = set(
                     self.token_filter.filter_by_prefix(
                         current_text, full_target
@@ -181,7 +121,7 @@ class JsonGenerator(BaseModel):
                 )
 
             elif current_state == JsonState.NAME_KEY:
-                full_target = '{"prompt": ' + p_json + ', "name": "'
+                full_target = '{"prompt":' + p_json + ',"name":"'
                 allowed_tokens = set(
                     self.token_filter.filter_by_prefix(
                         current_text, full_target
@@ -191,10 +131,7 @@ class JsonGenerator(BaseModel):
             elif current_state == JsonState.FUNCTION_NAME:
                 al_names = [f["name"] for f in self.functions] + ["unknown"]
                 for f_name in al_names:
-                    ft = (
-                        '{"prompt": ' + p_json + ', "name": "'
-                        + f_name + '"'
-                    )
+                    ft = '{"prompt":' + p_json + ',"name":"' + f_name + '"'
                     tokens = self.token_filter.filter_by_prefix(
                         current_text, ft
                     )
@@ -202,8 +139,8 @@ class JsonGenerator(BaseModel):
 
             elif current_state == JsonState.PARAMS_START:
                 ft = (
-                    '{"prompt": ' + p_json + ', "name": "'
-                    + selected_function["name"] + '", "parameters": {'
+                    '{"prompt":' + p_json + ',"name":"'
+                    + selected_function["name"] + '","parameters":{'
                 )
                 allowed_tokens = set(
                     self.token_filter.filter_by_prefix(
@@ -214,7 +151,7 @@ class JsonGenerator(BaseModel):
             elif current_state == JsonState.PARAM_KEY:
                 if current_param_index < len(param_keys):
                     p_key = param_keys[current_param_index]
-                    ft = param_base_text + f'"{p_key}": '
+                    ft = param_base_text + f'"{p_key}":'
                 else:
                     if len(param_keys) == 0:
                         ft = param_base_text + "}}"
@@ -256,10 +193,10 @@ class JsonGenerator(BaseModel):
 
                     if suffix:
                         if current_param_index + 1 < len(param_keys):
-                            if suffix.startswith(", "):
+                            if suffix.startswith(","):
                                 current_param_index += 1
                                 param_base_text = (
-                                    value_start_text + clean_num + ", "
+                                    value_start_text + clean_num + ","
                                 )
                                 current_state = JsonState.PARAM_KEY
                         else:
@@ -274,7 +211,7 @@ class JsonGenerator(BaseModel):
                         n_key = param_keys[current_param_index + 1]
                         full_exit_target = (
                             value_start_text + clean_num
-                            + f', "{n_key}": '
+                            + f',"{n_key}":'
                         )
                     else:
                         full_exit_target = (
@@ -290,12 +227,8 @@ class JsonGenerator(BaseModel):
                 elif p_type == "boolean":
                     if current_param_index + 1 < len(param_keys):
                         n_key = param_keys[current_param_index + 1]
-                        t_true = (
-                            value_start_text + "true" + f', "{n_key}": '
-                        )
-                        t_false = (
-                            value_start_text + "false" + f', "{n_key}": '
-                        )
+                        t_true = value_start_text + "true" + f',"{n_key}":'
+                        t_false = value_start_text + "false" + f',"{n_key}":'
                         if current_text in (t_true, t_false):
                             current_param_index += 1
                             param_base_text = current_text
@@ -311,8 +244,8 @@ class JsonGenerator(BaseModel):
                     if current_param_index + 1 < len(param_keys):
                         n_key = param_keys[current_param_index + 1]
                         targets = [
-                            value_start_text + "true" + f', "{n_key}": ',
-                            value_start_text + "false" + f', "{n_key}": '
+                            value_start_text + "true" + f',"{n_key}":',
+                            value_start_text + "false" + f',"{n_key}":'
                         ]
                     else:
                         targets = [
@@ -330,20 +263,24 @@ class JsonGenerator(BaseModel):
                 else:
                     s_part = current_text[len(value_start_text):]
                     if not s_part.startswith('"'):
-                        items = self.token_filter.id_to_token.items()
-                        for tid, tstr in items:
-                            cl_str = tstr.replace(
-                                "Ġ", " "
-                            ).replace(" ", " ")
-                            if cl_str == '"':
-                                allowed_tokens.add(tid)
-                            # 特定のパラメータの時だけ記号合体トークンを特別許可する
-                            elif p_key in ["path", "regex"]:
-                                if cl_str in ['"/', '"C', '"C:\\']:
-                                    allowed_tokens.add(tid)
-                            elif p_key == "template":
-                                if cl_str == '"{':
-                                    allowed_tokens.add(tid)
+                        t_filter = self.token_filter
+                        allowed_tokens.update(
+                            t_filter.string_start_tokens['"']
+                        )
+                        if p_key in ["path", "regex"]:
+                            allowed_tokens.update(
+                                t_filter.string_start_tokens['"/']
+                            )
+                            allowed_tokens.update(
+                                t_filter.string_start_tokens['"C']
+                            )
+                            allowed_tokens.update(
+                                t_filter.string_start_tokens['"C:\\']
+                            )
+                        elif p_key == "template":
+                            allowed_tokens.update(
+                                t_filter.string_start_tokens['"{']
+                            )
                     else:
                         escape = False
                         quote_idx = -1
@@ -357,19 +294,15 @@ class JsonGenerator(BaseModel):
                                 break
 
                         if quote_idx == -1:
-                            inv_chars = set("\n\rĊ")
-                            items = self.token_filter.id_to_token.items()
-                            for tid, tstr in items:
-                                cl_str = tstr.replace(
-                                    "Ġ", " "
-                                ).replace(" ", " ")
-                                if not any(c in inv_chars for c in cl_str):
-                                    allowed_tokens.add(tid)
+                            t_filter = self.token_filter
+                            allowed_tokens.update(
+                                t_filter.valid_string_tokens
+                            )
 
                             if current_param_index + 1 < len(param_keys):
                                 n_key = param_keys[current_param_index + 1]
                                 full_exit = (
-                                    current_text + '"' + f', "{n_key}": '
+                                    current_text + '"' + f',"{n_key}":'
                                 )
                             else:
                                 full_exit = current_text + '"}'
@@ -385,7 +318,7 @@ class JsonGenerator(BaseModel):
                                 n_key = param_keys[current_param_index + 1]
                                 full_exit = (
                                     value_start_text + val_with_q
-                                    + f', "{n_key}": '
+                                    + f',"{n_key}":'
                                 )
                             else:
                                 full_exit = (
@@ -404,11 +337,16 @@ class JsonGenerator(BaseModel):
                     f"{current_state.name}!"
                 )
 
-            for token_id in range(len(logits)):
-                if token_id not in allowed_tokens:
-                    logits[token_id] = float("-inf")
+            # 【安全装置】IndexErrorを防ぐために有効なトークンのみを選択
+            if allowed_tokens:
+                valid_ids = {t for t in allowed_tokens if t < len(logits)}
+                if valid_ids:
+                    next_token_id = max(valid_ids, key=logits.__getitem__)
+                else:
+                    next_token_id = int(logits.index(max(logits)))
+            else:
+                next_token_id = int(logits.index(max(logits)))
 
-            next_token_id = int(logits.index(max(logits)))
             next_token_str = self.token_filter.id_to_token[next_token_id]
             clean_next_str = next_token_str.replace("Ġ", " ").replace(" ", " ")
             current_text += clean_next_str
@@ -426,16 +364,16 @@ class JsonGenerator(BaseModel):
                 old_state = current_state
 
                 if current_state == JsonState.START:
-                    if current_text.endswith('{"prompt": "'):
+                    if current_text.endswith('{"prompt":"'):
                         current_state = JsonState.PROMPT_VALUE
 
                 elif current_state == JsonState.PROMPT_VALUE:
-                    expected_pv = '{"prompt": ' + p_json
+                    expected_pv = '{"prompt":' + p_json
                     if current_text == expected_pv:
                         current_state = JsonState.NAME_KEY
 
                 elif current_state == JsonState.NAME_KEY:
-                    expected_nk = '{"prompt": ' + p_json + ', "name": "'
+                    expected_nk = '{"prompt":' + p_json + ',"name":"'
                     if current_text == expected_nk:
                         current_state = JsonState.FUNCTION_NAME
 
@@ -444,10 +382,7 @@ class JsonGenerator(BaseModel):
                         [f["name"] for f in self.functions] + ["unknown"]
                     )
                     for f_name in al_names:
-                        fm = (
-                            '{"prompt": ' + p_json + ', "name": "'
-                            + f_name + '"'
-                        )
+                        fm = '{"prompt":' + p_json + ',"name":"' + f_name + '"'
                         if current_text == fm:
                             if f_name == "unknown":
                                 selected_function = {
@@ -470,8 +405,8 @@ class JsonGenerator(BaseModel):
 
                 elif current_state == JsonState.PARAMS_START:
                     t_ps = (
-                        '{"prompt": ' + p_json + ', "name": "'
-                        + selected_function["name"] + '", "parameters": {'
+                        '{"prompt":' + p_json + ',"name":"'
+                        + selected_function["name"] + '","parameters":{'
                     )
                     if current_text == t_ps:
                         current_state = JsonState.PARAM_KEY
@@ -480,7 +415,7 @@ class JsonGenerator(BaseModel):
                 elif current_state == JsonState.PARAM_KEY:
                     if current_param_index < len(param_keys):
                         p_key = param_keys[current_param_index]
-                        expected_pk = param_base_text + f'"{p_key}": '
+                        expected_pk = param_base_text + f'"{p_key}":'
                         if current_text == expected_pk:
                             current_state = JsonState.PARAM_VALUE
                             is_numeric_start = True
@@ -515,10 +450,10 @@ class JsonGenerator(BaseModel):
 
                         if suffix:
                             if current_param_index + 1 < len(param_keys):
-                                if suffix.startswith(", "):
+                                if suffix.startswith(","):
                                     current_param_index += 1
                                     param_base_text = (
-                                        value_start_text + clean_num + ", "
+                                        value_start_text + clean_num + ","
                                     )
                                     current_state = JsonState.PARAM_KEY
                             else:
@@ -532,12 +467,9 @@ class JsonGenerator(BaseModel):
                     elif p_type == "boolean":
                         if current_param_index + 1 < len(param_keys):
                             n_key = param_keys[current_param_index + 1]
-                            t_true = (
-                                value_start_text + "true" + f', "{n_key}": '
-                            )
+                            t_true = value_start_text + "true" + f',"{n_key}":'
                             t_false = (
-                                value_start_text + "false"
-                                + f', "{n_key}": '
+                                value_start_text + "false" + f',"{n_key}":'
                             )
                             if current_text in (t_true, t_false):
                                 current_param_index += 1
@@ -575,11 +507,11 @@ class JsonGenerator(BaseModel):
                                         < len(param_keys)
                                     )
                                     if has_nxt:
-                                        if suffix.startswith(", "):
+                                        if suffix.startswith(","):
                                             current_param_index += 1
                                             param_base_text = (
                                                 value_start_text
-                                                + val_with_q + ", "
+                                                + val_with_q + ","
                                             )
                                             current_state = (
                                                 JsonState.PARAM_KEY
