@@ -3,17 +3,25 @@
 import json
 import os
 import tempfile
+import typing
 import pytest
 from typing import Generator
 from src.json_generator import JsonGenerator
 from llm_sdk import Small_LLM_Model  # type: ignore[attr-defined]
 
 
-# Pydanticの厳格な型チェックを通過させるためのダミーモデル
-class DummyModel(Small_LLM_Model):
-    def __init__(self) -> None:
-        # 本物の重いAIモデルの読み込み処理をスキップ（何もしない）
-        pass
+# mypyの strict モードと通常モードの判定差異による
+# unused-ignore エラーを根本から解決するための分岐処理
+if typing.TYPE_CHECKING:
+    # 型チェック時：Anyの継承を避けるため、ただの独立クラスに見せかける
+    class DummyModel:
+        def __init__(self) -> None:
+            pass
+else:
+    # 実行時：Pydanticの型チェックを通すため、本物を継承する
+    class DummyModel(Small_LLM_Model):
+        def __init__(self) -> None:
+            pass
 
 
 @pytest.fixture
@@ -29,8 +37,10 @@ def dummy_setup() -> Generator[str, None, None]:
 
 def test_json_generator_initialization(dummy_setup: str) -> None:
     """JsonGeneratorが正しく初期化され、トークンフィルターがセットアップされるか"""
-    # MagicMockの代わりに、型チェックを通過するダミーモデルを使う
-    mock_model = DummyModel()
+    # 型チェッカー上は Small_LLM_Model として扱い、
+    # 実行時はPydanticの型チェック(isinstance)を通過させる
+    mock_model = typing.cast(Small_LLM_Model, DummyModel())
+
     # テスト用の関数定義
     dummy_functions = [
         {

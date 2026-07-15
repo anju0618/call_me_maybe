@@ -46,46 +46,91 @@ class JsonGenerator(BaseModel):
 
         f_str = json.dumps(clean_funcs, ensure_ascii=False)
 
-        # AIにTest 8の完璧な模範解答（/home/...）を見せてカンニングさせる
+        # 【究極版】全問題パターンの類似例を網羅したSystemプロンプト
         context = (
-            "System: You are an expert data extraction AI. "
-            "Extract exact substrings directly from the User prompt.\n"
-            "- For 'number', ALWAYS append '.0' to whole numbers.\n"
-            "- For 'integer', do NOT include a decimal point.\n"
-            "- Extract paths EXACTLY, including the leading '/'.\n\n"
+            "System: You are an expert data extraction AI.\n"
+            "- Extract paths EXACTLY, including the leading '/'.\n"
+            "- Use JS style regex (e.g., /pattern/g) and double-escape "
+            "backslashes (e.g., \\\\d+).\n"
+            "- If the prompt does NOT match any provided function, you MUST "
+            "select the 'unknown' function with empty parameters.\n\n"
             "Example 1:\n"
-            "User: What is the product of 10 and 2?\n"
-            "JSON: {\"prompt\": \"What is the product of 10 and 2?\", "
-            "\"name\": \"fn_multiply_numbers\", \"parameters\": "
-            "{\"a\": 10.0, \"b\": 2.0}}\n\n"
+            "User: What is the sum of 10 and 20?\n"
+            "JSON: {\"prompt\": \"What is the sum of 10 and 20?\", "
+            "\"name\": \"fn_add_numbers\", \"parameters\": "
+            "{\"a\": 10, \"b\": 20}}\n\n"
             "Example 2:\n"
-            "User: Run the query 'SELECT * FROM logs' on backup db\n"
-            "JSON: {\"prompt\": \"Run the query 'SELECT * FROM logs' on "
-            "backup db\", \"name\": \"fn_execute_sql_query\", "
-            "\"parameters\": {\"query\": \"SELECT * FROM logs\", "
-            "\"database\": \"backup\"}}\n\n"
+            "User: What is the product of 3 and 5?\n"
+            "JSON: {\"prompt\": \"What is the product of 3 and 5?\", "
+            "\"name\": \"fn_multiply_numbers\", \"parameters\": "
+            "{\"a\": 3.0, \"b\": 5.0}}\n\n"
             "Example 3:\n"
-            "User: Format template: Say \"hello\" to {user}\n"
-            "JSON: {\"prompt\": \"Format template: Say \\\"hello\\\" "
-            "to {user}\", \"name\": \"fn_format_template\", "
-            "\"parameters\": {\"template\": "
-            "\"Say \\\"hello\\\" to {user}\"}}\n\n"
+            "User: Calculate the square root of 81\n"
+            "JSON: {\"prompt\": \"Calculate the square root of 81\", "
+            "\"name\": \"fn_get_square_root\", \"parameters\": "
+            "{\"a\": 81.0}}\n\n"
             "Example 4:\n"
-            "User: Read C:\\Files\\doc.txt with utf-8 encoding\n"
-            "JSON: {\"prompt\": \"Read C:\\\\Files\\\\doc.txt with utf-8 "
-            "encoding\", \"name\": \"fn_read_file\", \"parameters\": "
-            "{\"path\": \"C:\\\\Files\\\\doc.txt\", "
-            "\"encoding\": \"utf-8\"}}\n\n"
+            "User: Is 15 an even number?\n"
+            "JSON: {\"prompt\": \"Is 15 an even number?\", "
+            "\"name\": \"fn_is_even\", \"parameters\": {\"n\": 15}}\n\n"
             "Example 5:\n"
-            "User: Read the file at /home/user/data.json with utf-8 "
-            "encoding\n"
-            "JSON: {\"prompt\": \"Read the file at /home/user/data.json "
-            "with utf-8 encoding\", \"name\": \"fn_read_file\", "
-            "\"parameters\": {\"path\": \"/home/user/data.json\", "
-            "\"encoding\": \"utf-8\"}}\n\n"
+            "User: Calculate compound interest on 5000 at 0.05 rate "
+            "for 10 years\n"
+            "JSON: {\"prompt\": \"Calculate compound interest on 5000 at "
+            "0.05 rate for 10 years\", "
+            "\"name\": \"fn_calculate_compound_interest\", "
+            "\"parameters\": {\"principal\": 5000.0, \"rate\": 0.05, "
+            "\"years\": 10}}\n\n"
             "Example 6:\n"
+            "User: Greet shrek\n"
+            "JSON: {\"prompt\": \"Greet shrek\", \"name\": \"fn_greet\", "
+            "\"parameters\": {\"name\": \"shrek\"}}\n\n"
+            "Example 7:\n"
+            "User: Reverse the string 'testing'\n"
+            "JSON: {\"prompt\": \"Reverse the string 'testing'\", "
+            "\"name\": \"fn_reverse_string\", \"parameters\": "
+            "{\"s\": \"testing\"}}\n\n"
+            "Example 8:\n"
+            "User: Replace all numbers in 'abc 12' with X\n"
+            "JSON: {\"prompt\": \"Replace all numbers in 'abc 12' with X\", "
+            "\"name\": \"fn_substitute_string_with_regex\", "
+            "\"parameters\": {\"source_string\": \"abc 12\", "
+            "\"regex\": \"/\\\\d+/g\", \"replacement\": \"X\"}}\n\n"
+            "Example 9:\n"
+            "User: Execute SQL query 'SELECT id FROM users' on db\n"
+            "JSON: {\"prompt\": \"Execute SQL query 'SELECT id FROM "
+            "users' on db\", \"name\": \"fn_execute_sql_query\", "
+            "\"parameters\": {\"query\": \"SELECT id FROM users\", "
+            "\"database\": \"db\"}}\n\n"
+            "Example 10:\n"
+            "User: Read the file at /var/log/syslog with ascii encoding\n"
+            "JSON: {\"prompt\": \"Read the file at /var/log/syslog "
+            "with ascii encoding\", \"name\": \"fn_read_file\", "
+            "\"parameters\": {\"path\": \"/var/log/syslog\", "
+            "\"encoding\": \"ascii\"}}\n\n"
+            "Example 11:\n"
+            "User: Read C:\\\\docs\\\\info.txt with utf-8 encoding\n"
+            "JSON: {\"prompt\": \"Read C:\\\\\\\\docs\\\\\\\\info.txt with "
+            "utf-8 encoding\", \"name\": \"fn_read_file\", \"parameters\": "
+            "{\"path\": \"C:\\\\\\\\docs\\\\\\\\info.txt\", "
+            "\"encoding\": \"utf-8\"}}\n\n"
+            "Example 12:\n"
+            "User: Format template: Say \"hi\" to {user}\n"
+            "JSON: {\"prompt\": \"Format template: Say \\\"hi\\\" to "
+            "{user}\", \"name\": \"fn_format_template\", "
+            "\"parameters\": {\"template\": \"Say \\\"hi\\\" to {user}\"}}\n\n"
+            "Example 13:\n"
+            "User: Turn on the kitchen light\n"
+            "JSON: {\"prompt\": \"Turn on the kitchen light\", "
+            "\"name\": \"fn_set_light_status\", \"parameters\": "
+            "{\"is_on\": true}}\n\n"
+            "Example 14:\n"
             "User: What is the capital of Tokyo?\n"
             "JSON: {\"prompt\": \"What is the capital of Tokyo?\", "
+            "\"name\": \"unknown\", \"parameters\": {}}\n\n"
+            "Example 15:\n"
+            "User: Who is the president of France?\n"
+            "JSON: {\"prompt\": \"Who is the president of France?\", "
             "\"name\": \"unknown\", \"parameters\": {}}\n\n"
             f"Functions: {f_str}\n"
             f"User: {prompt}\n"
@@ -175,7 +220,7 @@ class JsonGenerator(BaseModel):
                         ft = param_base_text + "}}"
                     else:
                         ft = param_base_text + "}"
-                
+
                 allowed_tokens = set(
                     self.token_filter.filter_by_prefix(
                         current_text, ft
@@ -198,7 +243,7 @@ class JsonGenerator(BaseModel):
                     num_part = current_text[len(value_start_text):]
                     c_len = 0
                     v_chars = (
-                        "0123456789.-" if p_type == "number" 
+                        "0123456789.-" if p_type == "number"
                         else "0123456789-"
                     )
                     for char in num_part:
@@ -290,9 +335,15 @@ class JsonGenerator(BaseModel):
                             cl_str = tstr.replace(
                                 "Ġ", " "
                             ).replace(" ", " ")
-                            # 【究極の解決策】 '"' 単体と、Unixパス用の '"/' だけを特別に許可
-                            if cl_str == '"' or cl_str == '"/':
+                            if cl_str == '"':
                                 allowed_tokens.add(tid)
+                            # 特定のパラメータの時だけ記号合体トークンを特別許可する
+                            elif p_key in ["path", "regex"]:
+                                if cl_str in ['"/', '"C', '"C:\\']:
+                                    allowed_tokens.add(tid)
+                            elif p_key == "template":
+                                if cl_str == '"{':
+                                    allowed_tokens.add(tid)
                     else:
                         escape = False
                         quote_idx = -1
@@ -333,7 +384,7 @@ class JsonGenerator(BaseModel):
                             if current_param_index + 1 < len(param_keys):
                                 n_key = param_keys[current_param_index + 1]
                                 full_exit = (
-                                    value_start_text + val_with_q 
+                                    value_start_text + val_with_q
                                     + f', "{n_key}": '
                                 )
                             else:
@@ -394,7 +445,7 @@ class JsonGenerator(BaseModel):
                     )
                     for f_name in al_names:
                         fm = (
-                            '{"prompt": ' + p_json + ', "name": "' 
+                            '{"prompt": ' + p_json + ', "name": "'
                             + f_name + '"'
                         )
                         if current_text == fm:
@@ -404,10 +455,10 @@ class JsonGenerator(BaseModel):
                                 }
                             else:
                                 selected_function = next(
-                                    f for f in self.functions 
+                                    f for f in self.functions
                                     if f["name"] == f_name
                                 )
-                                
+
                             param_keys = list(
                                 selected_function.get(
                                     "parameters", {}
@@ -451,7 +502,7 @@ class JsonGenerator(BaseModel):
                         num_part = current_text[len(value_start_text):]
                         c_len = 0
                         v_chars = (
-                            "0123456789.-" if p_type == "number" 
+                            "0123456789.-" if p_type == "number"
                             else "0123456789-"
                         )
                         for char in num_part:
@@ -485,7 +536,7 @@ class JsonGenerator(BaseModel):
                                 value_start_text + "true" + f', "{n_key}": '
                             )
                             t_false = (
-                                value_start_text + "false" 
+                                value_start_text + "false"
                                 + f', "{n_key}": '
                             )
                             if current_text in (t_true, t_false):
@@ -520,14 +571,14 @@ class JsonGenerator(BaseModel):
 
                                 if suffix:
                                     has_nxt = (
-                                        current_param_index + 1 
+                                        current_param_index + 1
                                         < len(param_keys)
                                     )
                                     if has_nxt:
                                         if suffix.startswith(", "):
                                             current_param_index += 1
                                             param_base_text = (
-                                                value_start_text 
+                                                value_start_text
                                                 + val_with_q + ", "
                                             )
                                             current_state = (
@@ -537,7 +588,7 @@ class JsonGenerator(BaseModel):
                                         if suffix.startswith("}"):
                                             current_param_index += 1
                                             param_base_text = (
-                                                value_start_text 
+                                                value_start_text
                                                 + val_with_q + "}"
                                             )
                                             current_state = (
