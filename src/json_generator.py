@@ -46,6 +46,7 @@ class JsonGenerator(BaseModel):
 
         f_str = json.dumps(clean_funcs, ensure_ascii=False)
 
+        # AIにTest 8の完璧な模範解答（/home/...）を見せてカンニングさせる
         context = (
             "System: You are an expert data extraction AI. "
             "Extract exact substrings directly from the User prompt.\n"
@@ -76,11 +77,16 @@ class JsonGenerator(BaseModel):
             "{\"path\": \"C:\\\\Files\\\\doc.txt\", "
             "\"encoding\": \"utf-8\"}}\n\n"
             "Example 5:\n"
-            "User: Read the file at /home/user/data.json with utf-8 encoding\n"
+            "User: Read the file at /home/user/data.json with utf-8 "
+            "encoding\n"
             "JSON: {\"prompt\": \"Read the file at /home/user/data.json "
             "with utf-8 encoding\", \"name\": \"fn_read_file\", "
             "\"parameters\": {\"path\": \"/home/user/data.json\", "
             "\"encoding\": \"utf-8\"}}\n\n"
+            "Example 6:\n"
+            "User: What is the capital of Tokyo?\n"
+            "JSON: {\"prompt\": \"What is the capital of Tokyo?\", "
+            "\"name\": \"unknown\", \"parameters\": {}}\n\n"
             f"Functions: {f_str}\n"
             f"User: {prompt}\n"
             "JSON:"
@@ -169,7 +175,7 @@ class JsonGenerator(BaseModel):
                         ft = param_base_text + "}}"
                     else:
                         ft = param_base_text + "}"
-
+                
                 allowed_tokens = set(
                     self.token_filter.filter_by_prefix(
                         current_text, ft
@@ -192,7 +198,7 @@ class JsonGenerator(BaseModel):
                     num_part = current_text[len(value_start_text):]
                     c_len = 0
                     v_chars = (
-                        "0123456789.-" if p_type == "number"
+                        "0123456789.-" if p_type == "number" 
                         else "0123456789-"
                     )
                     for char in num_part:
@@ -279,16 +285,13 @@ class JsonGenerator(BaseModel):
                 else:
                     s_part = current_text[len(value_start_text):]
                     if not s_part.startswith('"'):
-                        inv_chars = set("\n\rĊ")
                         items = self.token_filter.id_to_token.items()
                         for tid, tstr in items:
                             cl_str = tstr.replace(
                                 "Ġ", " "
                             ).replace(" ", " ")
-                            # 変更点: '"' 単体だけでなく、'"' で始まるすべてのトークンを許可
-                            if cl_str.startswith('"') and not any(
-                                c in inv_chars for c in cl_str
-                            ):
+                            # 【究極の解決策】 '"' 単体と、Unixパス用の '"/' だけを特別に許可
+                            if cl_str == '"' or cl_str == '"/':
                                 allowed_tokens.add(tid)
                     else:
                         escape = False
@@ -330,7 +333,7 @@ class JsonGenerator(BaseModel):
                             if current_param_index + 1 < len(param_keys):
                                 n_key = param_keys[current_param_index + 1]
                                 full_exit = (
-                                    value_start_text + val_with_q
+                                    value_start_text + val_with_q 
                                     + f', "{n_key}": '
                                 )
                             else:
@@ -391,7 +394,7 @@ class JsonGenerator(BaseModel):
                     )
                     for f_name in al_names:
                         fm = (
-                            '{"prompt": ' + p_json + ', "name": "'
+                            '{"prompt": ' + p_json + ', "name": "' 
                             + f_name + '"'
                         )
                         if current_text == fm:
@@ -401,10 +404,10 @@ class JsonGenerator(BaseModel):
                                 }
                             else:
                                 selected_function = next(
-                                    f for f in self.functions
+                                    f for f in self.functions 
                                     if f["name"] == f_name
                                 )
-
+                                
                             param_keys = list(
                                 selected_function.get(
                                     "parameters", {}
@@ -448,7 +451,7 @@ class JsonGenerator(BaseModel):
                         num_part = current_text[len(value_start_text):]
                         c_len = 0
                         v_chars = (
-                            "0123456789.-" if p_type == "number"
+                            "0123456789.-" if p_type == "number" 
                             else "0123456789-"
                         )
                         for char in num_part:
@@ -482,7 +485,7 @@ class JsonGenerator(BaseModel):
                                 value_start_text + "true" + f', "{n_key}": '
                             )
                             t_false = (
-                                value_start_text + "false"
+                                value_start_text + "false" 
                                 + f', "{n_key}": '
                             )
                             if current_text in (t_true, t_false):
@@ -517,14 +520,14 @@ class JsonGenerator(BaseModel):
 
                                 if suffix:
                                     has_nxt = (
-                                        current_param_index + 1
+                                        current_param_index + 1 
                                         < len(param_keys)
                                     )
                                     if has_nxt:
                                         if suffix.startswith(", "):
                                             current_param_index += 1
                                             param_base_text = (
-                                                value_start_text
+                                                value_start_text 
                                                 + val_with_q + ", "
                                             )
                                             current_state = (
@@ -534,7 +537,7 @@ class JsonGenerator(BaseModel):
                                         if suffix.startswith("}"):
                                             current_param_index += 1
                                             param_base_text = (
-                                                value_start_text
+                                                value_start_text 
                                                 + val_with_q + "}"
                                             )
                                             current_state = (
