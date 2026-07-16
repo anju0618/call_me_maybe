@@ -91,7 +91,6 @@ class JsonGenerator(BaseModel):
         param_keys: List[str] = []
 
         # 値の文字列がどこから始まったかを記録する変数
-        # 例: '{"prompt":"...", "name":"fn", "parameters":{"a":' まで記録
         value_start_text = ""
 
         # ========================================================
@@ -100,7 +99,6 @@ class JsonGenerator(BaseModel):
         # 原因になるため、最初からプロンプト転記部分は自力で入力しておく。
         # ========================================================
         p_json = json.dumps(prompt)
-        # prefix: '{"prompt":"質問文","name":"' （LLMは関数名から推論開始）
         prefix = '{"prompt":' + p_json + ',"name":"'
 
         current_text = prefix
@@ -109,7 +107,6 @@ class JsonGenerator(BaseModel):
         # LLMの履歴(input_ids)に「すでに自分がprefixまで喋った」と錯覚させる
         input_ids = self.token_filter.encode(context + current_text)
 
-        # 1トークンずつ生成するループ（最大500トークン）
         for _ in range(500):
             if not input_ids:
                 logits = [0.0] * len(self.token_filter.id_to_token)
@@ -124,12 +121,10 @@ class JsonGenerator(BaseModel):
 
             # --------------------------------------------------------
             # 制約（Constrained Decoding）の設定
-            # 現在のStateに応じて、選んでよいトークンIDをallowed_tokensに詰める
             # --------------------------------------------------------
             if current_state == JsonState.FUNCTION_NAME:
                 al_names = [f["name"] for f in self.functions] + ["unknown"]
                 for f_name in al_names:
-                    # 例: '{"prompt":"...","name":"fn_add_numbers"' を目指す
                     ft = prefix + f_name + '"'
                     tokens = self.token_filter.filter_by_prefix(
                         current_text, ft
@@ -138,23 +133,34 @@ class JsonGenerator(BaseModel):
 
             elif current_state == JsonState.PARAM_VALUE:
                 p_key = param_keys[current_param_index]
-                p_info = selected_function["parameters"][p_key]
-                p_type = p_info.get("type", "string")
+                p_type = selected_function["parameters"][p_key].get(
+                    "type", "string"
+                )
+
+                # 【重要】次にワープするための固定文字列（目標）を作成
+                if current_param_index + 1 < len(param_keys):
+                    n_key = param_keys[current_param_index + 1]
+                    n_type = selected_function["parameters"][n_key].get(
+                        "type", "string"
+                    )
+                    if n_type == "string":
+                        ff_next = ',"' + n_key + '":"'
+                    else:
+                        ff_next = ',"' + n_key + '":'
+                else:
+                    ff_next = "}}"
 
                 if p_type in ["number", "integer"]:
-                    # 数字として有効なトークンだけを許可
                     tokens_list = self.token_filter.filter_numeric_tokens(
                         is_start=(len(current_text) == len(value_start_text)),
                         is_integer=(p_type == "integer")
                     )
                     allowed_tokens = set(tokens_list)
 
-                    # 現在抽出中の数字部分を取得（例: "12.0"）
                     num_part = current_text[len(value_start_text):]
                     c_len = 0
                     v_chars = (
-                        "0123456789.-" if p_type == "number"
-                        else "0123456789-"
+                        "0123456789.-" if p_type == "number" else "0123456789-"
                     )
                     for char in num_part:
                         if char in v_chars:
@@ -163,28 +169,19 @@ class JsonGenerator(BaseModel):
                             break
                     clean_num = num_part[:c_len]
 
-                    # 数値の終了条件として「,（カンマ）」と「}（カッコ）」を許可
-                    full_exit_comma = value_start_text + clean_num + ","
-                    full_exit_brace = value_start_text + clean_num + "}"
-
+                    # 【無限ループ修正箇所】LLMに「次に来るキー名」も目標として
+                    # 見せることで、LLMが0を連打せずスムーズに数値を完了させます
+                    full_exit = value_start_text + clean_num + ff_next
                     allowed_tokens.update(
                         self.token_filter.filter_by_prefix(
-                            current_text, full_exit_comma
-                        )
-                    )
-                    allowed_tokens.update(
-                        self.token_filter.filter_by_prefix(
-                            current_text, full_exit_brace
+                            current_text, full_exit
                         )
                     )
 
                 elif p_type == "boolean":
-                    # true または false の文字列のみを許可
                     targets = [
-                        value_start_text + "true,",
-                        value_start_text + "false,",
-                        value_start_text + "true}",
-                        value_start_text + "false}"
+                        value_start_text + "true" + ff_next,
+                        value_start_text + "false" + ff_next
                     ]
                     for t in targets:
                         allowed_tokens.update(
@@ -192,22 +189,19 @@ class JsonGenerator(BaseModel):
                         )
 
                 else:
-                    # 文字列の推論: 改行などを含まないすべての文字を許可
                     t_filter = self.token_filter
                     allowed_tokens.update(t_filter.valid_string_tokens)
 
-                    # 文字列の終了を示す「"」を許可
-                    full_exit_q = current_text + '"'
+                    full_exit = current_text + '"' + ff_next
                     allowed_tokens.update(
                         self.token_filter.filter_by_prefix(
-                            current_text, full_exit_q
+                            current_text, full_exit
                         )
                     )
 
             if not allowed_tokens and self.debug:
                 print(f"⚠️ [WARNING] No tokens at: {current_state.name}!")
 
-            # Logits（確率）が最も高い「許可されたトークン」を選ぶ
             if allowed_tokens:
                 valid_ids = {t for t in allowed_tokens if t < len(logits)}
                 if valid_ids:
@@ -220,7 +214,6 @@ class JsonGenerator(BaseModel):
             next_token_str = self.token_filter.id_to_token[next_token_id]
             clean_next_str = next_token_str.replace("Ġ", " ").replace(" ", " ")
             current_text += clean_next_str
-
             input_ids.append(next_token_id)
 
             if self.debug:
@@ -232,15 +225,11 @@ class JsonGenerator(BaseModel):
 
             # ========================================================
             # 状態遷移のチェック ＆ 強制ワープ実行
-            # LLMが1つデータを出力し終えたら、Python側で次のキー名を自力で
-            # 足してしまい、LLMには値の穴埋めだけをやらせます。
             # ========================================================
             while True:
                 old_state = current_state
 
-                # 【関数名の抽出完了チェック】
                 if current_state == JsonState.FUNCTION_NAME:
-                    # 末尾にダブルクォーテーションが出たら関数名が確定
                     if current_text.endswith('"'):
                         f_name = current_text[len(prefix):-1]
 
@@ -260,12 +249,9 @@ class JsonGenerator(BaseModel):
                             selected_func.get("parameters", {}).keys()
                         )
 
-                        # 引数がない関数ならここで完成
                         if not param_keys:
                             return current_text + ',"parameters":{}}'
 
-                        # 【爆速化ワープ】最初のパラメータのキー名と記号を足す
-                        # 例: ',"parameters":{"a":' （型に応じて " の有無を調整）
                         p_type = selected_func["parameters"][
                             param_keys[0]
                         ].get("type", "string")
@@ -284,7 +270,6 @@ class JsonGenerator(BaseModel):
                         value_start_text = current_text
                         selected_function = selected_func
 
-                # 【パラメータ値の抽出完了チェック】
                 elif current_state == JsonState.PARAM_VALUE:
                     p_key = param_keys[current_param_index]
                     p_type = selected_function["parameters"][p_key].get(
@@ -293,42 +278,64 @@ class JsonGenerator(BaseModel):
 
                     value_is_finished = False
 
-                    if p_type in ["number", "integer", "boolean"]:
-                        # 数値やboolは、末尾に「,」か「}」が出たら値の終了とみなす
-                        if current_text.endswith(','):
-                            current_text = current_text[:-1]
+                    if p_type in ["number", "integer"]:
+                        num_part = current_text[len(value_start_text):]
+                        v_chars = set(
+                            "0123456789.-" if p_type == "number"
+                            else "0123456789-"
+                        )
+                        c_len = 0
+                        for char in num_part:
+                            if char in v_chars:
+                                c_len += 1
+                            else:
+                                break
+                        
+                        # 数字以外の文字（LLMが生成した次のワープ文字など）が出力されたら終了
+                        if len(num_part) > c_len:
+                            # オーバーシュートした分を削り、綺麗な数値だけにする
+                            current_text = value_start_text + num_part[:c_len]
                             value_is_finished = True
-                        elif current_text.endswith('}'):
-                            current_text = current_text[:-1]
-                            value_is_finished = True
-                    else:
-                        # 文字列は、エスケープされていない「"」が出たら終了とみなす
-                        val_str = current_text[len(value_start_text):]
-                        if len(val_str) > 0 and val_str.endswith('"'):
-                            escape_count = 0
-                            # 末尾の " の直前にある \（バックスラッシュ）の数を数える
-                            for char in reversed(val_str[:-1]):
-                                if char == '\\':
-                                    escape_count += 1
-                                else:
-                                    break
-                            # \ が偶数個なら、最後の " はエスケープされていない（文字列の終わり）
-                            if escape_count % 2 == 0:
-                                value_is_finished = True
 
-                    # 1つの値が抽出完了した場合の処理
+                    elif p_type == "boolean":
+                        bool_part = current_text[len(value_start_text):]
+                        is_t = bool_part.startswith("true")
+                        if is_t and len(bool_part) > 4:
+                            current_text = value_start_text + "true"
+                            value_is_finished = True
+                        
+                        is_f = bool_part.startswith("false")
+                        if is_f and len(bool_part) > 5:
+                            current_text = value_start_text + "false"
+                            value_is_finished = True
+
+                    else:
+                        val_str = current_text[len(value_start_text):]
+                        escape = False
+                        quote_idx = -1
+                        for i in range(len(val_str)):
+                            if escape:
+                                escape = False
+                            elif val_str[i] == '\\':
+                                escape = True
+                            elif val_str[i] == '"':
+                                quote_idx = i
+                                break
+                        
+                        if quote_idx != -1:
+                            val_clean = val_str[:quote_idx + 1]
+                            current_text = value_start_text + val_clean
+                            value_is_finished = True
+
                     if value_is_finished:
                         current_param_index += 1
 
-                        # まだ次の引数が残っている場合
                         if current_param_index < len(param_keys):
                             n_key = param_keys[current_param_index]
                             n_type = selected_function["parameters"][
                                 n_key
                             ].get("type", "string")
 
-                            # 【爆速化ワープ】次のパラメータのキー名を自力で足す
-                            # 例: ',"b":'
                             if n_type == "string":
                                 ff_str = ',"' + n_key + '":"'
                             else:
@@ -340,8 +347,6 @@ class JsonGenerator(BaseModel):
                                     self.token_filter.encode(ff_str)
                                 )
                             value_start_text = current_text
-
-                        # すべての引数が出力し終わった場合
                         else:
                             return current_text + '}}'
 

@@ -65,10 +65,10 @@ def main() -> None:
     for idx, t in enumerate(tests):
         prompt = t["prompt"]
         print(f"Processing {idx+1}/{len(tests)}: {prompt}")
-
+        
         # 【中核処理】制約デコーディングによってJSON文字列を生成
         res_str = generator.generate_function_call(prompt)
-
+        
         try:
             # 100%パース可能なJSONが生成されているはずなので、辞書に変換
             res_json = json.loads(res_str)
