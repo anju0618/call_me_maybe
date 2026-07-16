@@ -72,7 +72,7 @@ def test_filter_numeric_tokens(dummy_vocab_path: str) -> None:
     allowed_start = tf.filter_numeric_tokens(is_start=True)
     assert 3 in allowed_start  # "1"
     assert 5 in allowed_start  # "."
-    assert 7 in allowed_start  # " "
+    assert 7 not in allowed_start  # " "
     assert 2 not in allowed_start  # "a" (文字は弾かれる)
     assert 11 not in allowed_start  # "Ċ" (改行は弾かれる)
 

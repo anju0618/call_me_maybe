@@ -9,6 +9,7 @@ from src.json_generator import JsonGenerator
 
 
 def main() -> None:
+    # コマンドライン引数の設定
     parser = argparse.ArgumentParser(description="Constrained Decoding")
     parser.add_argument(
         "--input",
@@ -32,6 +33,7 @@ def main() -> None:
     output_path = Path(args.output)
     func_path = Path(args.functions_definition)
 
+    # 入力ファイルが存在するかチェック
     if not input_path.exists():
         print(f"Error: {input_path} not found.")
         sys.exit(1)
@@ -39,15 +41,18 @@ def main() -> None:
         print(f"Error: {func_path} not found.")
         sys.exit(1)
 
+    # 関数定義とテストプロンプトを読み込む
     with open(func_path, "r", encoding="utf-8") as f:
         functions = json.load(f)
 
     with open(input_path, "r", encoding="utf-8") as f:
         tests = json.load(f)
 
+    # LLMモデルとボキャブラリの初期化
     model = Small_LLM_Model()
     vocab_path = model.get_path_to_vocab_file()
 
+    # JSONジェネレータの生成（ここでトークンフィルターのキャッシュ作成が走る）
     generator = JsonGenerator(
         model=model,
         vocab_path=vocab_path,
@@ -56,11 +61,16 @@ def main() -> None:
     )
 
     results = []
+    # 各テストプロンプトに対して、関数呼び出しJSONを生成するメインループ
     for idx, t in enumerate(tests):
         prompt = t["prompt"]
         print(f"Processing {idx+1}/{len(tests)}: {prompt}")
+
+        # 【中核処理】制約デコーディングによってJSON文字列を生成
         res_str = generator.generate_function_call(prompt)
+
         try:
+            # 100%パース可能なJSONが生成されているはずなので、辞書に変換
             res_json = json.loads(res_str)
             if res_json.get("name") == "unknown":
                 print("  ⚠️ Skipped: Unknown function.")
@@ -70,6 +80,7 @@ def main() -> None:
         except json.JSONDecodeError:
             print(f"  ❌ Parse Error: {res_str}")
 
+    # 結果を指定されたディレクトリに保存
     output_path.parent.mkdir(parents=True, exist_ok=True)
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=4, ensure_ascii=False)
