@@ -273,7 +273,7 @@ class JsonGenerator(BaseModel):
                             param_keys[0]
                         ].get("type", "string")
 
-                         # 最初の引数キー名を足して推論させない
+                        # 最初の引数キー名を足して推論させない
                         # 例: ',"parameters":{"a":'
                         if p_type == "string":
                             ff_str = ',"parameters":{"' + param_keys[0] + '":"'

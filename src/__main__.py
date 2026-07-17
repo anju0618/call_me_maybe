@@ -41,12 +41,17 @@ def main() -> None:
         print(f"Error: {func_path} not found.")
         sys.exit(1)
 
-    # 関数定義とテストプロンプトを読み込む
-    with open(func_path, "r", encoding="utf-8") as f:
-        functions = json.load(f)
+    try:
+        # 関数定義とテストプロンプトを読み込む
+        with open(func_path, "r", encoding="utf-8") as f:
+            functions = json.load(f)
 
-    with open(input_path, "r", encoding="utf-8") as f:
-        tests = json.load(f)
+        with open(input_path, "r", encoding="utf-8") as f:
+            tests = json.load(f)
+    except json.JSONDecodeError as e:
+        # エラーメッセージを出す
+        print(f"Error: Invalid JSON format in input files.\nDetails: {e}")
+        sys.exit(1)
 
     # LLMモデルとボキャブラリの初期化
     model = Small_LLM_Model()
@@ -88,4 +93,11 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\n⚠️ キーボードさわるなあああ")
+        sys.exit(0)
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
