@@ -11,9 +11,9 @@ from llm_sdk import Small_LLM_Model  # type: ignore[attr-defined]
 class JsonGenerator(BaseModel):
     """
     制約デコーディング（Constrained Decoding）を用いて、
-    LLMに必ず有効な関数呼び出しのJSONを生成させるクラス。
+    LLMに必ず有効な関数呼び出しのJSONを生成させるコアクラス。
     """
-    # 外部のLLMモデルクラスなどをそのままプロパティに持てるようにする
+    # 外部のLLMモデルクラスなどをそのままプロパティに持てるようにする設定
     model_config = ConfigDict(arbitrary_types_allowed=True)
 
     model: Small_LLM_Model
@@ -35,7 +35,8 @@ class JsonGenerator(BaseModel):
         if self.token_filter is None:
             raise RuntimeError("TokenFilter is not initialized.")
 
-        # LLMに渡す関数の定義を整理（descriptionは残し、複雑な型は除去）
+        # LLMを混乱させないため、関数の定義から複雑すぎる型などを除去。
+        # (ただし、意図を理解させるための description は残す)
         clean_funcs = []
         for func in self.functions:
             c_func = {
@@ -47,11 +48,14 @@ class JsonGenerator(BaseModel):
                 c_func["parameters"][pk] = p_info.get("type", "string")
             clean_funcs.append(c_func)
 
-        # 該当しない質問が来た時のために「unknown」という逃げ道を用意
+        # どの関数にも該当しない質問を処理するための「unknown」を追加
         clean_funcs.append({"name": "unknown", "parameters": {}})
         f_str = json.dumps(clean_funcs, ensure_ascii=False)
 
-        # 【プロンプト設計】LLMに抽出ルールを学習させる
+        # ========================================================
+        # 【プロンプト設計】LLMに抽出ルールを学習させる（7パターンの例題）
+        # ※flake8の「1行79文字制限」を回避するため細かく文字列を分割。
+        # ========================================================
         context = (
             "System: Extract parameters EXACTLY from the User prompt.\n"
             "- Add '.0' to whole numbers (e.g., 3.0).\n"
@@ -98,17 +102,23 @@ class JsonGenerator(BaseModel):
         # （例: '{"prompt":"...", "name":"fn", "parameters":{"a":' まで記録）
         value_start_text = ""
 
-        # 最初からプロンプト転記部分は自力で入力しておく。
+        # ========================================================
+        # 【強制ワープ（Fast-Forwarding）の準備】
+        # ボイラープレート（固定文字列）をLLMに推論させると遅く、幻覚の
+        # 原因になるため、最初からプロンプト転記部分は自力で入力しておく。
+        # ========================================================
         p_json = json.dumps(prompt)
+        # prefixには `{"prompt": "プロンプトの中身", "name": "` が入る
         prefix = '{"prompt":' + p_json + ',"name":"'
 
+        # LLMが推論を開始する現在地のテキストと状態をセット
         current_text = prefix
         current_state = JsonState.FUNCTION_NAME
 
         # LLMの履歴(input_ids)に「すでに自分がprefixまで喋った」と錯覚させる
         input_ids = self.token_filter.encode(context + current_text)
 
-        # 1トークンずつ生成するループ
+        # 1トークンずつ生成するループ（最大500トークンまで）
         for _ in range(500):
             if not input_ids:
                 logits = [0.0] * len(self.token_filter.id_to_token)
@@ -120,10 +130,12 @@ class JsonGenerator(BaseModel):
                 else:
                     logits = list(raw_logits)
 
-            # 出力してよいトークンID
+            # このターンで「出力してよいトークンID」を格納する集合
             allowed_tokens: Set[int] = set()
 
-            # 制約の設定
+            # --------------------------------------------------------
+            # 制約（Constrained Decoding）の設定
+            # --------------------------------------------------------
             if current_state == JsonState.FUNCTION_NAME:
                 al_names = [f["name"] for f in self.functions] + ["unknown"]
                 for f_name in al_names:
@@ -141,7 +153,7 @@ class JsonGenerator(BaseModel):
                     "type", "string"
                 )
 
-                # 次の固定文字列を作成
+                # 【重要】値が終わった後にワープする「次の目標」を作成
                 if current_param_index + 1 < len(param_keys):
                     n_key = param_keys[current_param_index + 1]
                     n_type = selected_function["parameters"][n_key].get(
@@ -153,11 +165,11 @@ class JsonGenerator(BaseModel):
                     else:
                         ff_next = ',"' + n_key + '":'
                 else:
-                    # 次の引数がない場合はかっことじ
+                    # 次の引数がない場合は括弧を閉じる `}}`
                     ff_next = "}}"
 
                 if p_type in ["number", "integer"]:
-                    # 数字として有効なトークンだけを許可
+                    # 数字として有効なトークンだけを許可（ホワイトリスト）
                     tokens_list = self.token_filter.filter_numeric_tokens(
                         is_start=(len(current_text) == len(value_start_text)),
                         is_integer=(p_type == "integer")
@@ -177,8 +189,8 @@ class JsonGenerator(BaseModel):
                             break
                     clean_num = num_part[:c_len]
 
-                    # LLMに「次に来るキー名」も目標として見せることで、
-                    # LLMが0を連打せずスムーズに数値を閉じさせる
+                    # LLMに「次にカンマや括弧が来る」と目標を見せることで、
+                    # LLMが無限に 0 を連打せずスムーズに数値を完了させます
                     full_exit = value_start_text + clean_num + ff_next
                     allowed_tokens.update(
                         self.token_filter.filter_by_prefix(
@@ -187,8 +199,7 @@ class JsonGenerator(BaseModel):
                     )
 
                 elif p_type == "boolean":
-                    # tかfだけで判別して、残りは固定をぶち込んだほうが
-                    # はやいかも
+                    # true または false の文字列のみを許可
                     targets = [
                         value_start_text + "true" + ff_next,
                         value_start_text + "false" + ff_next
@@ -203,7 +214,7 @@ class JsonGenerator(BaseModel):
                     t_filter = self.token_filter
                     allowed_tokens.update(t_filter.valid_string_tokens)
 
-                    # 文字列の終了を示す「"」の直後に、次の文字列を繋げる
+                    # 文字列の終了を示す「"」の直後に、次のワープ文字列を繋げる
                     full_exit = current_text + '"' + ff_next
                     allowed_tokens.update(
                         self.token_filter.filter_by_prefix(
@@ -214,13 +225,12 @@ class JsonGenerator(BaseModel):
             if not allowed_tokens and self.debug:
                 print(f"⚠️ [WARNING] No tokens at: {current_state.name}!")
 
-            # ロジットマスキング
-            # -infを代入するんじゃねくて
-            # allowdtokenから最もロジットの大きなものを選び出す
+            # 巨大な配列すべてに-infを代入する重い処理を廃止し、
+            # 「許可されたトークン」の中だけで最もスコアが高いものを選びます
             if allowed_tokens:
                 valid_ids = {t for t in allowed_tokens if t < len(logits)}
                 if valid_ids:
-                    # valid_idsの中から、logitsの値が最大のもの
+                    # 許可リスト(valid_ids)の中から、logitsの値が最大のもの
                     next_token_id = max(valid_ids, key=logits.__getitem__)
                 else:
                     next_token_id = int(logits.index(max(logits)))
@@ -239,10 +249,15 @@ class JsonGenerator(BaseModel):
                     f"Current: {repr(current_text)}"
                 )
 
-            # 状態チェック
+            # ========================================================
+            # 状態遷移のチェック ＆ 強制ワープ実行
+            # LLMが1つデータを出力し終えたら、Python側で次のキー名を自力で
+            # 足してしまい、LLMには値の穴埋めだけをやらせます。
+            # ========================================================
             while True:
                 old_state = current_state
 
+                # 【関数名の抽出完了チェック】
                 if current_state == JsonState.FUNCTION_NAME:
                     # 末尾にダブルクォーテーションが出たら関数名が確定
                     if current_text.endswith('"'):
@@ -265,7 +280,7 @@ class JsonGenerator(BaseModel):
                             selected_func.get("parameters", {}).keys()
                         )
 
-                        # 引数ないと終了
+                        # 引数がない関数ならここで完成
                         if not param_keys:
                             return current_text + ',"parameters":{}}'
 
@@ -273,7 +288,7 @@ class JsonGenerator(BaseModel):
                             param_keys[0]
                         ].get("type", "string")
 
-                         # 最初の引数キー名を足して推論させない
+                        # 【爆速化ワープ】最初の引数キー名を自力で足す
                         # 例: ',"parameters":{"a":'
                         if p_type == "string":
                             ff_str = ',"parameters":{"' + param_keys[0] + '":"'
@@ -281,7 +296,7 @@ class JsonGenerator(BaseModel):
                             ff_str = ',"parameters":{"' + param_keys[0] + '":'
 
                         current_text += ff_str
-                        # 足した文字をLLMの履歴に同期
+                        # 足した文字をLLMの履歴にも同期させる
                         if self.token_filter is not None:
                             input_ids.extend(self.token_filter.encode(ff_str))
 
@@ -291,7 +306,7 @@ class JsonGenerator(BaseModel):
                         value_start_text = current_text
                         selected_function = selected_func
 
-                # パラメータの抽出完了チェック
+                # 【パラメータ値の抽出完了チェック】
                 elif current_state == JsonState.PARAM_VALUE:
                     p_key = param_keys[current_param_index]
                     p_type = selected_function["parameters"][p_key].get(
@@ -302,7 +317,6 @@ class JsonGenerator(BaseModel):
 
                     if p_type in ["number", "integer"]:
                         num_part = current_text[len(value_start_text):]
-                        # ▼ set() を外して、前半と同じただの文字列にする！
                         v_chars = (
                             "0123456789.-" if p_type == "number"
                             else "0123456789-"
@@ -314,9 +328,9 @@ class JsonGenerator(BaseModel):
                             else:
                                 break
 
-                        # 数字以外の文字（LLMが生成した次のワープ文字など）が出力されたら終了
+                        # 数字以外の文字（ワープの記号など）が出力されたら終了
                         if len(num_part) > c_len:
-                            # オーバーシュートした分を削り、綺麗な数値だけにする
+                            # オーバーシュートした分を削り、綺麗な数値にする
                             current_text = value_start_text + num_part[:c_len]
                             value_is_finished = True
 
@@ -362,6 +376,8 @@ class JsonGenerator(BaseModel):
                                 n_key
                             ].get("type", "string")
 
+                            # 【爆速化ワープ】次のキー名を自力で足す
+                            # 例: ',"b":'
                             if n_type == "string":
                                 ff_str = ',"' + n_key + '":"'
                             else:
@@ -374,7 +390,7 @@ class JsonGenerator(BaseModel):
                                 )
                             value_start_text = current_text
                         else:
-                            # すべての引数が出力し終わったらカッコとじ
+                            # すべての引数が出力し終わったら完成！
                             return current_text + '}}'
 
                 if current_state == old_state:

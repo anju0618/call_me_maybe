@@ -13,26 +13,30 @@ class TokenFilter(BaseModel):
     vocab.json を読み込み、トークンIDと文字列の変換や、
     次に許可されるトークンの絞り込み（Constrained Decoding）を行います。
     """
+    # vocab.json
     vocab_path: str
+    # トークンID(int)から文字列(str)への変換辞書 (例: {16: "1", ...})
     id_to_token: Dict[int, str] = Field(default_factory=dict)
+    # 存在する全トークンIDの集合 (15万件以上のIDが入る)
     all_token_ids: Set[int] = Field(default_factory=set)
 
-    # トークン文字列を長さ順（長い順）に並べたリスト
+    # トークン文字列を「文字数が多い順」に並べたリスト（最長一致検索用）
+    # 例: [("apple", 123), ("app", 45), ("a", 1)]
     sorted_clean_tokens: List[Tuple[str, int]] = Field(default_factory=list)
-
-    # 文字列の推論中に許可される安全なトークン群
     valid_string_tokens: Set[int] = Field(default_factory=set)
 
-    # 【究極の爆速化】1文字目で検索範囲を劇的に絞り込むための辞書キャッシュ
+    # 【高速化】1文字目で検索範囲を劇的に絞り込むための辞書キャッシュ
     # 例: char_to_tokens["a"] -> [("apple", 123), ("and", 456), ...]
     char_to_tokens: Dict[str, List[Tuple[str, int]]] = Field(
         default_factory=dict
     )
 
     def __hash__(self) -> int:
+        # lru_cacheを使うためにクラス自体をハッシュ化
         return hash(self.vocab_path)
 
     def __eq__(self, other: Any) -> bool:
+        # 同一インスタンスかどうかの比較ロジック
         if not isinstance(other, TokenFilter):
             return False
         return self.vocab_path == other.vocab_path
@@ -84,7 +88,7 @@ class TokenFilter(BaseModel):
         while i < text_len:
             match_found = False
             first_char = text[i]
-            # 1文字目で検索対象を絞り込むことで爆速化
+            # 1文字目で検索対象を絞り込むことで高速化
             if first_char in self.char_to_tokens:
                 for t_str, t_id in self.char_to_tokens[first_char]:
                     if text.startswith(t_str, i):
@@ -109,7 +113,10 @@ class TokenFilter(BaseModel):
     def filter_by_prefix(
         self, current_text: str, full_target: str
     ) -> List[int]:
-        """目標の文字列（full_target）に向かうための正しいトークンを抽出"""
+        """
+        目標の文字列（full_target）に向かって出力してよいトークンを抽出。
+        例: current_text="fn_" で full_target="fn_add" なら "add" を探す。
+        """
         if not full_target.startswith(current_text):
             return []
 
@@ -120,9 +127,10 @@ class TokenFilter(BaseModel):
         allowed_ids: List[int] = []
         first_char = remainder[0]
 
-        # 残りの文字列の先頭文字に一致するトークンのみを検索（爆速化）
+        # 残りの文字列の先頭文字に一致するトークンのみを検索
         if first_char in self.char_to_tokens:
             for clean_str, t_id in self.char_to_tokens[first_char]:
+                # 目標文字列からはみ出さない（オーバーシュートしない）か確認
                 if remainder.startswith(clean_str):
                     allowed_ids.append(t_id)
 
